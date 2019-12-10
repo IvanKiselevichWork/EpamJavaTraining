@@ -10,6 +10,15 @@ public class CustomScanner {
         while (!scanner.hasNextInt()) {
             scanner.nextLine();
         }
-        return  scanner.nextInt();
+        return scanner.nextInt();
+    }
+
+    @SuppressWarnings("resource")
+    public static double readDouble(InputStream in) {
+        Scanner scanner = new Scanner(in);
+        while (!scanner.hasNextDouble()) {
+            scanner.nextLine();
+        }
+        return scanner.nextDouble();
     }
 }
