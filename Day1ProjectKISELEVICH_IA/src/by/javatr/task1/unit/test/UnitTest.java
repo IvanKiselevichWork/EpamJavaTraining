@@ -4,7 +4,7 @@ import by.javatr.task1.unit.Unit;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class UnitTest extends Assert {
+public class UnitTest {
 /*
     getLastDigit(int number) TESTS
  */
