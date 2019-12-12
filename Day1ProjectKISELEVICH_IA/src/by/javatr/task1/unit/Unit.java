@@ -4,7 +4,7 @@ public class Unit {
 
     //todo tests
     public static int getLastDigit(int number) {
-        return (number % 10);
+        return ( Math.abs(number) % 10);
     }
 
     //todo tests
