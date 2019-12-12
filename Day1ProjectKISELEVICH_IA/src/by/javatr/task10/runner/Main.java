@@ -3,6 +3,7 @@ package by.javatr.task10.runner;
 import by.javatr.scanner.CustomScanner;
 import by.javatr.scanner.exception.CustomScannerException;
 import by.javatr.task10.unit.Unit;
+import by.javatr.task10.unit.exception.InvalidArgumentsException;
 
 /**
  * 10. Составить программу для вычисления значений функции F(x) на отрезке [а, b] с шагом h. Результат
@@ -32,7 +33,7 @@ public class Main {
         }
 
         double h;
-        System.out.println("Input h (< b - a): ");
+        System.out.println("Input h (> 0): ");
         try {
             h = CustomScanner.readDouble(System.in);
         } catch (CustomScannerException e) {
@@ -40,7 +41,16 @@ public class Main {
             return;
         }
 
-        //todo MAX_PRIOR!!!!!!!!
-        Unit.getValuesTable(a, b, h);
+        double[][] table;
+        try {
+            table = Unit.getValuesTable(a, b, h);
+        } catch (InvalidArgumentsException e) {
+            System.out.println("Invalid arguments!");
+            return;
+        }
+
+        for (double[] values : table) {
+            System.out.printf("%6.3f     %6.3f\n", values[0], values[1]);
+        }
     }
 }
