@@ -1,7 +1,13 @@
 package by.javatr.task5.unit;
 
+import by.javatr.task5.unit.exception.InvalidPerfectNumberException;
+
 public class Unit {
-    public static boolean isNumberPerfect(int number) {
+    //todo test
+    public static boolean isNumberPerfect(int number) throws InvalidPerfectNumberException {
+        if (number < 1) {
+            throw new InvalidPerfectNumberException();
+        }
         int dividersSum = 0;
         for (int i = 1; i <= number / 2; i++) {
             if (number % i == 0) {

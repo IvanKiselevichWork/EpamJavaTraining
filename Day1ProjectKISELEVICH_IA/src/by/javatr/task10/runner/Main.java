@@ -1,29 +1,40 @@
 package by.javatr.task10.runner;
 
 import by.javatr.scanner.CustomScanner;
+import by.javatr.scanner.exception.CustomScannerException;
 import by.javatr.task10.unit.Unit;
 
 public class Main {
     public static void main(String[] args) {
 
         System.out.println("Input a: ");
-        double a = CustomScanner.readDouble(System.in);
+        double a;
+        try {
+            a = CustomScanner.readDouble(System.in);
+        } catch (CustomScannerException e) {
+            System.out.println("Input error!");
+            return;
+        }
 
         double b;
-        do {
-            System.out.println("Input b (> a): ");
+        System.out.println("Input b (> a): ");
+        try {
             b = CustomScanner.readDouble(System.in);
-        } while (b <= a);
+        } catch (CustomScannerException e) {
+            System.out.println("Input error!");
+            return;
+        }
 
         double h;
-        do {
-            System.out.println("Input h (< b - a): ");
+        System.out.println("Input h (< b - a): ");
+        try {
             h = CustomScanner.readDouble(System.in);
-        } while (h >= (b - a));
-
-        for (double x = a; x <= b; x += h) {
-            double f = Unit.funcF(x);
-            System.out.printf("%6.3f     %6.3f\n", x, f);
+        } catch (CustomScannerException e) {
+            System.out.println("Input error!");
+            return;
         }
+
+        //todo
+        Unit.getValuesTable(a, b, h);
     }
 }

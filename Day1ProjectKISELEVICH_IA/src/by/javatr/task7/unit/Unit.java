@@ -2,6 +2,7 @@ package by.javatr.task7.unit;
 
 public class Unit {
 
+    //todo test
     /**
      * @param x1 point1 X-axis
      * @param y1 point1 Y-axis

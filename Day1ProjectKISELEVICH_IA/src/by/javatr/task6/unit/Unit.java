@@ -1,9 +1,15 @@
 package by.javatr.task6.unit;
 
 import by.javatr.task6.entity.Timestamp;
+import by.javatr.task6.unit.exception.InvalidSecondException;
 
 public class Unit {
-    public static Timestamp getTimestampFromSecond(int second) {
+    //todo test
+    public static Timestamp getTimestampFromSecond(int second) throws InvalidSecondException {
+        if (second < 1) {
+            throw new InvalidSecondException();
+        }
+
         second--;
 
         int hours = second / Timestamp.SECONDS_PER_HOUR;
