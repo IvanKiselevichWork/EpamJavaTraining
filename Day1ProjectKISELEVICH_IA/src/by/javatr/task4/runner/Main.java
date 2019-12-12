@@ -5,6 +5,10 @@ import by.javatr.scanner.exception.CustomScannerException;
 import by.javatr.task4.unit.Unit;
 import by.javatr.task4.unit.exception.InvalidArrayException;
 
+/**
+ * 4.  Составить программу, печатающую значение true, если указанное высказывание является истинным, и
+ * false — в противном случае: среди заданных целых чисел А, В, С, D есть хотя бы два четных.
+ */
 public class Main {
 
     private static final int NUMBERS_COUNT = 4;

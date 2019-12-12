@@ -4,6 +4,12 @@ import by.javatr.scanner.CustomScanner;
 import by.javatr.scanner.exception.CustomScannerException;
 import by.javatr.task8.unit.Unit;
 
+/**
+ * 8.  Вычислить значение функции:
+ *          -x^2 + 3x + 9, x >= 3
+ * F(x) =
+ *          1 / (x^3 - 6), x < 3
+ */
 public class Main {
     public static void main(String[] args) {
         System.out.println("Input x: ");

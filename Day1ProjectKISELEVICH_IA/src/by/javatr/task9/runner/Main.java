@@ -5,6 +5,9 @@ import by.javatr.scanner.exception.CustomScannerException;
 import by.javatr.task9.unit.Unit;
 import by.javatr.task9.unit.exception.InvalidRadiusException;
 
+/**
+ * 9.  Вычислить длину окружности и площадь круга одного и того же заданного радиуса R.
+ */
 public class Main {
     public static void main(String[] args) {
 

@@ -6,6 +6,10 @@ import by.javatr.task6.entity.Timestamp;
 import by.javatr.task6.unit.Unit;
 import by.javatr.task6.unit.exception.InvalidSecondException;
 
+/**
+ * 6.  Идет n-я секунда суток, определить, сколько полных часов, полных минут и секунд прошло к этому
+ * моменту.
+ */
 public class Main {
     public static void main(String[] args) {
 

@@ -8,6 +8,10 @@ import by.javatr.task3.unit.exception.InvalidDiameterException;
 
 import java.time.Year;
 
+/**
+ * 3.  Окружность  вписана  в  квадрат  заданной  площади.  Найти  площадь  квадрата,  вписанного  в  эту
+ * окружность. Во сколько раз площадь вписанного квадрата меньше площади заданного?
+ */
 public class Main {
     public static void main(String[] args) {
         double squareArea;
