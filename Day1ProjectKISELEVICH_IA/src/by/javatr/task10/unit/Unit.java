@@ -8,7 +8,6 @@ public class Unit {
         return Math.tan(x);
     }
 
-    //todo test
     public static double[][] getValuesTable(double a, double b, double h) throws InvalidArgumentsException {
         if (b < a || h <= 0) {
             throw new InvalidArgumentsException("Invalid arguments, must be b > a and h > 0");
