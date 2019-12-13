@@ -11,7 +11,7 @@ public class Unit {
     //todo test
     public static double[][] getValuesTable(double a, double b, double h) throws InvalidArgumentsException {
         if (b < a || h <= 0) {
-            throw new InvalidArgumentsException();
+            throw new InvalidArgumentsException("Invalid arguments, must be b > a and h > 0");
         }
         int size = (int)((b - a)/h) + 1;
         double[][] table = new double[size][2];

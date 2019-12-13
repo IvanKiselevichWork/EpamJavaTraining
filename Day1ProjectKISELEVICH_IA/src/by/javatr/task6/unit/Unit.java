@@ -7,7 +7,7 @@ public class Unit {
     //todo test
     public static Timestamp getTimestampFromSecond(int second) throws InvalidSecondException {
         if (second < 1) {
-            throw new InvalidSecondException();
+            throw new InvalidSecondException("Invalid second argument, must be second >= 1");
         }
 
         second--;

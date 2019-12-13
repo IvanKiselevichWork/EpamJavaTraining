@@ -7,7 +7,7 @@ public class Unit {
     //todo test
     public static double getAreaOfSquareInscribedInCircle(double circleDiameter) throws InvalidDiameterException {
         if (circleDiameter < 0) {
-            throw new InvalidDiameterException();
+            throw new InvalidDiameterException("Invalid circle diameter, must be >= 0");
         }
         return circleDiameter * circleDiameter / 2;
     }
@@ -15,7 +15,7 @@ public class Unit {
     //todo test
     public static double getDiameterOfCircleInscribedInSquare(double squareArea) throws InvalidAreaException{
         if (squareArea < 0) {
-            throw new InvalidAreaException();
+            throw new InvalidAreaException("Invalid square area, must be >= 0");
         }
         return Math.sqrt(squareArea);
     }

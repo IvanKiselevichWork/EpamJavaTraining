@@ -6,7 +6,7 @@ public class Unit {
     //todo test
     public static boolean isArrayHasTwoEvenNumbers(int[] numbers) throws InvalidArrayException {
         if (numbers == null || numbers.length == 0) {
-            throw new InvalidArrayException();
+            throw new InvalidArrayException("Invalid array, must be numbers != null and numbers.length > 0");
         }
         int result = 0;
         for (int number : numbers) {
