@@ -3,7 +3,7 @@ package by.javatr.task4.unit;
 import by.javatr.task4.unit.exception.InvalidArrayException;
 
 public class Unit {
-    //todo test
+
     public static boolean isArrayHasTwoEvenNumbers(int[] numbers) throws InvalidArrayException {
         if (numbers == null || numbers.length == 0) {
             throw new InvalidArrayException("Invalid array, must be numbers != null and numbers.length > 0");
