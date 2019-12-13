@@ -1,7 +1,7 @@
 package by.javatr.task8.unit;
 
 public class Unit {
-    //todo zero exception
+
     public static double funcF(double x) {
         if (x < 3) {
             return (1. / (x * x * x - 6.));
