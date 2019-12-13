@@ -9,7 +9,7 @@ import java.time.Year;
 import java.time.YearMonth;
 
 public class Unit {
-    //todo tests
+
     public static int getDaysInMonth(int year, int month) throws InvalidYearException, InvalidMonthException {
         Month month1;
         try {
@@ -26,7 +26,6 @@ public class Unit {
         return yearMonth.lengthOfMonth();
     }
 
-    //todo tests
     public static boolean isYearLeap(int year) throws InvalidYearException {
         Year year1;
         try {
