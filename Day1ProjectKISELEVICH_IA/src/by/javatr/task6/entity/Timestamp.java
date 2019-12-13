@@ -1,5 +1,7 @@
 package by.javatr.task6.entity;
 
+import java.util.Objects;
+
 public class Timestamp {
 
     public static final int SECONDS_PER_HOUR = 3600;
@@ -37,5 +39,20 @@ public class Timestamp {
 
     public void setSeconds(int seconds) {
         this.seconds = seconds;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Timestamp timestamp = (Timestamp) o;
+        return hours == timestamp.hours &&
+                minutes == timestamp.minutes &&
+                seconds == timestamp.seconds;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(hours, minutes, seconds);
     }
 }
