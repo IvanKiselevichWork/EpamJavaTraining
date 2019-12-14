@@ -8,6 +8,7 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class CustomScanner {
+    
     @SuppressWarnings("resource")
     public static int readInteger(InputStream in) throws CustomScannerException {
         try {
