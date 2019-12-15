@@ -32,7 +32,8 @@ public class Main {
         */
         try {
             if (args.length < 2) {
-                throw new NumberFormatException();
+                System.out.println("Must be 2 args");
+                return;
             }
             countWithNewLine = Integer.parseInt(args[0]);
             countWithoutNewLine = Integer.parseInt(args[1]);
