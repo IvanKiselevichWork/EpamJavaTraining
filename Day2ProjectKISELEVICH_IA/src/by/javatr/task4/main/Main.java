@@ -1,8 +1,5 @@
 package by.javatr.task4.main;
 
-import java.util.Random;
-import java.util.Scanner;
-
 /**
 4.  Создать  приложение  для  ввода  пароля  из  командной  строки  и  сравнения  его  со  строкой-
 образцом. 
