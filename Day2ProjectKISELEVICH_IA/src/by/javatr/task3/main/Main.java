@@ -10,9 +10,11 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        //todo number count from args or System.in?
-        System.out.println("Input numbers count with newline");
         int countWithNewLine;
+        int countWithoutNewLine;
+        //todo number count from args or System.in?
+        /*
+        System.out.println("Input numbers count with newline");
         try {
             countWithNewLine = new Scanner(System.in).nextInt();
         } catch(Exception e) {
@@ -21,10 +23,20 @@ public class Main {
         }
 
         System.out.println("Input numbers count without newline");
-        int countWithoutNewLine;
         try {
             countWithoutNewLine = new Scanner(System.in).nextInt();
         } catch(Exception e) {
+            System.out.println("Invalid input");
+            return;
+        }
+        */
+        try {
+            if (args.length < 2) {
+                throw new NumberFormatException();
+            }
+            countWithNewLine = Integer.parseInt(args[0]);
+            countWithoutNewLine = Integer.parseInt(args[1]);
+        } catch (NumberFormatException e) {
             System.out.println("Invalid input");
             return;
         }
