@@ -2,6 +2,7 @@ package by.javatr.service;
 
 import by.javatr.entity.BallBucket;
 import by.javatr.entity.BallColor;
+import by.javatr.entity.exception.BallIndexOutOfBounds;
 import by.javatr.service.exception.BallBucketServiceException;
 
 public class BallBucketService {
@@ -12,6 +13,8 @@ public class BallBucketService {
 
         double weight = 0;
         for(int i = 0; i < ballBucket.size(); i++) {
+            // я думаю, что тут try-catch для BallIndexOutOfBounds при ballBucket.get(i) не нужен,
+            // т.к. i < ballBucket.size()
             weight += ballBucket.get(i).getWeight();
         }
         return weight;
@@ -27,6 +30,8 @@ public class BallBucketService {
 
         int count = 0;
         for(int i = 0; i < ballBucket.size(); i++) {
+            // я думаю, что тут try-catch для BallIndexOutOfBounds при ballBucket.get(i) не нужен,
+            // т.к. i < ballBucket.size()
             if (ballBucket.get(i).getBallColor() == ballColor) {
                 count++;
             }
