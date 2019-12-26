@@ -13,6 +13,7 @@ import by.javatr.task3.unit.exception.InvalidDiameterException;
  */
 public class Main {
     public static void main(String[] args) {
+        /*
         double squareArea;
         System.out.println("Input square area: ");
         try {
@@ -37,7 +38,20 @@ public class Main {
             System.out.println("Invalid diameter!");
             return;
         }
-
-        System.out.println("Inscribed square area: " + inscribedSquareArea);
+         */
+        // fixed 3 try-catch to 1
+        System.out.println("Input square area: ");
+        try {
+            double squareArea = CustomScanner.readDouble(System.in);
+            double circleDiameter = Unit.getDiameterOfCircleInscribedInSquare(squareArea);
+            double inscribedSquareArea = Unit.getAreaOfSquareInscribedInCircle(circleDiameter);
+            System.out.println("Inscribed square area: " + inscribedSquareArea);
+        } catch (DataNotFoundException | DataSourceException e) {
+            System.out.println("Input error!");
+        } catch (InvalidAreaException e) {
+            System.out.println("Invalid area!");
+        } catch (InvalidDiameterException e) {
+            System.out.println("Invalid diameter!");
+        }
     }
 }
