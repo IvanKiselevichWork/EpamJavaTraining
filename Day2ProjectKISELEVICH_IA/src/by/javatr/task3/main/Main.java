@@ -1,7 +1,6 @@
 package by.javatr.task3.main;
 
 import java.util.Random;
-import java.util.Scanner;
 
 /**
 3.  Создать  приложение,  выводящее  заданное  количество  случайных  чисел  с  переходом  и  без 

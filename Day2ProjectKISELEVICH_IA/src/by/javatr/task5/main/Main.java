@@ -13,12 +13,12 @@ public class Main {
         }
         int sum = 0;
         int multiplication = 1;
-        for (int i = 0; i < args.length; i++) {
+        for (String arg : args) {
             try {
-                int number = Integer.parseInt(args[i]);
+                int number = Integer.parseInt(arg);
                 sum += number;
                 multiplication *= number;
-            } catch(NumberFormatException e) {
+            } catch (NumberFormatException e) {
                 System.out.println("Invalid input");
                 return;
             }

@@ -1,9 +1,9 @@
 package by.javatr.task7.entity;
 
 public class BirthdayData {
-    private String dayOfWeek;
-    private int fullYears;
-    private boolean isBirthdayToday;
+    private final String dayOfWeek;
+    private final int fullYears;
+    private final boolean isBirthdayToday;
 
 
     public BirthdayData(String dayOfWeek, int fullYears, boolean isBirthdayToday) {
@@ -17,28 +17,12 @@ public class BirthdayData {
         return this.dayOfWeek;
     }
 
-    public void setDayOfWeek(String dayOfWeek) {
-        this.dayOfWeek = dayOfWeek;
-    }
-
     public int getFullYears() {
         return this.fullYears;
     }
 
-    public void setFullYears(int fullYears) {
-        this.fullYears = fullYears;
-    }
-
-    public boolean isIsBirthdayToday() {
+    public boolean isBirthdayToday() {
         return this.isBirthdayToday;
-    }
-
-    public boolean getIsBirthdayToday() {
-        return this.isBirthdayToday;
-    }
-
-    public void setIsBirthdayToday(boolean isBirthdayToday) {
-        this.isBirthdayToday = isBirthdayToday;
     }
 
 }
