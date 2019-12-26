@@ -10,27 +10,28 @@ import java.time.YearMonth;
 
 public class Unit {
 
-    public static int getDaysInMonth(int year, int month) throws InvalidYearException, InvalidMonthException {
-        Month month1;
+    // fix variable naming (year1, month1)
+    public static int getDaysInMonth(int year, int monthNumber) throws InvalidYearException, InvalidMonthException {
+        Month month;
         try {
-            month1 = Month.of(month);
+            month = Month.of(monthNumber);
         } catch (DateTimeException e) {
             throw new InvalidMonthException(e);
         }
         YearMonth yearMonth;
         try {
-            yearMonth = YearMonth.of(year, month1);
+            yearMonth = YearMonth.of(year, month);
         } catch (DateTimeException e) {
             throw new InvalidYearException(e);
         }
         return yearMonth.lengthOfMonth();
     }
 
-    public static boolean isYearLeap(int year) throws InvalidYearException {
-        Year year1;
+    public static boolean isYearLeap(int yearNumber) throws InvalidYearException {
+        Year year;
         try {
-            year1 = Year.of(year);
-            return year1.isLeap();
+            year = Year.of(yearNumber);
+            return year.isLeap();
         } catch (DateTimeException e) {
             throw new InvalidYearException(e);
         }

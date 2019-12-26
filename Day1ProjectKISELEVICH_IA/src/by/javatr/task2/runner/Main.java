@@ -15,17 +15,14 @@ public class Main {
     public static void main(String[] args) {
 
         int year;
-        System.out.println("Input year");
-        try {
-            year = CustomScanner.readInteger(System.in);
-        } catch (DataNotFoundException | DataSourceException e) {
-            System.out.println("Input error!");
-            return;
-        }
-
         int month;
-        System.out.println("Input month number");
+
+        // removed duplication (2 try-catch blocks with getting year and month replaced to 1)
         try {
+            System.out.println("Input year");
+            year = CustomScanner.readInteger(System.in);
+
+            System.out.println("Input month number");
             month = CustomScanner.readInteger(System.in);
         } catch (DataNotFoundException | DataSourceException e) {
             System.out.println("Input error!");
