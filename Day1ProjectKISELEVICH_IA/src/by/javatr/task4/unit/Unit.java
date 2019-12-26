@@ -1,22 +1,22 @@
 package by.javatr.task4.unit;
 
-import by.javatr.task4.unit.exception.InvalidArrayException;
-
 public class Unit {
 
-    public static boolean isArrayHasTwoEvenNumbers(int[] numbers) throws InvalidArrayException {
-        if (numbers == null || numbers.length == 0) {
-            throw new InvalidArrayException("Invalid array, must be numbers != null and numbers.length > 0");
+    public static boolean isFourNumbersHaveAtLeastTwoEvenNumbers(int a, int b, int c, int d) {
+
+        int evenNumberCount = getOneIfEvenZeroIfNot(a) +
+                getOneIfEvenZeroIfNot(b) +
+                getOneIfEvenZeroIfNot(c) +
+                getOneIfEvenZeroIfNot(d);
+
+        return evenNumberCount >= 2;
+    }
+
+    private static int getOneIfEvenZeroIfNot(int number) {
+        if (number % 2 == 0) {
+            return 1;
+        } else {
+            return 0;
         }
-        int result = 0;
-        for (int number : numbers) {
-            if((number % 2 == 0)) {
-                result++;
-                if (result >= 2) {
-                    return true;
-                }
-            }
-        }
-        return false;
     }
 }
