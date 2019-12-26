@@ -28,7 +28,9 @@ public class UnitTest {
         int second = 1;
         Timestamp expected = new Timestamp(0, 0, 0);
         Timestamp result = Unit.getTimestampFromSecond(second);
-        Assert.assertEquals(expected, result);
+        Assert.assertEquals(expected.getSeconds(), result.getSeconds());
+        Assert.assertEquals(expected.getMinutes(), result.getMinutes());
+        Assert.assertEquals(expected.getHours(), result.getHours());
     }
 
     @Test
@@ -36,6 +38,8 @@ public class UnitTest {
         int second = 32453245;
         Timestamp expected = new Timestamp(9014, 47, 24);
         Timestamp result = Unit.getTimestampFromSecond(second);
-        Assert.assertEquals(expected, result);
+        Assert.assertEquals(expected.getSeconds(), result.getSeconds());
+        Assert.assertEquals(expected.getMinutes(), result.getMinutes());
+        Assert.assertEquals(expected.getHours(), result.getHours());
     }
 }
