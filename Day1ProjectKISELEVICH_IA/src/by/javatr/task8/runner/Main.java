@@ -1,7 +1,8 @@
 package by.javatr.task8.runner;
 
 import by.javatr.scanner.CustomScanner;
-import by.javatr.scanner.exception.CustomScannerException;
+import by.javatr.scanner.exception.DataNotFoundException;
+import by.javatr.scanner.exception.DataSourceException;
 import by.javatr.task8.unit.Unit;
 
 /**
@@ -16,7 +17,7 @@ public class Main {
         double x;
         try {
             x = CustomScanner.readDouble(System.in);
-        } catch (CustomScannerException e) {
+        } catch (DataNotFoundException | DataSourceException e) {
             System.out.println("Input error!");
             return;
         }

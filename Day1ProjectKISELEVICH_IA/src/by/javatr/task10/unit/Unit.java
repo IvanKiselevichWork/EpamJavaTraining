@@ -12,7 +12,7 @@ public class Unit {
             throw new InvalidRangeException("Invalid range, must be b > a ");
         }
 
-        // according to https://en.wikipedia.org/wiki/Machine_epsilon
+        // replaced "h < 0" to "h < Math.upl" according to https://en.wikipedia.org/wiki/Machine_epsilon
         // Math.ulp(b) because b >= a
         if (h < Math.ulp(b)) {
             throw new InvalidStepException("Invalid step, h must be increased");

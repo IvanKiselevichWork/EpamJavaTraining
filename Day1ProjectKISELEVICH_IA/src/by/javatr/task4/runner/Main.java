@@ -1,7 +1,8 @@
 package by.javatr.task4.runner;
 
 import by.javatr.scanner.CustomScanner;
-import by.javatr.scanner.exception.CustomScannerException;
+import by.javatr.scanner.exception.DataNotFoundException;
+import by.javatr.scanner.exception.DataSourceException;
 import by.javatr.task4.unit.Unit;
 import by.javatr.task4.unit.exception.InvalidArrayException;
 
@@ -22,7 +23,7 @@ public class Main {
             System.out.println("Input integer #" + (i + 1));
             try {
                 numbers[i] = CustomScanner.readInteger(System.in);
-            } catch (CustomScannerException e) {
+            } catch (DataNotFoundException | DataSourceException e) {
                 System.out.println("Input error!");
                 return;
             }

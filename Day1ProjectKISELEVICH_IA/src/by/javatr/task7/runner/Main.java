@@ -1,7 +1,8 @@
 package by.javatr.task7.runner;
 
 import by.javatr.scanner.CustomScanner;
-import by.javatr.scanner.exception.CustomScannerException;
+import by.javatr.scanner.exception.DataNotFoundException;
+import by.javatr.scanner.exception.DataSourceException;
 import by.javatr.task7.unit.Unit;
 
 /**
@@ -14,7 +15,7 @@ public class Main {
         double x1;
         try {
             x1 = CustomScanner.readDouble(System.in);
-        } catch (CustomScannerException e) {
+        } catch (DataNotFoundException | DataSourceException e) {
             System.out.println("Input error!");
             return;
         }
@@ -23,7 +24,7 @@ public class Main {
         double y1;
         try {
             y1 = CustomScanner.readDouble(System.in);
-        } catch (CustomScannerException e) {
+        } catch (DataNotFoundException | DataSourceException e) {
             System.out.println("Input error!");
             return;
         }
@@ -32,7 +33,7 @@ public class Main {
         double x2;
         try {
             x2 = CustomScanner.readDouble(System.in);
-        } catch (CustomScannerException e) {
+        } catch (DataNotFoundException | DataSourceException e) {
             System.out.println("Input error!");
             return;
         }
@@ -41,7 +42,7 @@ public class Main {
         double y2;
         try {
             y2 = CustomScanner.readDouble(System.in);
-        } catch (CustomScannerException e) {
+        } catch (DataNotFoundException | DataSourceException e) {
             System.out.println("Input error!");
             return;
         }

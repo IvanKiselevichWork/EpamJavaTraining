@@ -1,7 +1,8 @@
 package scanner;
 
 import by.javatr.scanner.CustomScanner;
-import by.javatr.scanner.exception.CustomScannerException;
+import by.javatr.scanner.exception.DataNotFoundException;
+import by.javatr.scanner.exception.DataSourceException;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -25,17 +26,13 @@ public class CustomScannerTest {
         }
     }
 
-    private InputStream writeDataToTestFileAndGetInputStream(String data) throws IOException {
-        Files.write(Paths.get(testFileName), data.getBytes());
-        return new FileInputStream(testFileName);
-    }
-
+    // todo test naming
 /*
     int readInteger(InputStream in) throws CustomScannerException
     TESTS
 */
     @Test
-    public void readIntegerTest1() throws CustomScannerException, IOException {
+    public void readIntegerTest1() throws DataNotFoundException, DataSourceException, IOException {
         String streamData = "dsfasdfasd\ndsasdf\n45\n";
         InputStream in = writeDataToTestFileAndGetInputStream(streamData);
 
@@ -45,8 +42,8 @@ public class CustomScannerTest {
         Assert.assertEquals(expected, result);
     }
 
-    @Test(expected = CustomScannerException.class)
-    public void readIntegerTest2() throws CustomScannerException, IOException {
+    @Test(expected = DataNotFoundException.class)
+    public void readIntegerTest2() throws DataNotFoundException, DataSourceException, IOException {
         InputStream in = null;
         try {
             String streamData = "dsfasdfasd\ndsasdf\n45df\n";
@@ -58,12 +55,17 @@ public class CustomScannerTest {
             }
         }
     }
+
+    @Test(expected = DataSourceException.class)
+    public void readIntegerTest3() throws DataNotFoundException, DataSourceException, IOException {
+        CustomScanner.readDouble(null);
+    }
 /*
     double readDouble(InputStream in) throws CustomScannerException
     TESTS
 */
     @Test
-    public void readDoubleTest1() throws CustomScannerException, IOException  {
+    public void readDoubleTest1() throws DataNotFoundException, DataSourceException, IOException  {
         String streamData = "dsfasdfasd\ndsasdf\n45.5\n";
         InputStream in = writeDataToTestFileAndGetInputStream(streamData);
 
@@ -73,8 +75,8 @@ public class CustomScannerTest {
         Assert.assertEquals(expected, result, THRESHOLD);
     }
 
-    @Test(expected = CustomScannerException.class)
-    public void readDoubleTest2() throws CustomScannerException, IOException {
+    @Test(expected = DataNotFoundException.class)
+    public void readDoubleTest2() throws DataNotFoundException, DataSourceException, IOException {
         InputStream in = null;
         try {
             String streamData = "dsfasdfasd\ndsasdf\n45df\n";
@@ -85,6 +87,20 @@ public class CustomScannerTest {
                 in.close();
             }
         }
+    }
+
+    @Test(expected = DataSourceException.class)
+    public void readDoubleTest3() throws DataNotFoundException, DataSourceException, IOException {
+        CustomScanner.readDouble(null);
+    }
+
+    // replaced private method to end of file
+    /*
+        private methods
+     */
+    private InputStream writeDataToTestFileAndGetInputStream(String data) throws IOException {
+        Files.write(Paths.get(testFileName), data.getBytes());
+        return new FileInputStream(testFileName);
     }
 }
 

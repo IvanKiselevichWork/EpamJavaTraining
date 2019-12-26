@@ -1,7 +1,8 @@
 package by.javatr.task6.runner;
 
 import by.javatr.scanner.CustomScanner;
-import by.javatr.scanner.exception.CustomScannerException;
+import by.javatr.scanner.exception.DataNotFoundException;
+import by.javatr.scanner.exception.DataSourceException;
 import by.javatr.task6.entity.Timestamp;
 import by.javatr.task6.unit.Unit;
 import by.javatr.task6.unit.exception.InvalidSecondException;
@@ -17,7 +18,7 @@ public class Main {
         System.out.println("Input second: ");
         try {
             second = CustomScanner.readInteger(System.in);
-        } catch (CustomScannerException e) {
+        } catch (DataNotFoundException | DataSourceException e) {
             System.out.println("Input error!");
             return;
         }

@@ -1,7 +1,8 @@
 package by.javatr.task5.runner;
 
 import by.javatr.scanner.CustomScanner;
-import by.javatr.scanner.exception.CustomScannerException;
+import by.javatr.scanner.exception.DataNotFoundException;
+import by.javatr.scanner.exception.DataSourceException;
 import by.javatr.task5.unit.Unit;
 import by.javatr.task5.unit.exception.InvalidPerfectNumberException;
 
@@ -16,7 +17,7 @@ public class Main {
         int number;
         try {
             number = CustomScanner.readInteger(System.in);
-        } catch (CustomScannerException e) {
+        } catch (DataNotFoundException | DataSourceException e) {
             System.out.println("Input error!");
             return;
         }

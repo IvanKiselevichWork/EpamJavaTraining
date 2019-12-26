@@ -1,15 +1,11 @@
 package by.javatr.task2.runner;
 
 import by.javatr.scanner.CustomScanner;
-import by.javatr.scanner.exception.CustomScannerException;
+import by.javatr.scanner.exception.DataNotFoundException;
+import by.javatr.scanner.exception.DataSourceException;
 import by.javatr.task2.unit.Unit;
 import by.javatr.task2.unit.exception.InvalidMonthException;
 import by.javatr.task2.unit.exception.InvalidYearException;
-
-import java.time.Month;
-import java.time.Year;
-import java.time.YearMonth;
-import java.util.Date;
 
 /**
  * 2.  Составить программу, которая по заданным году и номеру месяца определяет количество дней в этом
@@ -22,7 +18,7 @@ public class Main {
         System.out.println("Input year");
         try {
             year = CustomScanner.readInteger(System.in);
-        } catch (CustomScannerException e) {
+        } catch (DataNotFoundException | DataSourceException e) {
             System.out.println("Input error!");
             return;
         }
@@ -31,7 +27,7 @@ public class Main {
         System.out.println("Input month number");
         try {
             month = CustomScanner.readInteger(System.in);
-        } catch (CustomScannerException e) {
+        } catch (DataNotFoundException | DataSourceException e) {
             System.out.println("Input error!");
             return;
         }

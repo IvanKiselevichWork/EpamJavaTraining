@@ -1,7 +1,8 @@
 package by.javatr.task10.runner;
 
 import by.javatr.scanner.CustomScanner;
-import by.javatr.scanner.exception.CustomScannerException;
+import by.javatr.scanner.exception.DataNotFoundException;
+import by.javatr.scanner.exception.DataSourceException;
 import by.javatr.task10.unit.Unit;
 import by.javatr.task10.unit.exception.InvalidRangeException;
 import by.javatr.task10.unit.exception.InvalidStepException;
@@ -69,7 +70,7 @@ public class Main {
         double x;
         try {
             x = CustomScanner.readDouble(System.in);
-        } catch (CustomScannerException e) {
+        } catch (DataNotFoundException | DataSourceException e) {
             System.out.println("Input error!");
             throw new RuntimeException(e);
         }

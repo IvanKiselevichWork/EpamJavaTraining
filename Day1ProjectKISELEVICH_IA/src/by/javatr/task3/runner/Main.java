@@ -1,12 +1,11 @@
 package by.javatr.task3.runner;
 
 import by.javatr.scanner.CustomScanner;
-import by.javatr.scanner.exception.CustomScannerException;
+import by.javatr.scanner.exception.DataNotFoundException;
+import by.javatr.scanner.exception.DataSourceException;
 import by.javatr.task3.unit.Unit;
 import by.javatr.task3.unit.exception.InvalidAreaException;
 import by.javatr.task3.unit.exception.InvalidDiameterException;
-
-import java.time.Year;
 
 /**
  * 3.  Окружность  вписана  в  квадрат  заданной  площади.  Найти  площадь  квадрата,  вписанного  в  эту
@@ -18,7 +17,7 @@ public class Main {
         System.out.println("Input square area: ");
         try {
             squareArea = CustomScanner.readDouble(System.in);
-        } catch (CustomScannerException e) {
+        } catch (DataNotFoundException | DataSourceException e) {
             System.out.println("Input error!");
             return;
         }

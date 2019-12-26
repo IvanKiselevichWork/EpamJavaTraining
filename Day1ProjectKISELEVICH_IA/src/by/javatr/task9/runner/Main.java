@@ -1,7 +1,8 @@
 package by.javatr.task9.runner;
 
 import by.javatr.scanner.CustomScanner;
-import by.javatr.scanner.exception.CustomScannerException;
+import by.javatr.scanner.exception.DataNotFoundException;
+import by.javatr.scanner.exception.DataSourceException;
 import by.javatr.task9.unit.Unit;
 import by.javatr.task9.unit.exception.InvalidRadiusException;
 
@@ -15,7 +16,7 @@ public class Main {
         double R;
         try {
             R = CustomScanner.readDouble(System.in);
-        } catch (CustomScannerException e) {
+        } catch (DataNotFoundException | DataSourceException e) {
             System.out.println("Input error!");
             return;
         }

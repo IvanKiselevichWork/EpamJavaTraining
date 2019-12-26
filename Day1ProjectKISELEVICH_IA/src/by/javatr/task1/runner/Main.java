@@ -1,10 +1,9 @@
 package by.javatr.task1.runner;
 
 import by.javatr.scanner.CustomScanner;
-import by.javatr.scanner.exception.CustomScannerException;
+import by.javatr.scanner.exception.DataNotFoundException;
+import by.javatr.scanner.exception.DataSourceException;
 import by.javatr.task1.unit.Unit;
-
-import java.io.IOException;
 
 /**
  * 1.  Написать  программу,  позволяющую  по  последней  цифре  числа  определить  последнюю  цифру  его
@@ -17,7 +16,7 @@ public class Main {
         int number;
         try {
             number = CustomScanner.readInteger(System.in);
-        } catch (CustomScannerException e) {
+        } catch (DataNotFoundException | DataSourceException e) {
             System.out.println("Input error!");
             return;
         }
