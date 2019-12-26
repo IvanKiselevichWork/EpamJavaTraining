@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Ball {
     private BallColor ballColor;
     private double weight;
-
+//сделать конструктор без параметров
     public Ball(BallColor ballColor, double weight) {
         this.ballColor = ballColor;
         this.weight = weight;
@@ -38,6 +38,7 @@ public class Ball {
 
     @Override
     public int hashCode() {
+        //переписать
         return Objects.hash(ballColor, weight);
     }
 

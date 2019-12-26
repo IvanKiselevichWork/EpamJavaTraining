@@ -6,6 +6,8 @@ import by.javatr.entity.exception.BallIndexOutOfBounds;
 import by.javatr.service.exception.BallBucketServiceException;
 
 public class BallBucketService {
+    //добавить роле BallBucket
+    //сделать нестатическим
     public static double getWeight(BallBucket ballBucket) throws BallBucketServiceException {
         if (ballBucket == null) {
             throw new BallBucketServiceException("ballBucket argument is null");

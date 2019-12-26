@@ -13,6 +13,7 @@ public class BallBucket {
     }
 
     public boolean add(Ball ball) {
+        //null
         return data.add(ball);
     }
 
@@ -21,6 +22,7 @@ public class BallBucket {
         return data.get(index);
     }
 
+    //getSize
     public int size() {
         return data.size();
     }

@@ -16,4 +16,6 @@ public class BallBucketServiceException extends Exception {
     public BallBucketServiceException(Throwable cause) {
         super(cause);
     }
+    //oracle 90-x code convension`
+    // роберт мартин чистый код
 }

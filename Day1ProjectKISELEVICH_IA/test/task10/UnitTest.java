@@ -1,8 +1,9 @@
-package by.javatr.task10.unit.test;
+package task10;
 
 import by.javatr.task10.unit.Unit;
-import by.javatr.task10.unit.exception.InvalidArgumentsException;
+import by.javatr.task10.unit.exception.InvalidRangeException;
 
+import by.javatr.task10.unit.exception.InvalidStepException;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -14,16 +15,17 @@ public class UnitTest {
     double[][] getValuesTable(double a, double b, double h) throws InvalidArgumentsException
     TESTS
 */
-    @Test(expected = InvalidArgumentsException.class)
-    public void getValuesTableTest1() throws InvalidArgumentsException {
+// todo tests naming
+    @Test(expected = InvalidRangeException.class)
+    public void getValuesTableTest1() throws InvalidRangeException, InvalidStepException {
         double a = 1;
         double b = 2;
         double h = -1;
         Unit.getValuesTable(a, b, h);
     }
 
-    @Test(expected = InvalidArgumentsException.class)
-    public void getValuesTableTest2() throws InvalidArgumentsException {
+    @Test(expected = InvalidRangeException.class)
+    public void getValuesTableTest2() throws InvalidRangeException, InvalidStepException {
         double a = 1;
         double b = 2;
         double h = 0;
@@ -31,7 +33,7 @@ public class UnitTest {
     }
 
     @Test
-    public void getValuesTableTest3() throws InvalidArgumentsException {
+    public void getValuesTableTest3() throws InvalidRangeException, InvalidStepException {
         double a = 1;
         double b = 2;
         double h = 0.5;
@@ -47,7 +49,7 @@ public class UnitTest {
     }
 
     @Test
-    public void getValuesTableTest4() throws InvalidArgumentsException {
+    public void getValuesTableTest4() throws InvalidRangeException, InvalidStepException {
         double a = 1;
         double b = 1;
         double h = 1;
@@ -60,8 +62,8 @@ public class UnitTest {
         Assert.assertEquals(expected[0][1], result[0][1], THRESHOLD);
     }
 
-    @Test(expected = InvalidArgumentsException.class)
-    public void getValuesTableTest5() throws InvalidArgumentsException {
+    @Test(expected = InvalidRangeException.class)
+    public void getValuesTableTest5() throws InvalidRangeException, InvalidStepException {
         double a = 2;
         double b = 1;
         double h = 1;
