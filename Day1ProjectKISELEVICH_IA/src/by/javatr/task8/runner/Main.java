@@ -1,9 +1,7 @@
 package by.javatr.task8.runner;
 
-import by.javatr.scanner.CustomScanner;
-import by.javatr.scanner.exception.DataNotFoundException;
-import by.javatr.scanner.exception.DataSourceException;
 import by.javatr.task8.unit.Unit;
+import by.javatr.view.View;
 
 /**
  * 8.  Вычислить значение функции:
@@ -13,6 +11,11 @@ import by.javatr.task8.unit.Unit;
  */
 public class Main {
     public static void main(String[] args) {
+
+        // changes:
+        //  removed repetition
+
+        /*
         System.out.println("Input x: ");
         double x;
         try {
@@ -20,8 +23,8 @@ public class Main {
         } catch (DataNotFoundException | DataSourceException e) {
             System.out.println("Input error!");
             return;
-        }
-        double f = Unit.funcF(x);
-        System.out.println("F(x) = " + f);
+        }*/
+        double x = View.readDouble("Input x: ");
+        System.out.println("F(x) = " + Unit.funcF(x));
     }
 }

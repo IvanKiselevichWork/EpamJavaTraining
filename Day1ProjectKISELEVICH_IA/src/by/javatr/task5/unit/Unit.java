@@ -1,7 +1,5 @@
 package by.javatr.task5.unit;
 
-//import by.javatr.task5.unit.exception.InvalidPerfectNumberException;
-
 public class Unit {
 
     // changes:

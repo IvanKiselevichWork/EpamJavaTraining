@@ -1,11 +1,9 @@
 package by.javatr.task2.runner;
 
-import by.javatr.scanner.CustomScanner;
-import by.javatr.scanner.exception.DataNotFoundException;
-import by.javatr.scanner.exception.DataSourceException;
 import by.javatr.task2.unit.Unit;
 import by.javatr.task2.unit.exception.InvalidMonthException;
 import by.javatr.task2.unit.exception.InvalidYearException;
+import by.javatr.view.View;
 
 /**
  * 2.  Составить программу, которая по заданным году и номеру месяца определяет количество дней в этом
@@ -14,10 +12,13 @@ import by.javatr.task2.unit.exception.InvalidYearException;
 public class Main {
     public static void main(String[] args) {
 
-        int year;
-        int month;
+        // changes:
+        //  removed repetition
 
-        // removed duplication (2 try-catch blocks with getting year and month replaced to 1)
+        int year = View.readInteger("Input year");
+        int month = View.readInteger("Input month number");
+
+        /*
         try {
             System.out.println("Input year");
             year = CustomScanner.readInteger(System.in);
@@ -28,21 +29,18 @@ public class Main {
             System.out.println("Input error!");
             return;
         }
+         */
 
-        int daysInMonth;
-        boolean isYearLeap;
         try {
-            daysInMonth = Unit.getDaysInMonth(year, month);
-            isYearLeap = Unit.isYearLeap(year);
+            int daysInMonth = Unit.getDaysInMonth(year, month);
+            boolean isYearLeap = Unit.isYearLeap(year);
+            System.out.println("Days count = " + daysInMonth);
+            System.out.println("Is year leap = " + isYearLeap);
         } catch (InvalidYearException e) {
             System.out.println("Invalid year");
-            return;
         } catch (InvalidMonthException e) {
             System.out.println("Invalid month");
-            return;
         }
 
-        System.out.println("Days count = " + daysInMonth);
-        System.out.println("Is year leap = " + isYearLeap);
     }
 }

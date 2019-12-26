@@ -1,10 +1,8 @@
 package by.javatr.task9.runner;
 
-import by.javatr.scanner.CustomScanner;
-import by.javatr.scanner.exception.DataNotFoundException;
-import by.javatr.scanner.exception.DataSourceException;
 import by.javatr.task9.unit.Unit;
 import by.javatr.task9.unit.exception.InvalidRadiusException;
+import by.javatr.view.View;
 
 /**
  * 9.  Вычислить длину окружности и площадь круга одного и того же заданного радиуса R.
@@ -12,6 +10,10 @@ import by.javatr.task9.unit.exception.InvalidRadiusException;
 public class Main {
     public static void main(String[] args) {
 
+        // changes:
+        //  removed repetition
+
+        /*
         System.out.println("Input R: ");
         double R;
         try {
@@ -19,19 +21,18 @@ public class Main {
         } catch (DataNotFoundException | DataSourceException e) {
             System.out.println("Input error!");
             return;
-        }
+        }*/
 
-        double circumference;
-        double area;
+        double R = View.readDouble("Input R: ");
+
         try {
-            circumference = Unit.calculateCircleCircumference(R);
-            area = Unit.calculateCircleArea(R);
+            double circumference = Unit.calculateCircleCircumference(R);
+            double area = Unit.calculateCircleArea(R);
+            System.out.println("Circle circumference = " + circumference);
+            System.out.println("Circle area = " + area);
         } catch (InvalidRadiusException e) {
             System.out.println("Invalid radius");
-            return;
         }
 
-        System.out.println("Circle circumference = " + circumference);
-        System.out.println("Circle area = " + area);
     }
 }

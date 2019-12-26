@@ -1,11 +1,9 @@
 package by.javatr.task6.runner;
 
-import by.javatr.scanner.CustomScanner;
-import by.javatr.scanner.exception.DataNotFoundException;
-import by.javatr.scanner.exception.DataSourceException;
 import by.javatr.task6.entity.Timestamp;
 import by.javatr.task6.unit.Unit;
 import by.javatr.task6.unit.exception.InvalidSecondException;
+import by.javatr.view.View;
 
 /**
  * 6.  Идет n-я секунда суток, определить, сколько полных часов, полных минут и секунд прошло к этому
@@ -14,6 +12,10 @@ import by.javatr.task6.unit.exception.InvalidSecondException;
 public class Main {
     public static void main(String[] args) {
 
+        // changes:
+        //  removed repetition
+
+        /*
         int second;
         System.out.println("Input second: ");
         try {
@@ -21,7 +23,9 @@ public class Main {
         } catch (DataNotFoundException | DataSourceException e) {
             System.out.println("Input error!");
             return;
-        }
+        }*/
+
+        int second = View.readInteger("Input second (> 0): ");
 
         try {
             Timestamp timestamp = Unit.getTimestampFromSecond(second);

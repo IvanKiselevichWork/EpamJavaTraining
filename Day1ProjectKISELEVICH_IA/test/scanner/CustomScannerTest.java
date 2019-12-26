@@ -33,7 +33,7 @@ public class CustomScannerTest {
 */
     @Test
     public void readIntegerTest1() throws DataNotFoundException, DataSourceException, IOException {
-        String streamData = "dsfasdfasd\ndsasdf\n45\n";
+        String streamData = "test\ndata\n45\n";
         InputStream in = writeDataToTestFileAndGetInputStream(streamData);
 
         int expected = 45;
@@ -46,7 +46,7 @@ public class CustomScannerTest {
     public void readIntegerTest2() throws DataNotFoundException, DataSourceException, IOException {
         InputStream in = null;
         try {
-            String streamData = "dsfasdfasd\ndsasdf\n45df\n";
+            String streamData = "test\ndata\n45df\n";
             in = writeDataToTestFileAndGetInputStream(streamData);
             CustomScanner.readInteger(in);
         } finally {
@@ -57,7 +57,7 @@ public class CustomScannerTest {
     }
 
     @Test(expected = DataSourceException.class)
-    public void readIntegerTest3() throws DataNotFoundException, DataSourceException, IOException {
+    public void readIntegerTest3() throws DataNotFoundException, DataSourceException {
         CustomScanner.readDouble(null);
     }
 /*
@@ -66,7 +66,7 @@ public class CustomScannerTest {
 */
     @Test
     public void readDoubleTest1() throws DataNotFoundException, DataSourceException, IOException  {
-        String streamData = "dsfasdfasd\ndsasdf\n45.5\n";
+        String streamData = "test\ndata\n45.5\n";
         InputStream in = writeDataToTestFileAndGetInputStream(streamData);
 
         double expected = 45.5;
@@ -79,7 +79,7 @@ public class CustomScannerTest {
     public void readDoubleTest2() throws DataNotFoundException, DataSourceException, IOException {
         InputStream in = null;
         try {
-            String streamData = "dsfasdfasd\ndsasdf\n45df\n";
+            String streamData = "test\ndata\n45df\n";
             in = writeDataToTestFileAndGetInputStream(streamData);
             CustomScanner.readDouble(in);
         } finally {
@@ -90,7 +90,7 @@ public class CustomScannerTest {
     }
 
     @Test(expected = DataSourceException.class)
-    public void readDoubleTest3() throws DataNotFoundException, DataSourceException, IOException {
+    public void readDoubleTest3() throws DataNotFoundException, DataSourceException {
         CustomScanner.readDouble(null);
     }
 

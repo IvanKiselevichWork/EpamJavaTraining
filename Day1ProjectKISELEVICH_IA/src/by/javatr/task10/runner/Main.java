@@ -1,11 +1,9 @@
 package by.javatr.task10.runner;
 
-import by.javatr.scanner.CustomScanner;
-import by.javatr.scanner.exception.DataNotFoundException;
-import by.javatr.scanner.exception.DataSourceException;
 import by.javatr.task10.unit.Unit;
 import by.javatr.task10.unit.exception.InvalidRangeException;
 import by.javatr.task10.unit.exception.InvalidStepException;
+import by.javatr.view.View;
 
 /**
  * 10. Составить программу для вычисления значений функции F(x) на отрезке [а, b] с шагом h. Результат
@@ -17,9 +15,9 @@ public class Main {
     public static void main(String[] args) {
 
         //created function readDouble, repetition removed
-        double a = readDouble("Input a: ");
-        double b = readDouble("Input b (> a): ");
-        double h = readDouble("Input h: ");
+        double a = View.readDouble("Input a: ");
+        double b = View.readDouble("Input b (> a): ");
+        double h = View.readDouble("Input h: ");
 
         /*
         System.out.println("Input a: ");
@@ -63,17 +61,5 @@ public class Main {
         for (double[] values : table) {
             System.out.printf("%6.3f     %6.3f\n", values[0], values[1]);
         }
-    }
-
-    private static double readDouble(String message) {
-        System.out.println(message);
-        double x;
-        try {
-            x = CustomScanner.readDouble(System.in);
-        } catch (DataNotFoundException | DataSourceException e) {
-            System.out.println("Input error!");
-            throw new RuntimeException(e);
-        }
-        return x;
     }
 }

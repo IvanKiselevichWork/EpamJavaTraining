@@ -12,32 +12,28 @@ public class UnitTest {
     @Test
     public void isNumberPerfectTest1() {
         int number = 1;
-        boolean expected = false;
         boolean result = Unit.isNumberPerfect(number);
-        Assert.assertEquals(expected, result);
+        Assert.assertFalse(result);
     }
 
     @Test
     public void isNumberPerfectTest2() {
         int number = 2;
-        boolean expected = false;
         boolean result = Unit.isNumberPerfect(number);
-        Assert.assertEquals(expected, result);
+        Assert.assertFalse(result);
     }
 
     @Test
     public void isNumberPerfectTest3() {
         int number = -1;
-        boolean expected = false;
         boolean result = Unit.isNumberPerfect(number);
-        Assert.assertEquals(expected, result);
+        Assert.assertFalse(result);
     }
 
     @Test
     public void isNumberPerfectTest4() {
         int number = 6;
-        boolean expected = true;
         boolean result = Unit.isNumberPerfect(number);
-        Assert.assertEquals(expected, result);
+        Assert.assertTrue(result);
     }
 }

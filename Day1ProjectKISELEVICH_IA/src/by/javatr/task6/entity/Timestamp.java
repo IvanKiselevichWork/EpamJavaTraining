@@ -5,9 +5,9 @@ public class Timestamp {
     public static final int SECONDS_PER_HOUR = 3600;
     public static final int SECONDS_PER_MINUTE = 60;
 
-    private int hours;
-    private int minutes;
-    private int seconds;
+    private final int hours;
+    private final int minutes;
+    private final int seconds;
 
     // changes:
     //  removed redundant equals, hashCode, setters

@@ -1,9 +1,7 @@
 package by.javatr.task7.runner;
 
-import by.javatr.scanner.CustomScanner;
-import by.javatr.scanner.exception.DataNotFoundException;
-import by.javatr.scanner.exception.DataSourceException;
 import by.javatr.task7.unit.Unit;
+import by.javatr.view.View;
 
 /**
  * 7.  Даны две точки А(х1, у1) и В(х2, у2). Составить алгоритм, определяющий, которая из точек находится
@@ -11,6 +9,11 @@ import by.javatr.task7.unit.Unit;
  */
 public class Main {
     public static void main(String[] args) {
+
+        // changes:
+        //  removed repetitions
+
+        /*
         System.out.println("Input x1: ");
         double x1;
         try {
@@ -46,6 +49,12 @@ public class Main {
             System.out.println("Input error!");
             return;
         }
+         */
+
+        double x1 = View.readDouble("Input x1: ");
+        double y1 = View.readDouble("Input y1: ");
+        double x2 = View.readDouble("Input x2: ");
+        double y2 = View.readDouble("Input y2: ");
 
         int pointNumber = Unit.getCenterNearestPoint(x1, y1, x2, y2);
 

@@ -1,11 +1,9 @@
 package by.javatr.task3.runner;
 
-import by.javatr.scanner.CustomScanner;
-import by.javatr.scanner.exception.DataNotFoundException;
-import by.javatr.scanner.exception.DataSourceException;
 import by.javatr.task3.unit.Unit;
 import by.javatr.task3.unit.exception.InvalidAreaException;
 import by.javatr.task3.unit.exception.InvalidDiameterException;
+import by.javatr.view.View;
 
 /**
  * 3.  Окружность  вписана  в  квадрат  заданной  площади.  Найти  площадь  квадрата,  вписанного  в  эту
@@ -13,6 +11,10 @@ import by.javatr.task3.unit.exception.InvalidDiameterException;
  */
 public class Main {
     public static void main(String[] args) {
+
+        // changes:
+        //  removed repetition
+
         /*
         double squareArea;
         System.out.println("Input square area: ");
@@ -39,15 +41,14 @@ public class Main {
             return;
         }
          */
+
         // fixed 3 try-catch to 1
-        System.out.println("Input square area: ");
         try {
-            double squareArea = CustomScanner.readDouble(System.in);
+            double squareArea = View.readDouble("Input square area: ");
+
             double circleDiameter = Unit.getDiameterOfCircleInscribedInSquare(squareArea);
             double inscribedSquareArea = Unit.getAreaOfSquareInscribedInCircle(circleDiameter);
             System.out.println("Inscribed square area: " + inscribedSquareArea);
-        } catch (DataNotFoundException | DataSourceException e) {
-            System.out.println("Input error!");
         } catch (InvalidAreaException e) {
             System.out.println("Invalid area!");
         } catch (InvalidDiameterException e) {

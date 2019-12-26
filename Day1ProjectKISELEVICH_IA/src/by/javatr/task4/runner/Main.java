@@ -1,9 +1,7 @@
 package by.javatr.task4.runner;
 
-import by.javatr.scanner.CustomScanner;
-import by.javatr.scanner.exception.DataNotFoundException;
-import by.javatr.scanner.exception.DataSourceException;
 import by.javatr.task4.unit.Unit;
+import by.javatr.view.View;
 
 /**
  * 4.  Составить программу, печатающую значение true, если указанное высказывание является истинным, и
@@ -16,6 +14,7 @@ public class Main {
         // changes:
             // reworked task
             // removed unnecessary exception
+            // removed repetition (readInteger )
         /*
         int[] numbers = new int[NUMBERS_COUNT];
 
@@ -38,24 +37,12 @@ public class Main {
         */
 
         int a, b, c, d;
-        a = readInteger("Input a: ");
-        b = readInteger("Input b: ");
-        c = readInteger("Input c: ");
-        d = readInteger("Input d: ");
+        a = View.readInteger("Input a: ");
+        b = View.readInteger("Input b: ");
+        c = View.readInteger("Input c: ");
+        d = View.readInteger("Input d: ");
 
         System.out.println(Unit.isFourNumbersHaveAtLeastTwoEvenNumbers(a, b, c, d));
 
-    }
-
-    private static int readInteger(String message) {
-        System.out.println(message);
-        int x;
-        try {
-            x = CustomScanner.readInteger(System.in);
-        } catch (DataNotFoundException | DataSourceException e) {
-            System.out.println("Input error!");
-            throw new RuntimeException(e);
-        }
-        return x;
     }
 }

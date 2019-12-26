@@ -56,32 +56,28 @@ public class UnitTest {
     @Test
     public void isYearLeapTest1() throws InvalidYearException {
         int year = 2019;
-        boolean expected = false;
         boolean result = Unit.isYearLeap(year);
-        Assert.assertEquals(expected, result);
+        Assert.assertFalse(result);
     }
 
     @Test
     public void isYearLeapTest2() throws InvalidYearException {
         int year = 2020;
-        boolean expected = true;
         boolean result = Unit.isYearLeap(year);
-        Assert.assertEquals(expected, result);
+        Assert.assertTrue(result);
     }
 
     @Test(expected = InvalidYearException.class)
     public void isYearLeapTest3() throws InvalidYearException {
         int year = Integer.MIN_VALUE;
-        boolean expected = true;
         boolean result = Unit.isYearLeap(year);
-        Assert.assertEquals(expected, result);
+        Assert.assertTrue(result);
     }
 
     @Test(expected = InvalidYearException.class)
     public void isYearLeapTest4() throws InvalidYearException {
         int year = Integer.MAX_VALUE;
-        boolean expected = true;
         boolean result = Unit.isYearLeap(year);
-        Assert.assertEquals(expected, result);
+        Assert.assertTrue(result);
     }
 }
