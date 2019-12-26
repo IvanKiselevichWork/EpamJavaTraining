@@ -14,7 +14,8 @@ import by.javatr.view.View;
 public class Main {
     public static void main(String[] args) {
 
-        //created function readDouble, repetition removed
+        // changes:
+        //  created function readDouble, repetition removed
         double a = View.readDouble("Input a: ");
         double b = View.readDouble("Input b (> a): ");
         double h = View.readDouble("Input h: ");
@@ -47,19 +48,16 @@ public class Main {
             return;
         }
         */
-        double[][] table;
         try {
-            table = Unit.getValuesTable(a, b, h);
+            double[][] table = Unit.getValuesTable(a, b, h);
+
+            for (double[] values : table) {
+                System.out.printf("%6.3f     %6.3f\n", values[0], values[1]);
+            }
         } catch (InvalidRangeException e) {
             System.out.println("Invalid range, change a or b!");
-            return;
         } catch (InvalidStepException e) {
             System.out.println("Invalid step, change h!");
-            return;
-        }
-
-        for (double[] values : table) {
-            System.out.printf("%6.3f     %6.3f\n", values[0], values[1]);
         }
     }
 }
