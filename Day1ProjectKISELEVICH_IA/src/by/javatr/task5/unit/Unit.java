@@ -1,12 +1,15 @@
 package by.javatr.task5.unit;
 
-import by.javatr.task5.unit.exception.InvalidPerfectNumberException;
+//import by.javatr.task5.unit.exception.InvalidPerfectNumberException;
 
 public class Unit {
 
-    public static boolean isNumberPerfect(int number) throws InvalidPerfectNumberException {
-        if (number < 1) {
-            throw new InvalidPerfectNumberException("Invalid number argument, must be number >= 1");
+    // changes:
+    //  removed redundant exception
+    public static boolean isNumberPerfect(int number) {
+        if (number < 6) {
+            return false;
+            //throw new InvalidPerfectNumberException("Wrong number!");
         }
         int dividersSum = 0;
         for (int i = 1; i <= number / 2; i++) {

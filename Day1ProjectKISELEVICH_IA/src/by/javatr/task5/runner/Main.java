@@ -4,7 +4,6 @@ import by.javatr.scanner.CustomScanner;
 import by.javatr.scanner.exception.DataNotFoundException;
 import by.javatr.scanner.exception.DataSourceException;
 import by.javatr.task5.unit.Unit;
-import by.javatr.task5.unit.exception.InvalidPerfectNumberException;
 
 /**
  * 5.  Составить программу, печатающую значение true, если указанное высказывание является истинным, и
@@ -22,10 +21,6 @@ public class Main {
             return;
         }
 
-        try {
-            System.out.println(Unit.isNumberPerfect(number));
-        } catch (InvalidPerfectNumberException e) {
-            System.out.println("Invalid argument!");
-        }
+        System.out.println(Unit.isNumberPerfect(number));
     }
 }
