@@ -15,8 +15,9 @@ public class UnitTest {
     double[][] getValuesTable(double a, double b, double h) throws InvalidArgumentsException
     TESTS
 */
+// todo fix tests
 // todo tests naming
-    @Test(expected = InvalidRangeException.class)
+    @Test(expected = InvalidStepException.class)
     public void getValuesTableTest1() throws InvalidRangeException, InvalidStepException {
         double a = 1;
         double b = 2;
@@ -24,7 +25,7 @@ public class UnitTest {
         Unit.getValuesTable(a, b, h);
     }
 
-    @Test(expected = InvalidRangeException.class)
+    @Test(expected = InvalidStepException.class)
     public void getValuesTableTest2() throws InvalidRangeException, InvalidStepException {
         double a = 1;
         double b = 2;
