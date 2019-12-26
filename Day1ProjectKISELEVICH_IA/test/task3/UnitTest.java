@@ -1,4 +1,4 @@
-package by.javatr.task3.unit.test;
+package task3;
 
 import by.javatr.task3.unit.Unit;
 import by.javatr.task3.unit.exception.InvalidAreaException;

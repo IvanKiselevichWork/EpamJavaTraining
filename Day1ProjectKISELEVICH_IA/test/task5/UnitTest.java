@@ -1,4 +1,4 @@
-package by.javatr.task5.unit.test;
+package task5;
 
 import by.javatr.task5.unit.Unit;
 import by.javatr.task5.unit.exception.InvalidPerfectNumberException;

@@ -1,4 +1,4 @@
-package by.javatr.task4.unit.test;
+package task4;
 
 import by.javatr.task4.unit.Unit;
 import by.javatr.task4.unit.exception.InvalidArrayException;

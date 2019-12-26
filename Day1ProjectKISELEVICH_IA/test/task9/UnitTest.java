@@ -1,4 +1,4 @@
-package by.javatr.task9.unit.test;
+package task9;
 
 import by.javatr.task9.unit.Unit;
 import by.javatr.task9.unit.exception.InvalidRadiusException;

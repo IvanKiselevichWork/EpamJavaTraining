@@ -1,4 +1,4 @@
-package by.javatr.task1.unit.test;
+package task1;
 
 import by.javatr.task1.unit.Unit;
 import org.junit.Assert;

@@ -15,8 +15,7 @@ public class UnitTest {
     double[][] getValuesTable(double a, double b, double h) throws InvalidArgumentsException
     TESTS
 */
-// todo fix tests
-// todo tests naming
+// todo tests naming ([MethodName_StateUnderTest_ExpectedBehavior]? but snake case forbidden?)
     @Test(expected = InvalidStepException.class)
     public void getValuesTableTest1() throws InvalidRangeException, InvalidStepException {
         double a = 1;

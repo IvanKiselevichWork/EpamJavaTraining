@@ -1,4 +1,4 @@
-package by.javatr.task2.unit.test;
+package task2;
 
 import by.javatr.task2.unit.Unit;
 import by.javatr.task2.unit.exception.InvalidMonthException;

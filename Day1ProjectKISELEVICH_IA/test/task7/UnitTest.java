@@ -1,4 +1,4 @@
-package by.javatr.task7.unit.test;
+package task7;
 
 import by.javatr.task7.unit.Unit;
 

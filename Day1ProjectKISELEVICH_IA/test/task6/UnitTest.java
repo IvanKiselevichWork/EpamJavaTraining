@@ -1,4 +1,4 @@
-package by.javatr.task6.unit.test;
+package task6;
 
 import by.javatr.task6.entity.Timestamp;
 import by.javatr.task6.unit.Unit;
