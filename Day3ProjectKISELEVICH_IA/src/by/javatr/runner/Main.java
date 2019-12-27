@@ -20,7 +20,10 @@ public class Main {
             ballBucket.add(new Ball(BallColor.YELLOW, 2.5));
             ballBucket.add(new Ball(BallColor.RED, 16.5));
             ballBucket.add(new Ball(BallColor.RED, 16.5));
+            Ball ball = new Ball();
             ballBucket.add(new Ball());
+            ballBucket.add(ball);
+            ballBucket.add(ball); // will not add
             ballBucket.add(new Ball(BallColor.BLUE, 1));
             BallBucketService ballBucketService = new BallBucketService(ballBucket);
             System.out.println("Bucket weight: " + ballBucketService.getWeight());

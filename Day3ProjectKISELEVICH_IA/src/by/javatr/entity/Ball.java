@@ -11,7 +11,7 @@ public class Ball {
     // changes:
     //  added default constructor
     //  fixed hashCode
-    //  removed equals because of HashSet
+    //  removed equals and hashCode because of HashSet
 
     public Ball() {
         this(DEFAULT_BALL_COLOR, DEFAULT_BALL_WEIGHT);
@@ -38,12 +38,12 @@ public class Ball {
         Ball ball = (Ball) o;
         return Double.compare(ball.weight, weight) == 0 &&
                 ballColor == ball.ballColor;
-    }*/
+    }
 
     @Override
     public int hashCode() {
         return (int) (Double.doubleToLongBits(weight) * 31 + ballColor.ordinal() );
-    }
+    }*/
 
     @Override
     public String toString() {
