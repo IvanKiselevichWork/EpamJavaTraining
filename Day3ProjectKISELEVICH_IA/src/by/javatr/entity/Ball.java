@@ -1,11 +1,22 @@
 package by.javatr.entity;
 
-import java.util.Objects;
-
 public class Ball {
-    private BallColor ballColor;
-    private double weight;
-//сделать конструктор без параметров
+
+    final private static BallColor DEFAULT_BALL_COLOR = BallColor.BLUE;
+    final private static double DEFAULT_BALL_WEIGHT = 1;
+
+    private final BallColor ballColor;
+    private final double weight;
+
+    // changes:
+    //  added default constructor
+    //  fixed hashCode
+    //  removed equals because of HashSet
+
+    public Ball() {
+        this(DEFAULT_BALL_COLOR, DEFAULT_BALL_WEIGHT);
+    }
+
     public Ball(BallColor ballColor, double weight) {
         this.ballColor = ballColor;
         this.weight = weight;
@@ -15,18 +26,11 @@ public class Ball {
         return ballColor;
     }
 
-    public void setBallColor(BallColor ballColor) {
-        this.ballColor = ballColor;
-    }
-
     public double getWeight() {
         return weight;
     }
 
-    public void setWeight(double weight) {
-        this.weight = weight;
-    }
-
+    /*
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -34,12 +38,11 @@ public class Ball {
         Ball ball = (Ball) o;
         return Double.compare(ball.weight, weight) == 0 &&
                 ballColor == ball.ballColor;
-    }
+    }*/
 
     @Override
     public int hashCode() {
-        //переписать
-        return Objects.hash(ballColor, weight);
+        return (int) (Double.doubleToLongBits(weight) * 31 + ballColor.ordinal() );
     }
 
     @Override

@@ -1,35 +1,44 @@
 package by.javatr.entity;
 
-import by.javatr.entity.exception.BallIndexOutOfBounds;
+import by.javatr.entity.exception.BucketIsEmptyException;
+import by.javatr.entity.exception.RemovingBallFromBucketException;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class BallBucket {
-    private List<Ball> data;
+    private final Set<Ball> data;
+
+    // changes:
+    //  replaced List with Set
+    //  add check for null
+    //  add new Exceptions
 
     public BallBucket() {
-        this.data = new ArrayList<>();
+        this.data = new HashSet<>();
     }
 
     public boolean add(Ball ball) {
-        //null
+        if (ball == null) {
+            return false;
+        }
         return data.add(ball);
     }
 
-    public Ball get(int index) {
-        rangeCheck(index);
-        return data.get(index);
+    public Ball get() throws BucketIsEmptyException, RemovingBallFromBucketException {
+        if(data.isEmpty()) {
+            throw new BucketIsEmptyException("Cant get ball from empty bucket");
+        }
+        Ball ball = data.iterator().next();
+        if (!data.remove(ball)) {
+            throw new RemovingBallFromBucketException("Error while getting ball from bucket");
+        }
+        return ball;
     }
 
-    //getSize
-    public int size() {
+    public int getSize() {
         return data.size();
     }
 
-    private void rangeCheck(int index) {
-        if (index < 0 || index >= data.size()) {
-            throw new BallIndexOutOfBounds();
-        }
-    }
+
 }
