@@ -67,8 +67,8 @@ public class FileUserDAO implements UserDAO {
      * @param login user login
      * @param password user password
      * @throws ReadUserDAOException if cant read user
-     * @throws UserLoginInUseException if cant read user
-     * @throws WriteUserDAOException if user password incorrect (etc null)
+     * @throws UserLoginInUseException if login in use
+     * @throws WriteUserDAOException if cant write user
      * @throws WrongUserLoginException if user login incorrect (etc null)
      * @throws WrongUserPasswordException if user password incorrect (etc null)
      */
