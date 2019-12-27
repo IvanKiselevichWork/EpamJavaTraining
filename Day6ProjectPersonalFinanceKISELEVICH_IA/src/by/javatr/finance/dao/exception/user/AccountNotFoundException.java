@@ -1,8 +1,8 @@
 package by.javatr.finance.dao.exception.user;
 
-import by.javatr.finance.dao.exception.DAOException;
+import by.javatr.finance.dao.exception.AbstractDAOException;
 
-public class AccountNotFoundException extends DAOException {
+public class AccountNotFoundException extends AbstractDAOException {
     public AccountNotFoundException() {
     }
 

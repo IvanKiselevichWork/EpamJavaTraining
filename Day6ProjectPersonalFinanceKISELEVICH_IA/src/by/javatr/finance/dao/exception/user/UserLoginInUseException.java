@@ -1,8 +1,8 @@
 package by.javatr.finance.dao.exception.user;
 
-import by.javatr.finance.dao.exception.DAOException;
+import by.javatr.finance.dao.exception.AbstractDAOException;
 
-public class UserLoginInUseException extends DAOException {
+public class UserLoginInUseException extends AbstractDAOException {
     public UserLoginInUseException() {
     }
 
