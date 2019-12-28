@@ -1,7 +1,6 @@
 package by.javatr.finance.dao.fileImpl;
 
 import by.javatr.finance.dao.RecordDAO;
-import by.javatr.finance.dao.exception.AbstractDAOException;
 import by.javatr.finance.dao.exception.record.*;
 import by.javatr.finance.dao.fileImpl.validation.RecordValidator;
 import by.javatr.finance.entity.Record;
@@ -28,17 +27,10 @@ public class FileRecordDAO implements RecordDAO {
     public final static int DATE_INDEX = 2;
     public final static int AMOUNT_INDEX = 3;
 
-    private final static String EMPTY_STRING = "";
+    private final static RecordValidator recordValidator = new RecordValidator();
 
-    private RecordValidator recordValidator;
+    public FileRecordDAO() {
 
-    public FileRecordDAO() throws WriteRecordDAOException {
-        try {
-            Files.write(Paths.get(RECORDS_FILENAME), EMPTY_STRING.getBytes(), StandardOpenOption.APPEND);
-            recordValidator = new RecordValidator();
-        } catch (IOException e) {
-            throw new WriteRecordDAOException(RecordDAOExceptionMessages.cantWriteRecord, e);
-        }
     }
 
     @Override
@@ -66,26 +58,18 @@ public class FileRecordDAO implements RecordDAO {
                     throw new WriteRecordDAOException(RecordDAOExceptionMessages.cantWriteRecord);
                 }
 
-                Files.write(Paths.get(RECORDS_FILENAME), EMPTY_STRING.getBytes());
-
                 for (Record record1 : records) {
                     addRecord(record1);
                 }
             } else {
-                throw new WriteRecordDAOException(RecordDAOExceptionMessages.cantWriteRecord);
+                throw new RecordNotFoundDAOException(RecordDAOExceptionMessages.recordNotFound);
             }
-        } catch (IOException | SecurityException e) {
+        } catch (SecurityException e) {
             File source = new File(RECORDS_FILENAME);
             File backup = new File(RECORDS_BACKUP_FILENAME);
             backup.renameTo(source);
             throw new WriteRecordDAOException(RecordDAOExceptionMessages.cantWriteRecord, e);
         }
-    }
-
-    @Override
-    public List<Record> getRecordsByUserId(int userId) throws AbstractDAOException {
-        //todo
-        return null;
     }
 
     @Override

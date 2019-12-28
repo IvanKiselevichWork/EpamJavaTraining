@@ -17,17 +17,9 @@ public class FileUserDAO implements UserDAO {
     public final static int LOGIN_INDEX = 0;
     public final static int PASSWORD_INDEX = 1;
 
-    private final static String EMPTY_STRING = "";
+    private final static UserValidator userValidator = new UserValidator();
 
-    private UserValidator userValidator;
-
-    public FileUserDAO() throws WriteUserDAOException {
-        try {
-            Files.write(Paths.get(USERS_FILENAME), EMPTY_STRING.getBytes(), StandardOpenOption.APPEND);
-            userValidator = new UserValidator();
-        } catch (IOException e) {
-            throw new WriteUserDAOException(UserDAOExceptionMessages.cantWriteUser, e);
-        }
+    public FileUserDAO() {
     }
 
     /**
