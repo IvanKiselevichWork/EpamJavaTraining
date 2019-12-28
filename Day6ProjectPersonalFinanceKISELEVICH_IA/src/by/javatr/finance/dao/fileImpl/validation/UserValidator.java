@@ -15,23 +15,23 @@ public class UserValidator {
 
     }
 
-    public void checkUserForRegistration(String login, String password) throws ReadUserDAOException, UserLoginInUseException, WrongUserLoginException, WrongUserPasswordException {
+    public void checkUserForRegistration(String login, String password) throws ReadUserDAOException, UserLoginInUseDAOException, WrongUserLoginDAOException, WrongUserPasswordDAOException {
         check(login, password);
         if (isLoginInUse(login)) {
-            throw new UserLoginInUseException(UserExceptionMessages.loginInUse);
+            throw new UserLoginInUseDAOException(UserDAOExceptionMessages.loginInUse);
         }
     }
 
-    public void checkUserForSignIn(String login, String password) throws WrongUserPasswordException, WrongUserLoginException {
+    public void checkUserForSignIn(String login, String password) throws WrongUserPasswordDAOException, WrongUserLoginDAOException {
         check(login, password);
     }
 
-    private void check(String login, String password) throws WrongUserPasswordException, WrongUserLoginException {
+    private void check(String login, String password) throws WrongUserPasswordDAOException, WrongUserLoginDAOException {
         if (login == null) {
-            throw new WrongUserLoginException(UserExceptionMessages.loginIsNull);
+            throw new WrongUserLoginDAOException(UserDAOExceptionMessages.loginIsNull);
         }
         if (password == null) {
-            throw new WrongUserPasswordException(UserExceptionMessages.passwordIsNull);
+            throw new WrongUserPasswordDAOException(UserDAOExceptionMessages.passwordIsNull);
         }
     }
 
@@ -46,7 +46,7 @@ public class UserValidator {
             }
             return false;
         } catch (IOException e) {
-            throw new ReadUserDAOException(UserExceptionMessages.cantReadUser, e);
+            throw new ReadUserDAOException(UserDAOExceptionMessages.cantReadUser, e);
         }
     }
 }

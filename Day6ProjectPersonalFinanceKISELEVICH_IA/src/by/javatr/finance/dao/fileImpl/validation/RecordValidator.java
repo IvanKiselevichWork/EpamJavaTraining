@@ -1,13 +1,10 @@
 package by.javatr.finance.dao.fileImpl.validation;
 
-import by.javatr.finance.dao.exception.user.*;
-
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.List;
-
-import static by.javatr.finance.dao.fileImpl.FileUserDAO.*;
+import by.javatr.finance.dao.exception.record.RecordDAOExceptionMessages;
+import by.javatr.finance.dao.exception.record.WrongRecordCauseDAOException;
+import by.javatr.finance.dao.exception.record.WrongRecordDateDAOException;
+import by.javatr.finance.dao.exception.record.WrongRecordDAOException;
+import by.javatr.finance.entity.Record;
 
 public class RecordValidator {
 
@@ -15,13 +12,16 @@ public class RecordValidator {
 
     }
 
-
-    private void check(String login, String password) throws WrongUserPasswordException, WrongUserLoginException {
-        if (login == null) {
-            throw new WrongUserLoginException(UserExceptionMessages.loginIsNull);
+    public void checkForNull(Record record) throws WrongRecordCauseDAOException, WrongRecordDateDAOException, WrongRecordDAOException {
+        if (record == null) {
+            throw new WrongRecordDAOException(RecordDAOExceptionMessages.recordIsNull);
         }
-        if (password == null) {
-            throw new WrongUserPasswordException(UserExceptionMessages.passwordIsNull);
+
+        if (record.getCause() == null) {
+            throw new WrongRecordCauseDAOException(RecordDAOExceptionMessages.causeIsNull);
+        }
+        if (record.getDate() == null) {
+            throw new WrongRecordDateDAOException(RecordDAOExceptionMessages.dateIsNull);
         }
     }
 

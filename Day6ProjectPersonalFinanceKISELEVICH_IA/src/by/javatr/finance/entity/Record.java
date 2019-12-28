@@ -46,4 +46,42 @@ public class Record {
     public void setAmount(double amount) {
         this.amount = amount;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+        if (o == null) {
+            return false;
+        }
+        if (getClass() != o.getClass()) {
+            return false;
+        }
+        Record r = (Record)o;
+        return userId == r.userId
+                && cause.equals(r.cause)
+                && date.equals(r.date)
+                && Double.compare(amount, r.amount) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int hash = prime + (int)(userId^(userId>>>32));
+        hash = prime * hash + (cause == null ? 0 : cause.hashCode());
+        hash = prime * hash + (date == null ? 0 : date.hashCode());
+        long amountLong = Double.doubleToLongBits(amount);
+        hash = prime * hash + (int)(amountLong^(amountLong>>>32));
+        return hash;
+    }
+
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + ": "
+                + "user id = " + userId
+                + ", cause = " + cause
+                + ", date = " + date
+                + ", amount = " + amount;
+    }
 }
