@@ -7,4 +7,5 @@ public interface UserExceptionMessages {
     public static final String loginInUse = "Login in use";
     public static final String passwordIsNull = "Password is null";
     public static final String accountNotFound = "Account not found";
+    public static final String dataCorrupted = "User data corrupted";
 }

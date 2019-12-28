@@ -49,6 +49,11 @@ public class FileUserDAO implements UserDAO {
                 String[] loginPasswordArray = user.split(DELIMITER);
                 String login1 = loginPasswordArray[LOGIN_INDEX];
                 String password1 = loginPasswordArray[PASSWORD_INDEX];
+
+                if(login1 == null || password1 == null) {
+                    throw new ReadUserDAOException(UserExceptionMessages.dataCorrupted);
+                }
+
                 if (login1.equals(login) && password1.equals(password)) {
                     isAccountFound = true;
                     break;
@@ -59,6 +64,8 @@ public class FileUserDAO implements UserDAO {
             }
         } catch (IOException e) {
             throw new ReadUserDAOException(UserExceptionMessages.cantWriteUser, e);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new ReadUserDAOException(UserExceptionMessages.dataCorrupted, e);
         }
     }
 
