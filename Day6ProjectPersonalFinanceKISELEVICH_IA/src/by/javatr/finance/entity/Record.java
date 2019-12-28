@@ -1,5 +1,9 @@
 package by.javatr.finance.entity;
 
+import by.javatr.finance.entity.exception.InvalidCauseException;
+import by.javatr.finance.entity.exception.InvalidDateException;
+import by.javatr.finance.entity.exception.RecordExceptionMessages;
+
 import java.time.LocalDateTime;
 
 public class Record {
@@ -8,7 +12,13 @@ public class Record {
     private LocalDateTime date;
     private double amount;
 
-    public Record(long userId, String cause, LocalDateTime date, double amount) {
+    public Record(long userId, String cause, LocalDateTime date, double amount) throws InvalidDateException, InvalidCauseException {
+        if (cause == null) {
+            throw new InvalidCauseException(RecordExceptionMessages.causeIsNull);
+        }
+        if (date == null) {
+            throw new InvalidDateException(RecordExceptionMessages.dateIsNull);
+        }
         this.userId = userId;
         this.cause = cause;
         this.date = date;
@@ -27,7 +37,10 @@ public class Record {
         return cause;
     }
 
-    public void setCause(String cause) {
+    public void setCause(String cause) throws InvalidCauseException {
+        if (cause == null) {
+            throw new InvalidCauseException(RecordExceptionMessages.causeIsNull);
+        }
         this.cause = cause;
     }
 
@@ -35,7 +48,10 @@ public class Record {
         return date;
     }
 
-    public void setDate(LocalDateTime date) {
+    public void setDate(LocalDateTime date) throws InvalidDateException {
+        if (date == null) {
+            throw new InvalidDateException(RecordExceptionMessages.dateIsNull);
+        }
         this.date = date;
     }
 
