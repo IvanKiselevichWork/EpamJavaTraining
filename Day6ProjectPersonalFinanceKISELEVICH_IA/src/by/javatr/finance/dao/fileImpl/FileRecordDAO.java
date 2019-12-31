@@ -4,6 +4,7 @@ import by.javatr.finance.dao.RecordDAO;
 import by.javatr.finance.dao.exception.record.*;
 import by.javatr.finance.dao.fileImpl.validation.RecordValidator;
 import by.javatr.finance.entity.Record;
+import by.javatr.finance.entity.exception.RecordException;
 
 import java.io.File;
 import java.io.IOException;
@@ -20,9 +21,8 @@ public class FileRecordDAO implements RecordDAO {
     public final static String RECORDS_FILENAME = "records.txt";
     public final static String RECORDS_BACKUP_FILENAME = "records.txt_backup";
     public final static String DELIMITER = ";";
-    public final static String DATE_FORMAT = "dd-MM-yyyy hh:mm:ss";
 
-    public final static int USER_ID_INDEX = 0;
+    public final static int USER_LOGIN = 0;
     public final static int CAUSE_INDEX = 1;
     public final static int DATE_INDEX = 2;
     public final static int AMOUNT_INDEX = 3;
@@ -34,18 +34,18 @@ public class FileRecordDAO implements RecordDAO {
     }
 
     @Override
-    public void addRecord(Record record) throws WrongRecordCauseDAOException, WrongRecordDateDAOException, WriteRecordDAOException, WrongRecordDAOException {
+    public void addRecord(Record record) throws RecordDAOException {
         try {
             recordValidator.checkForNull(record);
 
             Files.write(Paths.get(RECORDS_FILENAME), convertRecordToString(record).getBytes(), StandardOpenOption.APPEND);
         } catch (IOException e) {
-            throw new WriteRecordDAOException(RecordDAOExceptionMessages.cantWriteRecord, e);
+            throw new RecordDAOException(RecordDAOExceptionMessages.cantWriteRecord, e);
         }
     }
 
     @Override
-    public void removeRecord(Record record) throws WrongRecordCauseDAOException, WrongRecordDateDAOException, RecordNotFoundDAOException, ReadRecordDAOException, WriteRecordDAOException, WrongRecordDAOException {
+    public void removeRecord(Record record) throws RecordDAOException {
         recordValidator.checkForNull(record);
 
         List<Record> records = getAllRecords();
@@ -55,25 +55,25 @@ public class FileRecordDAO implements RecordDAO {
                 File source = new File(RECORDS_FILENAME);
                 File backup = new File(RECORDS_BACKUP_FILENAME);
                 if (!source.renameTo(backup)) {
-                    throw new WriteRecordDAOException(RecordDAOExceptionMessages.cantWriteRecord);
+                    throw new RecordDAOException(RecordDAOExceptionMessages.cantWriteRecord);
                 }
 
                 for (Record record1 : records) {
                     addRecord(record1);
                 }
             } else {
-                throw new RecordNotFoundDAOException(RecordDAOExceptionMessages.recordNotFound);
+                throw new RecordDAOException(RecordDAOExceptionMessages.recordNotFound);
             }
         } catch (SecurityException e) {
             File source = new File(RECORDS_FILENAME);
             File backup = new File(RECORDS_BACKUP_FILENAME);
             backup.renameTo(source);
-            throw new WriteRecordDAOException(RecordDAOExceptionMessages.cantWriteRecord, e);
+            throw new RecordDAOException(RecordDAOExceptionMessages.cantWriteRecord, e);
         }
     }
 
     @Override
-    public List<Record> getAllRecords() throws ReadRecordDAOException {
+    public List<Record> getAllRecords() throws RecordDAOException {
         List<Record> list = new ArrayList<>();
         try {
             List<String> recordStrings =  Files.readAllLines(Paths.get(RECORDS_FILENAME));
@@ -82,26 +82,27 @@ public class FileRecordDAO implements RecordDAO {
                 list.add(record);
             }
         } catch (IOException e) {
-            throw new ReadRecordDAOException(RecordDAOExceptionMessages.cantReadRecord, e);
-        } catch (ArrayIndexOutOfBoundsException
-                | DateTimeParseException
-                | NumberFormatException
-                | NullPointerException e) {
-            throw new ReadRecordDAOException(RecordDAOExceptionMessages.dataCorrupted, e);
+            throw new RecordDAOException(RecordDAOExceptionMessages.cantReadRecord, e);
+        } catch (ArrayIndexOutOfBoundsException // unchecked
+                | DateTimeParseException // unchecked
+                | NumberFormatException // unchecked
+                | NullPointerException // unchecked
+                | RecordException e) { // checked
+            throw new RecordDAOException(RecordDAOExceptionMessages.dataCorrupted, e);
         }
         return list;
     }
 
     private String convertRecordToString(Record record) {
-        return record.getUserId() + DELIMITER
+        return record.getUserLogin() + DELIMITER
                 + record.getCause() + DELIMITER
                 + record.getDate() + DELIMITER
                 + record.getAmount() + System.lineSeparator();
     }
 
-    private Record convertStringToRecord(String string) throws ArrayIndexOutOfBoundsException, DateTimeParseException, NumberFormatException {
+    private Record convertStringToRecord(String string) throws ArrayIndexOutOfBoundsException, DateTimeParseException, NumberFormatException, RecordException {
         String[] recordArray = string.split(DELIMITER);
-        return new Record(Long.parseLong(recordArray[USER_ID_INDEX]),
+        return new Record(recordArray[USER_LOGIN],
                 recordArray[CAUSE_INDEX],
                 LocalDateTime.parse(recordArray[DATE_INDEX]),
                 Double.parseDouble(recordArray[AMOUNT_INDEX]));

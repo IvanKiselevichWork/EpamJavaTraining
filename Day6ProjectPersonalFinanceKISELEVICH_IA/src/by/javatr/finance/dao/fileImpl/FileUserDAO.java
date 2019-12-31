@@ -27,12 +27,10 @@ public class FileUserDAO implements UserDAO {
      * @param login user login
      * @param password user password
      * @throws AccountNotFoundDAOException if account not found
-     * @throws ReadUserDAOException if cant read user
-     * @throws WrongUserLoginDAOException if user login incorrect (etc null)
-     * @throws WrongUserPasswordDAOException if user password incorrect (etc null)
+     * @throws UserDAOException if other exception occur
      */
     @Override
-    public void signIn(String login, String password) throws AccountNotFoundDAOException, ReadUserDAOException, WrongUserPasswordDAOException, WrongUserLoginDAOException {
+    public void signIn(String login, String password) throws AccountNotFoundDAOException, UserDAOException {
         try {
             userValidator.checkUserForSignIn(login, password);
 
@@ -44,7 +42,7 @@ public class FileUserDAO implements UserDAO {
                 String password1 = loginPasswordArray[PASSWORD_INDEX];
 
                 if(login1 == null || password1 == null) {
-                    throw new ReadUserDAOException(UserDAOExceptionMessages.dataCorrupted);
+                    throw new UserDAOException(UserDAOExceptionMessages.dataCorrupted);
                 }
 
                 if (login1.equals(login) && password1.equals(password)) {
@@ -56,9 +54,9 @@ public class FileUserDAO implements UserDAO {
                 throw new AccountNotFoundDAOException(UserDAOExceptionMessages.accountNotFound);
             }
         } catch (IOException e) {
-            throw new ReadUserDAOException(UserDAOExceptionMessages.cantWriteUser, e);
-        } catch (ArrayIndexOutOfBoundsException e) {
-            throw new ReadUserDAOException(UserDAOExceptionMessages.dataCorrupted, e);
+            throw new UserDAOException(UserDAOExceptionMessages.cantWriteUser, e);
+        } catch (ArrayIndexOutOfBoundsException e) { // catch unchecked and wrap in checked - todo
+            throw new UserDAOException(UserDAOExceptionMessages.dataCorrupted, e);
         }
     }
 
@@ -66,19 +64,16 @@ public class FileUserDAO implements UserDAO {
      * if did'n throw anything - registration is OK
      * @param login user login
      * @param password user password
-     * @throws ReadUserDAOException if cant read user
+     * @throws UserDAOException if other exception occurs
      * @throws UserLoginInUseDAOException if login in use
-     * @throws WriteUserDAOException if cant write user
-     * @throws WrongUserLoginDAOException if user login incorrect (etc null)
-     * @throws WrongUserPasswordDAOException if user password incorrect (etc null)
      */
     @Override
-    public void registration(String login, String password) throws ReadUserDAOException, UserLoginInUseDAOException, WriteUserDAOException, WrongUserLoginDAOException, WrongUserPasswordDAOException {
+    public void registration(String login, String password) throws UserDAOException, UserLoginInUseDAOException {
         try {
             userValidator.checkUserForRegistration(login, password);
             Files.write(Paths.get(USERS_FILENAME), (login + DELIMITER + password + System.lineSeparator()).getBytes(), StandardOpenOption.APPEND);
         } catch (IOException e) {
-            throw new WriteUserDAOException(UserDAOExceptionMessages.cantWriteUser, e);
+            throw new UserDAOException(UserDAOExceptionMessages.cantWriteUser, e);
         }
     }
 

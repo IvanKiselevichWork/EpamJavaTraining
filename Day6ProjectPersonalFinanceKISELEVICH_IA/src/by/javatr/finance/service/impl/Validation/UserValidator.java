@@ -1,4 +1,4 @@
-package by.javatr.finance.service.impl.Validation;
+package by.javatr.finance.service.impl.validation;
 
 import by.javatr.finance.service.exception.user.IncorrectLoginServiceException;
 import by.javatr.finance.service.exception.user.IncorrectPasswordServiceException;

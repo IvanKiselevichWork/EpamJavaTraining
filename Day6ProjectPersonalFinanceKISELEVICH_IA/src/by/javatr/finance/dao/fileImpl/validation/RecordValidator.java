@@ -1,9 +1,7 @@
 package by.javatr.finance.dao.fileImpl.validation;
 
 import by.javatr.finance.dao.exception.record.RecordDAOExceptionMessages;
-import by.javatr.finance.dao.exception.record.WrongRecordCauseDAOException;
-import by.javatr.finance.dao.exception.record.WrongRecordDateDAOException;
-import by.javatr.finance.dao.exception.record.WrongRecordDAOException;
+import by.javatr.finance.dao.exception.record.RecordDAOException;
 import by.javatr.finance.entity.Record;
 
 public class RecordValidator {
@@ -12,16 +10,16 @@ public class RecordValidator {
 
     }
 
-    public void checkForNull(Record record) throws WrongRecordCauseDAOException, WrongRecordDateDAOException, WrongRecordDAOException {
+    public void checkForNull(Record record) throws RecordDAOException {
         if (record == null) {
-            throw new WrongRecordDAOException(RecordDAOExceptionMessages.recordIsNull);
+            throw new RecordDAOException(RecordDAOExceptionMessages.recordIsNull);
         }
 
         if (record.getCause() == null) {
-            throw new WrongRecordCauseDAOException(RecordDAOExceptionMessages.causeIsNull);
+            throw new RecordDAOException(RecordDAOExceptionMessages.causeIsNull);
         }
         if (record.getDate() == null) {
-            throw new WrongRecordDateDAOException(RecordDAOExceptionMessages.dateIsNull);
+            throw new RecordDAOException(RecordDAOExceptionMessages.dateIsNull);
         }
     }
 

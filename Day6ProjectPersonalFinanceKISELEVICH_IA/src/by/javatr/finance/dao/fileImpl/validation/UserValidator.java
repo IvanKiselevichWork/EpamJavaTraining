@@ -15,27 +15,27 @@ public class UserValidator {
 
     }
 
-    public void checkUserForRegistration(String login, String password) throws ReadUserDAOException, UserLoginInUseDAOException, WrongUserLoginDAOException, WrongUserPasswordDAOException {
+    public void checkUserForRegistration(String login, String password) throws UserDAOException, UserLoginInUseDAOException {
         check(login, password);
         if (isLoginInUse(login)) {
             throw new UserLoginInUseDAOException(UserDAOExceptionMessages.loginInUse);
         }
     }
 
-    public void checkUserForSignIn(String login, String password) throws WrongUserPasswordDAOException, WrongUserLoginDAOException {
+    public void checkUserForSignIn(String login, String password) throws UserDAOException {
         check(login, password);
     }
 
-    private void check(String login, String password) throws WrongUserPasswordDAOException, WrongUserLoginDAOException {
+    private void check(String login, String password) throws UserDAOException {
         if (login == null) {
-            throw new WrongUserLoginDAOException(UserDAOExceptionMessages.loginIsNull);
+            throw new UserDAOException(UserDAOExceptionMessages.loginIsNull);
         }
         if (password == null) {
-            throw new WrongUserPasswordDAOException(UserDAOExceptionMessages.passwordIsNull);
+            throw new UserDAOException(UserDAOExceptionMessages.passwordIsNull);
         }
     }
 
-    private boolean isLoginInUse(String checkLogin) throws ReadUserDAOException {
+    private boolean isLoginInUse(String checkLogin) throws UserDAOException {
         try {
             List<String> users = Files.readAllLines(Paths.get(USERS_FILENAME));
             for (String user: users) {
@@ -46,7 +46,7 @@ public class UserValidator {
             }
             return false;
         } catch (IOException e) {
-            throw new ReadUserDAOException(UserDAOExceptionMessages.cantReadUser, e);
+            throw new UserDAOException(UserDAOExceptionMessages.cantReadUser, e);
         }
     }
 }

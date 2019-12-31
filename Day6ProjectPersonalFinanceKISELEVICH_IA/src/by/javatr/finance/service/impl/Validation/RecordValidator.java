@@ -1,9 +1,7 @@
-package by.javatr.finance.service.impl.Validation;
+package by.javatr.finance.service.impl.validation;
 
 import by.javatr.finance.entity.Record;
-import by.javatr.finance.service.exception.record.IncorrectCauseServiceException;
-import by.javatr.finance.service.exception.record.IncorrectDateServiceException;
-import by.javatr.finance.service.exception.record.IncorrectRecordServiceException;
+import by.javatr.finance.service.exception.record.RecordServiceException;
 import by.javatr.finance.service.exception.record.RecordServiceExceptionMessages;
 
 import java.time.LocalDateTime;
@@ -11,32 +9,32 @@ import java.time.format.DateTimeParseException;
 
 public class RecordValidator {
 
-    public void checkDate(LocalDateTime date) throws IncorrectDateServiceException {
+    public void checkDate(LocalDateTime date) throws RecordServiceException {
         if(date == null) {
-            throw new IncorrectDateServiceException(RecordServiceExceptionMessages.dateIsNull);
+            throw new RecordServiceException(RecordServiceExceptionMessages.dateIsNull);
         }
     }
 
-    public void checkCause(String cause) throws IncorrectCauseServiceException {
+    public void checkCause(String cause) throws RecordServiceException {
         if(cause == null) {
-            throw new IncorrectCauseServiceException(RecordServiceExceptionMessages.causeIsNull);
+            throw new RecordServiceException(RecordServiceExceptionMessages.causeIsNull);
         }
     }
 
-    public void checkDate(String date) throws IncorrectDateServiceException {
+    public void checkDate(String date) throws RecordServiceException {
         if(date == null) {
-            throw new IncorrectDateServiceException(RecordServiceExceptionMessages.dateIsNull);
+            throw new RecordServiceException(RecordServiceExceptionMessages.dateIsNull);
         }
         try {
             LocalDateTime.parse(date);
         } catch (DateTimeParseException e) {
-            throw new IncorrectDateServiceException(RecordServiceExceptionMessages.incorrectDateFormat, e);
+            throw new RecordServiceException(RecordServiceExceptionMessages.incorrectDateFormat, e);
         }
     }
 
-    public void checkRecord(Record record) throws IncorrectCauseServiceException, IncorrectDateServiceException, IncorrectRecordServiceException {
+    public void checkRecord(Record record) throws RecordServiceException {
         if (record == null) {
-            throw new IncorrectRecordServiceException(RecordServiceExceptionMessages.recordIsNull);
+            throw new RecordServiceException(RecordServiceExceptionMessages.recordIsNull);
         }
         checkCause(record.getCause());
         checkDate(record.getDate());
