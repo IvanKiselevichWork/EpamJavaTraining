@@ -83,8 +83,7 @@ public class FileRecordDAO implements RecordDAO {
             }
         } catch (IOException e) {
             throw new RecordDAOException(RecordDAOExceptionMessages.cantReadRecord, e);
-        } catch (ArrayIndexOutOfBoundsException // unchecked
-                | DateTimeParseException // unchecked
+        } catch (DateTimeParseException // unchecked
                 | NumberFormatException // unchecked
                 | NullPointerException // unchecked
                 | RecordException e) { // checked
@@ -100,8 +99,11 @@ public class FileRecordDAO implements RecordDAO {
                 + record.getAmount() + System.lineSeparator();
     }
 
-    private Record convertStringToRecord(String string) throws ArrayIndexOutOfBoundsException, DateTimeParseException, NumberFormatException, RecordException {
+    private Record convertStringToRecord(String string) throws RecordDAOException, DateTimeParseException, NumberFormatException, RecordException {
         String[] recordArray = string.split(DELIMITER);
+        if (recordArray.length < 4) {
+            throw new RecordDAOException(RecordDAOExceptionMessages.dataCorrupted);
+        }
         return new Record(recordArray[USER_LOGIN],
                 recordArray[CAUSE_INDEX],
                 LocalDateTime.parse(recordArray[DATE_INDEX]),

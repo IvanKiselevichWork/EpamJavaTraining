@@ -94,7 +94,7 @@ public class Record {
     @Override
     public String toString() {
         return getClass().getSimpleName() + ": "
-                + "user id = " + userLogin
+                + "user login = " + userLogin
                 + ", cause = " + cause
                 + ", date = " + date
                 + ", amount = " + amount;
