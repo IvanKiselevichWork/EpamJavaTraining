@@ -2,6 +2,7 @@ package by.javatr.finance.view;
 
 import by.javatr.finance.controller.Command;
 import by.javatr.finance.controller.Controller;
+import by.javatr.finance.controller.MainMenuController;
 import by.javatr.finance.dao.exception.AbstractDAOException;
 import by.javatr.finance.dao.fileImpl.FileRecordDAO;
 import by.javatr.finance.dao.fileImpl.FileUserDAO;
@@ -42,37 +43,8 @@ public class Main {
         }
         */
         try {
-            Controller mainMenuController = new Controller();
-            mainMenuController.registerCommand("0", new Command() {
-                @Override
-                public void execute() {
-                    System.out.println("Turning off...");
-                    System.exit(0);
-                }
-            });
-            mainMenuController.registerCommand("1", new Command() {
-                @Override
-                public void execute() {
-                    System.out.println("Start execute");
-                    UserService userService = new UserServiceImpl();
-                    Scanner scanner = new Scanner(System.in);
-                    String login = scanner.nextLine();
-                    String password = scanner.nextLine();
-                    try {
-                        userService.signIn(login, password);
-                        System.out.println("Welcome, " + login + "!");
-                        //todo
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
-            View view = new View();
-            view.showMainMenu();
-            Scanner scanner = new Scanner(System.in);
-            String command = scanner.nextLine();
-            mainMenuController.execute(command);
-            System.out.println("Success!");
+            MainMenuController.getInstance().start();
+            //System.out.println("Success!");
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -1,6 +1,19 @@
 package by.javatr.finance.view;
 
+import java.util.Scanner;
+
 public class View {
+
+    private static View instance = new View();
+
+    public static View getInstance() {
+        return instance;
+    }
+
+    private View(){
+
+    }
+
     public void showMainMenu() {
         System.out.println("--------------------------");
         System.out.println("Main menu:");
@@ -17,5 +30,26 @@ public class View {
         System.out.println("2 - Registration");
         System.out.println("0 - Exit");
         System.out.println("--------------------------");
+    }
+
+    public String getCommand(String message, String[] validCommands) {
+        Scanner scanner = new Scanner(System.in);
+        String command = null;
+        MAIN_LOOP:
+        while (true) {
+            System.out.println(message);
+            command = scanner.nextLine();
+            for (String validCommand : validCommands) {
+                if (validCommand.equals(command)) {
+                    break MAIN_LOOP;
+                }
+            }
+            System.out.println("Wrong command!");
+        }
+        return command;
+    }
+
+    public void showErrorMessage(String message) {
+        System.out.println("Error occurred: " + message);
     }
 }
