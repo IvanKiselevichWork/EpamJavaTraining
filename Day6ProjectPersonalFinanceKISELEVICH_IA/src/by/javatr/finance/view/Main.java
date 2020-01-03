@@ -1,17 +1,23 @@
 package by.javatr.finance.view;
 
+import by.javatr.finance.controller.Command;
+import by.javatr.finance.controller.Controller;
 import by.javatr.finance.dao.exception.AbstractDAOException;
 import by.javatr.finance.dao.fileImpl.FileRecordDAO;
 import by.javatr.finance.dao.fileImpl.FileUserDAO;
 import by.javatr.finance.entity.Record;
 import by.javatr.finance.entity.exception.RecordException;
+import by.javatr.finance.service.UserService;
+import by.javatr.finance.service.impl.UserServiceImpl;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
+        /*
         //Record r = new Record(1, "asdf", LocalDateTime.parse("2007-12-03T10:15:30"), 45);
         try {
 
@@ -21,7 +27,7 @@ public class Main {
             fileRecordDAO.addRecord(new Record("admin", "asdf", LocalDateTime.parse("2007-12-03T10:15:31"), 435));
             fileRecordDAO.addRecord(new Record("admin", "asdf", LocalDateTime.parse("2007-12-03T10:15:32"), 455));
             fileRecordDAO.addRecord(new Record("admin", "asdf", LocalDateTime.parse("2007-12-03T10:15:33"), 465));
-            */
+
 
             List<Record> recordList = fileRecordDAO.getAllRecords();
             for (Record record : recordList) {
@@ -32,6 +38,42 @@ public class Main {
             fileUserDAO.signIn("admin", "1234");
             System.out.println("admin signed in!");
         } catch (AbstractDAOException e) {//| RecordException e) {
+            e.printStackTrace();
+        }
+        */
+        try {
+            Controller mainMenuController = new Controller();
+            mainMenuController.registerCommand("0", new Command() {
+                @Override
+                public void execute() {
+                    System.out.println("Turning off...");
+                    System.exit(0);
+                }
+            });
+            mainMenuController.registerCommand("1", new Command() {
+                @Override
+                public void execute() {
+                    System.out.println("Start execute");
+                    UserService userService = new UserServiceImpl();
+                    Scanner scanner = new Scanner(System.in);
+                    String login = scanner.nextLine();
+                    String password = scanner.nextLine();
+                    try {
+                        userService.signIn(login, password);
+                        System.out.println("Welcome, " + login + "!");
+                        //todo
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+            View view = new View();
+            view.showMainMenu();
+            Scanner scanner = new Scanner(System.in);
+            String command = scanner.nextLine();
+            mainMenuController.execute(command);
+            System.out.println("Success!");
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

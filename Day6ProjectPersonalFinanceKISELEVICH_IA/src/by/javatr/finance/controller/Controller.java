@@ -5,7 +5,7 @@ import by.javatr.finance.controller.exception.ControllerExceptionMessages;
 
 import java.util.HashMap;
 
-public class MenuController {
+public class Controller {
     private final HashMap<String, Command> commandMap = new HashMap<>();
 
     public void registerCommand(String commandName, Command command) {
@@ -17,5 +17,6 @@ public class MenuController {
         if (command == null) {
             throw new ControllerException(ControllerExceptionMessages.noCommand + commandName);
         }
+        command.execute();
     }
 }
