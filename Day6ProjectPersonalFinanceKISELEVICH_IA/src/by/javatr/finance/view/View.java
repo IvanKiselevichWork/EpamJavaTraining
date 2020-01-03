@@ -26,8 +26,8 @@ public class View {
     public void showUserMenu() {
         System.out.println("--------------------------");
         System.out.println("User menu:");
-        System.out.println("1 - Show all records");
-        System.out.println("2 - Registration");
+        System.out.println("1 - Show all my records");
+        //System.out.println("2 - Registration");
         System.out.println("0 - Exit");
         System.out.println("--------------------------");
     }
