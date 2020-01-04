@@ -65,10 +65,10 @@ public class FileUserDAO implements UserDAO {
      * @param login user login
      * @param password user password
      * @throws UserDAOException if other exception occurs
-     * @throws UserLoginInUseDAOException if login in use
+     * @throws LoginInUseDAOException if login in use
      */
     @Override
-    public void registration(String login, String password) throws UserDAOException, UserLoginInUseDAOException {
+    public void registration(String login, String password) throws UserDAOException, LoginInUseDAOException {
         try {
             userValidator.checkUserForRegistration(login, password);
             Files.write(Paths.get(USERS_FILENAME), (login + DELIMITER + password + System.lineSeparator()).getBytes(), StandardOpenOption.APPEND);

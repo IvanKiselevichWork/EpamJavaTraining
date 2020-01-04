@@ -15,10 +15,10 @@ public class UserValidator {
 
     }
 
-    public void checkUserForRegistration(String login, String password) throws UserDAOException, UserLoginInUseDAOException {
+    public void checkUserForRegistration(String login, String password) throws UserDAOException, LoginInUseDAOException {
         check(login, password);
         if (isLoginInUse(login)) {
-            throw new UserLoginInUseDAOException(UserDAOExceptionMessages.loginInUse);
+            throw new LoginInUseDAOException(UserDAOExceptionMessages.loginInUse);
         }
     }
 
