@@ -38,6 +38,9 @@ public class FileUserDAO implements UserDAO {
             List<String> users = Files.readAllLines(Paths.get(USERS_FILENAME));
             for (String user: users) {
                 String[] loginPasswordArray = user.split(DELIMITER);
+                if (loginPasswordArray.length < 2) {
+                    throw new UserDAOException(UserDAOExceptionMessages.dataCorrupted);
+                }
                 String login1 = loginPasswordArray[LOGIN_INDEX];
                 String password1 = loginPasswordArray[PASSWORD_INDEX];
 
@@ -55,8 +58,6 @@ public class FileUserDAO implements UserDAO {
             }
         } catch (IOException e) {
             throw new UserDAOException(UserDAOExceptionMessages.cantWriteUser, e);
-        } catch (ArrayIndexOutOfBoundsException e) { // catch unchecked and wrap in checked - todo
-            throw new UserDAOException(UserDAOExceptionMessages.dataCorrupted, e);
         }
     }
 
