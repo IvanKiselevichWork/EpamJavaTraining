@@ -4,10 +4,12 @@ import by.javatr.finance.controller.command.ExitCommand;
 import by.javatr.finance.controller.command.RunMainMenuCommand;
 import by.javatr.finance.controller.command.SignInCommand;
 
+import static by.javatr.finance.controller.command.MenuCommandsNames.RUN_MAIN_MENU;
+
 
 public class MainController extends Controller {
 
-    public static final String RUN_MAIN_MENU = "MAIN";
+
 
     private static MainController instance = new MainController();
 

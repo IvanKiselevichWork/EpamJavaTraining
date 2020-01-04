@@ -27,7 +27,7 @@ public class View {
         System.out.println("--------------------------");
         System.out.println("User menu:");
         System.out.println("1 - Show all my records");
-        //System.out.println("2 - Registration");
+        System.out.println("2 - Add record");
         System.out.println("0 - Exit");
         System.out.println("--------------------------");
     }
@@ -71,12 +71,12 @@ public class View {
 
     public void showAccountNotFoundMessage(Exception e) {
         System.out.println("Account not found!");
-        showErrorMessage(e.getMessage());
+        //showErrorMessage(e.getMessage());
     }
 
     public void showLoginInUseMessage(Exception e) {
         System.out.println("Login in use!");
-        showErrorMessage(e.getMessage());
+        //showErrorMessage(e.getMessage());
     }
 
 }
