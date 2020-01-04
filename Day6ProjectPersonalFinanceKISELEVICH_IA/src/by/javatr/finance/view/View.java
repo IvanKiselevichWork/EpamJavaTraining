@@ -60,4 +60,12 @@ public class View {
     public void welcomeUser(String login) {
         System.out.println("Welcome, " + login + "!"); // todo
     }
+
+    public void signInLoginAndPasswordRequest() {
+        System.out.println("Input login and password for signing in: ");
+    }
+
+    public void registrationLoginAndPasswordRequest() {
+        System.out.println("Input login and password for registration: ");
+    }
 }
