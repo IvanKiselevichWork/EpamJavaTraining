@@ -74,4 +74,9 @@ public class View {
         showErrorMessage(e.getMessage());
     }
 
+    public void showLoginInUseMessage(Exception e) {
+        System.out.println("Login in use!");
+        showErrorMessage(e.getMessage());
+    }
+
 }

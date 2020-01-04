@@ -1,6 +1,8 @@
 package by.javatr.finance.controller.command;
 
 import by.javatr.finance.service.UserService;
+import by.javatr.finance.service.exception.user.LoginInUseServiceException;
+import by.javatr.finance.service.exception.user.UserServiceException;
 import by.javatr.finance.service.factory.ServiceFactory;
 import by.javatr.finance.view.View;
 
@@ -22,8 +24,10 @@ public class RegistrationCommand implements Command {
             userService.registration(login, password);
             view.welcomeUser(login);
             //todo
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (LoginInUseServiceException e) {
+            view.showLoginInUseMessage(e);
+        } catch (UserServiceException e) {
+            view.showErrorMessage(e.getMessage());
         }
     }
 }
