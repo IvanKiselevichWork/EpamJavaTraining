@@ -52,4 +52,8 @@ public class View {
     public void showErrorMessage(String message) {
         System.out.println("Error occurred: " + message);
     }
+
+    public void showExitMessage() {
+        System.out.println("Turning off...");
+    }
 }

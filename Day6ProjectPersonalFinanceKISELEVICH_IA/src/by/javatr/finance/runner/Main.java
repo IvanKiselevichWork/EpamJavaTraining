@@ -1,19 +1,7 @@
-package by.javatr.finance.view;
+package by.javatr.finance.runner;
 
-import by.javatr.finance.controller.Command;
-import by.javatr.finance.controller.Controller;
+import by.javatr.finance.controller.MainController;
 import by.javatr.finance.controller.MainMenuController;
-import by.javatr.finance.dao.exception.AbstractDAOException;
-import by.javatr.finance.dao.fileImpl.FileRecordDAO;
-import by.javatr.finance.dao.fileImpl.FileUserDAO;
-import by.javatr.finance.entity.Record;
-import by.javatr.finance.entity.exception.RecordException;
-import by.javatr.finance.service.UserService;
-import by.javatr.finance.service.impl.UserServiceImpl;
-
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Scanner;
 
 public class Main {
 
@@ -43,7 +31,7 @@ public class Main {
         }
         */
         try {
-            MainMenuController.getInstance().start();
+            MainController.getInstance().execute(MainController.RUN_MAIN_MENU);
             //System.out.println("Success!");
         } catch (Exception e) {
             e.printStackTrace();
