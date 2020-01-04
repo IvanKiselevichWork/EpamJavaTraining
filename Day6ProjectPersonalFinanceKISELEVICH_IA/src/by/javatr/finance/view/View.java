@@ -68,4 +68,10 @@ public class View {
     public void registrationLoginAndPasswordRequest() {
         System.out.println("Input login and password for registration: ");
     }
+
+    public void showAccountNotFoundMessage(Exception e) {
+        System.out.println("Account not found!");
+        showErrorMessage(e.getMessage());
+    }
+
 }
