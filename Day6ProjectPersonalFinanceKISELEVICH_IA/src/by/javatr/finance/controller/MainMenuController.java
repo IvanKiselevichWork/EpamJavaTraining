@@ -17,7 +17,7 @@ public class MainMenuController extends Controller {
     private MainMenuController() {
         registerCommand(MAIN_MENU_COMMANDS[0], new ExitCommand());
         registerCommand(MAIN_MENU_COMMANDS[1], new SignInCommand());
-        //registerCommand(MAIN_MENU_COMMANDS[3], new RegistrationCommand());
+        //registerCommand(MAIN_MENU_COMMANDS[2], new RegistrationCommand());
     }
 
 }

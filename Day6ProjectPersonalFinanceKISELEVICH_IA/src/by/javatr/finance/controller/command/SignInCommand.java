@@ -14,15 +14,13 @@ public class SignInCommand implements Command {
 
     @Override
     public void execute() {
-        System.out.println("Start execute"); // todo
-
         Scanner scanner = new Scanner(System.in);
         String login = scanner.nextLine();
         String password = scanner.nextLine();
 
         try {
             userService.signIn(login, password);
-            System.out.println("Welcome, " + login + "!"); // todo
+            view.welcomeUser(login);
             //todo
         } catch (Exception e) {
             e.printStackTrace();

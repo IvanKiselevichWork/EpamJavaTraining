@@ -56,4 +56,8 @@ public class View {
     public void showExitMessage() {
         System.out.println("Turning off...");
     }
+
+    public void welcomeUser(String login) {
+        System.out.println("Welcome, " + login + "!"); // todo
+    }
 }
