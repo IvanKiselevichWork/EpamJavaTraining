@@ -27,7 +27,7 @@ public class FileUserDAO implements UserDAO {
      * @param login user login
      * @param password user password
      * @throws AccountNotFoundDAOException if account not found
-     * @throws UserDAOException if other exception occur
+     * @throws UserDAOException if other exception occurs
      */
     @Override
     public void signIn(String login, String password) throws AccountNotFoundDAOException, UserDAOException {
@@ -64,8 +64,8 @@ public class FileUserDAO implements UserDAO {
      * if did'n throw anything - registration is OK
      * @param login user login
      * @param password user password
-     * @throws UserDAOException if other exception occurs
      * @throws LoginInUseDAOException if login in use
+     * @throws UserDAOException if other exception occurs
      */
     @Override
     public void registration(String login, String password) throws UserDAOException, LoginInUseDAOException {
