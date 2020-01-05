@@ -8,6 +8,7 @@ import by.javatr.finance.service.RecordService;
 import by.javatr.finance.service.exception.record.RecordServiceException;
 import by.javatr.finance.service.impl.validation.RecordValidator;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RecordServiceImpl implements RecordService {
@@ -37,9 +38,16 @@ public class RecordServiceImpl implements RecordService {
     }
 
     @Override
-    public List<Record> getAllRecords() throws RecordServiceException {
+    public List<Record> getAllRecordsByLogin(String login) throws RecordServiceException {
         try {
-            return recordDAO.getAllRecords();
+            List<Record> allRecords = recordDAO.getAllRecords();
+            List<Record> result = new ArrayList<>();
+            for (Record record : allRecords) {
+                if (record.getUserLogin().equals(login)) {
+                    result.add(record);
+                }
+            }
+            return result;
         } catch (AbstractDAOException e) {
             throw new RecordServiceException(e);
         }

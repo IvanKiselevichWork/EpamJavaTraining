@@ -8,5 +8,5 @@ import java.util.List;
 public interface RecordService {
     void addRecord(Record record) throws RecordServiceException;
     void removeRecord(Record record) throws RecordServiceException;
-    List<Record> getAllRecords() throws RecordServiceException;
+    List<Record> getAllRecordsByLogin(String login) throws RecordServiceException;
 }

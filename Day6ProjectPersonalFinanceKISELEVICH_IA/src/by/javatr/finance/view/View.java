@@ -1,10 +1,13 @@
 package by.javatr.finance.view;
 
+import by.javatr.finance.entity.Record;
+
+import java.util.List;
 import java.util.Scanner;
 
 public class View {
 
-    private static View instance = new View();
+    private static final View instance = new View();
 
     public static View getInstance() {
         return instance;
@@ -34,7 +37,7 @@ public class View {
 
     public String getCommand(String message, String[] validCommands) {
         Scanner scanner = new Scanner(System.in);
-        String command = null;
+        String command;
         MAIN_LOOP:
         while (true) {
             System.out.println(message);
@@ -49,6 +52,12 @@ public class View {
         return command;
     }
 
+    public String getString(String message) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println(message);
+        return scanner.nextLine();
+    }
+
     public void showErrorMessage(String message) {
         System.out.println("Error occurred: " + message);
     }
@@ -61,22 +70,26 @@ public class View {
         System.out.println("Welcome, " + login + "!"); // todo
     }
 
-    public void signInLoginAndPasswordRequest() {
-        System.out.println("Input login and password for signing in: ");
+    public void signInDataRequest() {
+        System.out.println("Input data for signing in: ");
     }
 
-    public void registrationLoginAndPasswordRequest() {
-        System.out.println("Input login and password for registration: ");
+    public void registrationDataRequest() {
+        System.out.println("Input data for registration: ");
     }
 
-    public void showAccountNotFoundMessage(Exception e) {
+    public void showAccountNotFoundMessage() {
         System.out.println("Account not found!");
-        //showErrorMessage(e.getMessage());
     }
 
-    public void showLoginInUseMessage(Exception e) {
+    public void showLoginInUseMessage() {
         System.out.println("Login in use!");
-        //showErrorMessage(e.getMessage());
     }
 
+    public void showRecordList(List<Record> recordList) {
+        System.out.println("Records:");
+        for (Record record : recordList) {
+            System.out.println(record.toString());
+        }
+    }
 }
