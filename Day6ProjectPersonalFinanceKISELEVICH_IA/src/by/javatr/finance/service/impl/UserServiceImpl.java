@@ -17,6 +17,13 @@ public class UserServiceImpl implements UserService {
 
     private final UserDAO userDAO = DAOFactory.getInstance().getUserDAO();
 
+    /**
+     * if did'n throw anything - signIn is OK
+     * @param login user login
+     * @param password user password
+     * @throws AccountNotFoundServiceException if account not found
+     * @throws UserServiceException if other exception occurs
+     */
     @Override
     public void signIn(String login, String password) throws AccountNotFoundServiceException, UserServiceException {
         try {
@@ -36,6 +43,13 @@ public class UserServiceImpl implements UserService {
     }
      */
 
+    /**
+     * if did'n throw anything - registration is OK
+     * @param login user login
+     * @param password user password
+     * @throws LoginInUseServiceException if login in use
+     * @throws UserServiceException if other exception occurs
+     */
     @Override
     public void registration(String login, String password) throws LoginInUseServiceException, UserServiceException {
         try {
