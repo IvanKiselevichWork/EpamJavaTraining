@@ -26,8 +26,14 @@ public class SignInCommand implements Command {
 
         try {
             userService.signIn(login, password);
+
             view.welcomeUser(login);
+
+            if (commandParameters == null) {
+                commandParameters = new CommandParameters();
+            }
             commandParameters.setParameter(CommandParameters.LOGIN_PARAMETER, login);
+
             UserMenuController.getInstance().execute(UserMenuController.RUN_USER_MENU_COMMAND, commandParameters);
         } catch (AccountNotFoundServiceException e) {
             view.showAccountNotFoundMessage();

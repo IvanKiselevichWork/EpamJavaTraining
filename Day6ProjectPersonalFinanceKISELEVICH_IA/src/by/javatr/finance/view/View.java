@@ -87,9 +87,10 @@ public class View {
     }
 
     public void showRecordList(List<Record> recordList) {
+        int index = 1;
         System.out.println("Records:");
         for (Record record : recordList) {
-            System.out.println(record.toString());
+            System.out.println(index++ + ": " + record.toString());
         }
     }
 }

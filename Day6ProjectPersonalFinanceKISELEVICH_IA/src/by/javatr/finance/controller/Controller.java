@@ -11,7 +11,7 @@ import java.util.HashMap;
 public abstract class Controller {
     protected final static HashMap<String, Command> commandMap = new HashMap<>();
 
-    public static void registerCommand(String commandName, Command command) {
+    protected static void registerCommand(String commandName, Command command) {
         commandMap.put(commandName, command);
     }
 

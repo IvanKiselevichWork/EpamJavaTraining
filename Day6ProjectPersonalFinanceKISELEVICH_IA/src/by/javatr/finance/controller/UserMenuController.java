@@ -2,6 +2,7 @@ package by.javatr.finance.controller;
 
 import by.javatr.finance.controller.command.*;
 import by.javatr.finance.controller.command.usermenucontroller.AddRecordCommand;
+import by.javatr.finance.controller.command.usermenucontroller.RemoveRecordCommand;
 import by.javatr.finance.controller.command.usermenucontroller.RunUserMenuCommand;
 import by.javatr.finance.controller.command.usermenucontroller.ShowAllUserRecordsCommand;
 
@@ -9,12 +10,13 @@ import by.javatr.finance.controller.command.usermenucontroller.ShowAllUserRecord
 public class UserMenuController extends Controller {
 
     public static final String RUN_USER_MENU_COMMAND = "RUN_USER_MENU";
-    public static final String[] USER_MENU_COMMANDS = {"0", "1", "2"};
+    public static final String[] USER_MENU_COMMANDS = {"0", "1", "2", "3"};
 
     static {
         registerCommand(USER_MENU_COMMANDS[0], new ExitCommand());
         registerCommand(USER_MENU_COMMANDS[1], new ShowAllUserRecordsCommand());
         registerCommand(USER_MENU_COMMANDS[2], new AddRecordCommand());
+        registerCommand(USER_MENU_COMMANDS[3], new RemoveRecordCommand());
 
         registerCommand(RUN_USER_MENU_COMMAND, new RunUserMenuCommand());
     }

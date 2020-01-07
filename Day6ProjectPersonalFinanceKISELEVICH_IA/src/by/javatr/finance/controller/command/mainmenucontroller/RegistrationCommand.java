@@ -27,8 +27,14 @@ public class RegistrationCommand implements Command {
 
         try {
             userService.registration(login, password);
+
             view.welcomeUser(login);
+
+            if (commandParameters == null) {
+                commandParameters = new CommandParameters();
+            }
             commandParameters.setParameter(CommandParameters.LOGIN_PARAMETER, login);
+
             UserMenuController.getInstance().execute(UserMenuController.RUN_USER_MENU_COMMAND, commandParameters);
         } catch (LoginInUseServiceException e) {
             view.showLoginInUseMessage();
