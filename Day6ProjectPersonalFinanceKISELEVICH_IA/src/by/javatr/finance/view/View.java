@@ -31,6 +31,7 @@ public class View {
         System.out.println("User menu:");
         System.out.println("1 - Show all my records");
         System.out.println("2 - Add record");
+        System.out.println("3 - Remove record");
         System.out.println("0 - Exit");
         System.out.println("--------------------------");
     }
@@ -67,7 +68,7 @@ public class View {
     }
 
     public void welcomeUser(String login) {
-        System.out.println("Welcome, " + login + "!"); // todo
+        System.out.println("Welcome, " + login + "!");
     }
 
     public void signInDataRequest() {
@@ -92,5 +93,9 @@ public class View {
         for (Record record : recordList) {
             System.out.println(index++ + ": " + record.toString());
         }
+    }
+
+    public void showRecordAddedMessage(Record record) {
+        System.out.println("Record added: \n" + record);
     }
 }

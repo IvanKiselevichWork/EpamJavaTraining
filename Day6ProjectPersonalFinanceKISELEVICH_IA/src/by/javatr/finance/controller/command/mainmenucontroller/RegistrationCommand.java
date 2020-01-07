@@ -38,8 +38,6 @@ public class RegistrationCommand implements Command {
             UserMenuController.getInstance().execute(UserMenuController.RUN_USER_MENU_COMMAND, commandParameters);
         } catch (LoginInUseServiceException e) {
             view.showLoginInUseMessage();
-            MainMenuController.getInstance().execute(MainMenuController.RUN_MAIN_MENU_COMMAND, commandParameters);
-            // todo what better: stack increasing or while(true) loop?
         } catch (UserServiceException | ControllerException e) {
             view.showErrorMessage(e.getMessage());
         }

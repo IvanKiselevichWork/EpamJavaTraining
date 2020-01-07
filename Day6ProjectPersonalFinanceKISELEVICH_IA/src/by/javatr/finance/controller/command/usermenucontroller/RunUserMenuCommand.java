@@ -15,6 +15,8 @@ public class RunUserMenuCommand implements Command {
     public void execute(CommandParameters commandParameters) throws AbstractControllerException {
         view.showUserMenu();
         String command = view.getCommand(UserMessages.COMMAND_REQUEST_MESSAGE, UserMenuController.USER_MENU_COMMANDS);
-        UserMenuController.getInstance().execute(command, commandParameters);
+        UserMenuController.getInstance().execute(command, commandParameters); // execute command
+
+        UserMenuController.getInstance().execute(UserMenuController.RUN_USER_MENU_COMMAND, commandParameters);
     }
 }

@@ -24,8 +24,6 @@ public class ShowAllUserRecordsCommand implements Command {
             }
 
             view.showRecordList(recordService.getAllRecordsByLogin(commandParameters.getParameter(CommandParameters.LOGIN_PARAMETER)));
-
-            UserMenuController.getInstance().execute(UserMenuController.RUN_USER_MENU_COMMAND, commandParameters);
         } catch (RecordServiceException e) {
             view.showErrorMessage(e.getMessage());
         }

@@ -37,8 +37,6 @@ public class SignInCommand implements Command {
             UserMenuController.getInstance().execute(UserMenuController.RUN_USER_MENU_COMMAND, commandParameters);
         } catch (AccountNotFoundServiceException e) {
             view.showAccountNotFoundMessage();
-            MainMenuController.getInstance().execute(MainMenuController.RUN_MAIN_MENU_COMMAND, commandParameters);
-            // todo what better: stack increasing or while(true) loop?
         } catch (UserServiceException e) {
             view.showErrorMessage(e.getMessage());
         }

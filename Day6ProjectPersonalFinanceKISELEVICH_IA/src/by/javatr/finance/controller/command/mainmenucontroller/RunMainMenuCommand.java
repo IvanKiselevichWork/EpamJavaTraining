@@ -16,5 +16,8 @@ public class RunMainMenuCommand implements Command {
         view.showMainMenu();
         String command = view.getCommand(UserMessages.COMMAND_REQUEST_MESSAGE, MainMenuController.MAIN_MENU_COMMANDS);
         MainMenuController.getInstance().execute(command, commandParameters);
+
+        MainMenuController.getInstance().execute(MainMenuController.RUN_MAIN_MENU_COMMAND, commandParameters);
+        // todo what better: stack increasing or while(true) loop?
     }
 }
