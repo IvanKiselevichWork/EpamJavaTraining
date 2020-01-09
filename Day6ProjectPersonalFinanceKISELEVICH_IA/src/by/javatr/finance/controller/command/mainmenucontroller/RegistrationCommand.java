@@ -1,6 +1,5 @@
 package by.javatr.finance.controller.command.mainmenucontroller;
 
-import by.javatr.finance.controller.MainMenuController;
 import by.javatr.finance.controller.UserMenuController;
 import by.javatr.finance.controller.command.Command;
 import by.javatr.finance.controller.command.CommandParameters;

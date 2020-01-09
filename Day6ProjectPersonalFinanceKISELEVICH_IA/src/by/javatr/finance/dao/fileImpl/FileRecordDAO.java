@@ -72,7 +72,7 @@ public class FileRecordDAO implements RecordDAO {
         } catch (SecurityException e) {
             File source = new File(RECORDS_FILENAME);
             File backup = new File(RECORDS_BACKUP_FILENAME);
-            //todo remove source
+
             if (source.exists()) {
                 source.delete();
             }
