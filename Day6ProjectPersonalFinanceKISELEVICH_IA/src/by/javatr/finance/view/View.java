@@ -48,7 +48,7 @@ public class View {
                     break MAIN_LOOP;
                 }
             }
-            System.out.println("Wrong command!");
+            System.out.println("Wrong input!");
         }
         return command;
     }
@@ -97,5 +97,9 @@ public class View {
 
     public void showRecordAddedMessage(Record record) {
         System.out.println("Record added: \n" + record);
+    }
+
+    public void showRecordRemovedMessage() {
+        System.out.println("Record removed");
     }
 }

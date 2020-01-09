@@ -38,7 +38,7 @@ public class FileRecordDAO implements RecordDAO {
         try {
             recordValidator.checkForNull(record);
 
-            Files.write(Paths.get(RECORDS_FILENAME), convertRecordToString(record).getBytes(), StandardOpenOption.APPEND);
+            Files.write(Paths.get(RECORDS_FILENAME), convertRecordToString(record).getBytes(), StandardOpenOption.CREATE, StandardOpenOption.APPEND);
         } catch (IOException e) {
             throw new RecordDAOException(RecordDAOExceptionMessages.cantWriteRecord, e);
         }
@@ -54,6 +54,10 @@ public class FileRecordDAO implements RecordDAO {
             if (records.remove(record)) {
                 File source = new File(RECORDS_FILENAME);
                 File backup = new File(RECORDS_BACKUP_FILENAME);
+
+                if(backup.exists()) {
+                    backup.delete();
+                }
                 if (!source.renameTo(backup)) {
                     throw new RecordDAOException(RecordDAOExceptionMessages.cantWriteRecord);
                 }
@@ -61,12 +65,17 @@ public class FileRecordDAO implements RecordDAO {
                 for (Record record1 : records) {
                     addRecord(record1);
                 }
+
             } else {
                 throw new RecordDAOException(RecordDAOExceptionMessages.recordNotFound);
             }
         } catch (SecurityException e) {
             File source = new File(RECORDS_FILENAME);
             File backup = new File(RECORDS_BACKUP_FILENAME);
+            //todo remove source
+            if (source.exists()) {
+                source.delete();
+            }
             backup.renameTo(source);
             throw new RecordDAOException(RecordDAOExceptionMessages.cantWriteRecord, e);
         }

@@ -33,6 +33,7 @@ public class FileUserDAO implements UserDAO {
     public void signIn(String login, String password) throws AccountNotFoundDAOException, UserDAOException {
         try {
             userValidator.checkUserForSignIn(login, password);
+            password = String.valueOf(password.hashCode());
 
             boolean isAccountFound = false;
             List<String> users = Files.readAllLines(Paths.get(USERS_FILENAME));
@@ -48,7 +49,6 @@ public class FileUserDAO implements UserDAO {
                     throw new UserDAOException(UserDAOExceptionMessages.dataCorrupted);
                 }
 
-                password = String.valueOf(password.hashCode());
                 if (login1.equals(login) && password1.equals(password)) {
                     isAccountFound = true;
                     break;
@@ -74,7 +74,7 @@ public class FileUserDAO implements UserDAO {
         try {
             userValidator.checkUserForRegistration(login, password);
             password = String.valueOf(password.hashCode());
-            Files.write(Paths.get(USERS_FILENAME), (login + DELIMITER + password + System.lineSeparator()).getBytes(), StandardOpenOption.APPEND);
+            Files.write(Paths.get(USERS_FILENAME), (login + DELIMITER + password + System.lineSeparator()).getBytes(), StandardOpenOption.CREATE, StandardOpenOption.APPEND);
         } catch (IOException e) {
             throw new UserDAOException(UserDAOExceptionMessages.cantWriteUser, e);
         }

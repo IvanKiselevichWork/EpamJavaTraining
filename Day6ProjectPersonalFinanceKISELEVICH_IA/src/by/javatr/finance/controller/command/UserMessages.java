@@ -12,6 +12,8 @@ public interface UserMessages {
 
     String COMMAND_REQUEST_MESSAGE = "Input command:";
 
+    String RECORD_INDEX_REQUEST = "Input record index:";
+
     String UNEXPECTED_ERROR_MESSAGE = "Unexpected error!";
 
 }
