@@ -15,7 +15,7 @@ public class RecordServiceImpl implements RecordService {
 
     private final static RecordValidator recordValidator = new RecordValidator();
 
-    private final RecordDAO recordDAO = DAOFactory.getInstance().getRecordDAO();
+    private final static RecordDAO recordDAO = DAOFactory.getInstance().getRecordDAO();
 
     @Override
     public void addRecord(Record record) throws RecordServiceException {
