@@ -36,7 +36,7 @@ public class FileRecordDAO implements RecordDAO {
     @Override
     public void addRecord(Record record) throws RecordDAOException {
         try {
-            recordValidator.checkForNull(record);
+            recordValidator.check(record);
 
             Files.write(Paths.get(RECORDS_FILENAME), convertRecordToString(record).getBytes(), StandardOpenOption.CREATE, StandardOpenOption.APPEND);
         } catch (IOException e) {
@@ -46,7 +46,7 @@ public class FileRecordDAO implements RecordDAO {
 
     @Override
     public void removeRecord(Record record) throws RecordDAOException {
-        recordValidator.checkForNull(record);
+        recordValidator.check(record);
 
         List<Record> records = getAllRecords();
 
@@ -55,11 +55,15 @@ public class FileRecordDAO implements RecordDAO {
                 File source = new File(RECORDS_FILENAME);
                 File backup = new File(RECORDS_BACKUP_FILENAME);
 
+                // if backup exist - delete and then create new one, else - just create new one
                 if(backup.exists()) {
-                    backup.delete();
+                    if(!backup.delete()) {
+                        throw new RecordDAOException(RecordDAOExceptionMessages.cantRemoveRecord);
+                    }
                 }
-                if (!source.renameTo(backup)) {
-                    throw new RecordDAOException(RecordDAOExceptionMessages.cantWriteRecord);
+
+                if (source.exists() & !source.renameTo(backup)) {
+                    throw new RecordDAOException(RecordDAOExceptionMessages.cantRemoveRecord);
                 }
 
                 for (Record record1 : records) {
@@ -73,11 +77,14 @@ public class FileRecordDAO implements RecordDAO {
             File source = new File(RECORDS_FILENAME);
             File backup = new File(RECORDS_BACKUP_FILENAME);
 
-            if (source.exists()) {
+            if (source.exists() && backup.exists()) {
                 source.delete();
             }
-            backup.renameTo(source);
-            throw new RecordDAOException(RecordDAOExceptionMessages.cantWriteRecord, e);
+            if (backup.exists()) {
+                backup.renameTo(source);
+            }
+
+            throw new RecordDAOException(RecordDAOExceptionMessages.cantRemoveRecord, e);
         }
     }
 

@@ -10,11 +10,15 @@ public class RecordValidator {
 
     }
 
-    public void checkForNull(Record record) throws RecordDAOException {
+    public void check(Record record) throws RecordDAOException {
         if (record == null) {
             throw new RecordDAOException(RecordDAOExceptionMessages.recordIsNull);
         }
 
+
+        if (record.getUserLogin() == null) {
+            throw new RecordDAOException(RecordDAOExceptionMessages.loginIsNull);
+        }
         if (record.getCause() == null) {
             throw new RecordDAOException(RecordDAOExceptionMessages.causeIsNull);
         }
