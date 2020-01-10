@@ -28,10 +28,6 @@ public class Record {
         return userLogin;
     }
 
-    public void setUserLogin(String userLogin) {
-        this.userLogin = userLogin;
-    }
-
     public String getCause() {
         return cause;
     }
@@ -47,19 +43,8 @@ public class Record {
         return date;
     }
 
-    public void setDate(LocalDateTime date) throws RecordException {
-        if (date == null) {
-            throw new RecordException(RecordExceptionMessages.dateIsNull);
-        }
-        this.date = date;
-    }
-
     public double getAmount() {
         return amount;
-    }
-
-    public void setAmount(double amount) {
-        this.amount = amount;
     }
 
     @Override
