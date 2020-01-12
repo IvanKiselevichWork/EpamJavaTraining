@@ -118,6 +118,9 @@ public class Array {
         }
     }
 
+    /**
+     * sort Array data with merge sort algorithm
+     */
     public void performMergeSort() {
         int[] result = new int[data.length];
         mergeSort(data, 0, data.length - 1);
