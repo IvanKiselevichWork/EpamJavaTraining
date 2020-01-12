@@ -30,6 +30,15 @@ public class Array {
 
     /**
      *
+     * @param array the Array object whose elements are to be placed into this array
+     * @throws NullPointerException if the specified object is null
+     */
+    public Array(Array array) {
+        data = Arrays.copyOf(array.data, array.data.length);
+    }
+
+    /**
+     *
      * @param index index of the element to return
      * @return the value at the specified position in this array
      */
