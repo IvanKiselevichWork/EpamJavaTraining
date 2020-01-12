@@ -68,6 +68,105 @@ public class Array {
         }
     }
 
+    /**
+     * sort Array data with quick sort algorithm
+     */
+    public void performQuickSort() {
+        quickSort(data, 0, data.length - 1);
+    }
+
+    private void quickSort(int[] data, int low, int high) {
+        if (low < high) {
+            int p = quickSortPartition(data, low, high);
+            quickSort(data, low, p - 1);
+            quickSort(data, p + 1, high);
+        }
+    }
+
+    private int quickSortPartition(int[] data, int low, int high) {
+        int pivot = data[high];
+        int i = low;
+        for (int j = low; j < high; j++) {
+            if (data[j] <= pivot) {
+                swap(data, i++, j);
+            }
+        }
+        swap(data, i, high);
+        return i;
+    }
+
+    private void swap(int[] data, int a, int b) {
+        int temp = data[a];
+        data[a] = data[b];
+        data[b] = temp;
+    }
+
+    /**
+     * sort Array data with bubble sort algorithm
+     */
+    public void performBubbleSort() {
+        bubbleSort(data);
+    }
+
+    private void bubbleSort(int[] data) {
+        for (int i = 0; i < data.length; i++) {
+            for (int j = 0; j < data.length - i - 1; j++) {
+                if (data[j] > data[j + 1]) {
+                    swap(data, j, j + 1);
+                }
+            }
+        }
+    }
+
+    public void performMergeSort() {
+        int[] result = new int[data.length];
+        mergeSort(data, 0, data.length - 1);
+    }
+
+    private void mergeSort(int[] data, int low, int high) {
+        if (low < high) {
+            int middle = low + (high - low) / 2;
+
+            mergeSort(data, low, middle);
+            mergeSort(data, middle + 1, high);
+
+            merge(data, low, middle, high);
+        }
+    }
+
+    private void merge(int[] data, int low, int middle, int high) {
+        int n1 = middle - low + 1;
+        int n2 = high - middle;
+
+        int[] left = new int[n1];
+        int[] right = new int[n2];
+
+        for (int i = 0; i < n1; i++) {
+            left[i] = data[low + i];
+        }
+
+        for (int i = 0; i < n2; i++) {
+            right[i] = data[middle + 1 + i];
+        }
+
+        int i = 0, j = 0, k = low;
+        while (i < n1 && j < n2) {
+            if (left[i] < right[j]) {
+                data[k++] = left[i++];
+            } else {
+                data[k++] = right[j++];
+            }
+        }
+
+        while (i < n1) {
+            data[k++] = left[i++];
+        }
+
+        while (j < n2) {
+            data[k++] = right[j++];
+        }
+    }
+
     @Override
     public int hashCode() {
         int prime = 31;
