@@ -194,6 +194,38 @@ public class Array {
         return -1;
     }
 
+    /**
+     *
+     * @return index of max value from array
+     */
+    public int getMaxValueIndex() {
+        int maxValue = Integer.MIN_VALUE;
+        int maxValueIndex = -1;
+        for (int i = 0 ; i < data.length; i++) {
+            if (data[i] > maxValue) {
+                maxValue = data[i];
+                maxValueIndex = i;
+            }
+        }
+        return maxValueIndex;
+    }
+
+    /**
+     *
+     * @return index of min value from array
+     */
+    public int getMinValueIndex() {
+        int minValue = Integer.MAX_VALUE;
+        int minValueIndex = -1;
+        for (int i = 0 ; i < data.length; i++) {
+            if (data[i] < minValue) {
+                minValue = data[i];
+                minValueIndex = i;
+            }
+        }
+        return minValueIndex;
+    }
+
     @Override
     public int hashCode() {
         int prime = 31;
