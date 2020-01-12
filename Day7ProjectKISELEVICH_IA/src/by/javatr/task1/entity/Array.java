@@ -228,36 +228,10 @@ public class Array {
 
     /**
      *
-     * @return all prime numbers as Array
+     * @return size of Array
      */
-    public Array getAllPrimeNumbers() {
-        int[] result = new int[data.length];
-        int count = 0;
-        for (int value : data) {
-            if (isPrime(value)) {
-                result[count++] = value;
-            }
-        }
-        Array resultArray = new Array(count);
-        for (int i = 0; i < count; i++) {
-            resultArray.set(i, result[i]);
-        }
-        return resultArray;
-    }
-
-    private boolean isPrime(int n) {
-        if (n < 2) {
-            return false;
-        }
-        if (n == 2 || n == 3) {
-            return true;
-        }
-        for (int i = 2; i <= n / 2; i++) {
-            if (n % i == 0) {
-                return false;
-            }
-        }
-        return true;
+    public int size() {
+        return data.length;
     }
 
     @Override
