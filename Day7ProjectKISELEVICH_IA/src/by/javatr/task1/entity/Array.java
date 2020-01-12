@@ -170,6 +170,30 @@ public class Array {
         }
     }
 
+    /**
+     * sort data with quick sort and search value index with binary algorithm
+     * @param value element to be searched
+     * @return index of first occurrence of the specified element or -1 if there is no such index
+     */
+    public int sortAndFindElement(int value) {
+        performQuickSort();
+        return getIndexWithBinarySearch(data, value, 0, data.length - 1);
+    }
+
+    private int getIndexWithBinarySearch(int[] data, int value, int low, int high) {
+        if (low <= high) {
+            int middle = low + (high - low) / 2;
+            if (value == data[middle]) {
+                return middle;
+            } else if (data[middle] < value) {
+                return getIndexWithBinarySearch(data, value, middle + 1, high);
+            } else {
+                return getIndexWithBinarySearch(data, value, low, middle - 1);
+            }
+        }
+        return -1;
+    }
+
     @Override
     public int hashCode() {
         int prime = 31;
