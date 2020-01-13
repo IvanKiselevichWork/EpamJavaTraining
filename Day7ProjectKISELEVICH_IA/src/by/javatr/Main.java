@@ -7,8 +7,8 @@ public class Main {
 
     public static void main(String[] args) {
 	// write your code here
-        Array array = new Array(new int[] {6, 2, 13, 7, 4, 3, 1, 9, 5});
+        Array array = new Array(new int[] {6, 25, 104, 7, 475, 333, 2541, 9999, 5});
         ArrayService arrayService = new ArrayService();
-        System.out.println(arrayService.getAllFibonacciNumbers(array));
+        System.out.println(arrayService.getAllThreeSignNumbersWithNoEqualsSign(array));
     }
 }

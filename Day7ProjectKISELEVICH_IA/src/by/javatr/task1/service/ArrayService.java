@@ -86,4 +86,37 @@ public class ArrayService {
         return result;
     }
 
+    /**
+     *
+     * @param array specified array
+     * @return Array contains 3-sign numbers with not equals signs from specified array
+     */
+    public Array getAllThreeSignNumbersWithNoEqualsSign(Array array) {
+        int[] temp = new int[array.size()];
+        int tempIndex = 0;
+        for (int i = 0; i < array.size(); i++) {
+            if (isNumberThreeSignAndWithNoEqualsSigns(array.get(i))) {
+                temp[tempIndex++] = array.get(i);
+            }
+        }
+        return new Array(Arrays.copyOf(temp, tempIndex));
+    }
+
+    private boolean isNumberThreeSignAndWithNoEqualsSigns(int num) {
+        int[] signs = new int[10];
+        int count = (int)Math.log10(num) + 1;
+        if (count != 3) {
+            return false;
+        }
+        for(int i = 0; i < count; i++) {
+            int n = num % 10;
+            signs[n]++;
+            if (signs[n] > 1) {
+                return false;
+            }
+            num = num / 10;
+        }
+        return true;
+    }
+
 }
