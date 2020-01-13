@@ -5,6 +5,11 @@ import by.javatr.task1.entity.Array;
 import java.util.Scanner;
 
 public class ArrayInput {
+
+    /**
+     *
+     * @return Array created with console input
+     */
     public Array inputArrayFromConsole() {
         Scanner scanner = new Scanner(System.in);
         int count;
