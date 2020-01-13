@@ -13,6 +13,6 @@ public class Main {
         Array array = new Array(new int[] {6, 25, 104, 7, 475, 333, 2541, 9999, 5});
         ArrayService arrayService = new ArrayService();
         //System.out.println(arrayService.getAllThreeSignNumbersWithNoEqualsSign(array));
-        System.out.println(new ArrayInput().inputArrayFromFile("1.txt"));
+        System.out.println(new ArrayInput().inputArrayWithRandom(10));
     }
 }

@@ -69,4 +69,17 @@ public class ArrayInput {
         }
         return array;
     }
+
+    /**
+     *
+     * @param count Array size
+     * @return Array created with random values (0 - 99)
+     */
+    public Array inputArrayWithRandom(int count) {
+        Array array = new Array(count);
+        for (int i = 0; i < count; i++) {
+            array.set(i, (int)(Math.random() * 100));
+        }
+        return array;
+    }
 }
