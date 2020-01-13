@@ -51,6 +51,7 @@ public class JaggedArray {
     public static void sortRowsBySortParameter(int[][] array, SortParameter sortParameter) {
         for (int i = 0; i < array.length; i++) {
             for(int j = 0; j < array.length - i - 1; j++) {
+                //todo
                 if (sortParameter.getSortParameter(array[j]) > sortParameter.getSortParameter(array[j + 1])) {
                     swapRows(array, j, j + 1);
                 }

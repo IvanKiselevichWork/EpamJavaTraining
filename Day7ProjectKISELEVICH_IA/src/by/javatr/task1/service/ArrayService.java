@@ -92,6 +92,7 @@ public class ArrayService {
      * @return Array contains 3-sign numbers with not equals signs from specified array
      */
     public Array getAllThreeSignNumbersWithNoEqualsSign(Array array) {
+        //todo null
         int[] temp = new int[array.size()];
         int tempIndex = 0;
         for (int i = 0; i < array.size(); i++) {

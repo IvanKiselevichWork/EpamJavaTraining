@@ -25,16 +25,16 @@ public class Array {
      * @throws NullPointerException if the specified array is null
      */
     public Array(int[] array) {
-        data = Arrays.copyOf(array, array.length);
+        data = Arrays.copyOf(array, array.length); //todo
     }
 
     /**
      *
      * @param array the Array object whose elements are to be placed into this array
-     * @throws NullPointerException if the specified object is null
+     * @throws NullPointerException if the specified object is null //todo
      */
     public Array(Array array) {
-        data = Arrays.copyOf(array.data, array.data.length);
+        data = Arrays.copyOf(array.data, array.data.length); //todo
     }
 
     /**
@@ -64,7 +64,7 @@ public class Array {
 
     private void rangeCheck(int index) {
         if (index < 0 || index >= data.length) {
-            throw new IllegalArgumentException("Illegal index: "+ index);
+            throw new IllegalArgumentException("Illegal index: "+ index); //todo 2 exc
         }
     }
 
@@ -72,7 +72,7 @@ public class Array {
      * sort Array data with quick sort algorithm
      */
     public void performQuickSort() {
-        quickSort(data, 0, data.length - 1);
+        quickSort(data, 0, data.length - 1); //todo remove data
     }
 
     private void quickSort(int[] data, int low, int high) {
@@ -105,7 +105,7 @@ public class Array {
      * sort Array data with bubble sort algorithm
      */
     public void performBubbleSort() {
-        bubbleSort(data);
+        bubbleSort(data); //remove
     }
 
     private void bubbleSort(int[] data) {
@@ -176,7 +176,7 @@ public class Array {
      * @return index of first occurrence of the specified element or -1 if there is no such index
      */
     public int sortAndFindElement(int value) {
-        performQuickSort();
+        performQuickSort(); //todo flag
         return getIndexWithBinarySearch(data, value, 0, data.length - 1);
     }
 
@@ -185,7 +185,9 @@ public class Array {
             int middle = low + (high - low) / 2;
             if (value == data[middle]) {
                 return middle;
-            } else if (data[middle] < value) {
+            }
+            //todo index calc
+            if (data[middle] < value) {
                 return getIndexWithBinarySearch(data, value, middle + 1, high);
             } else {
                 return getIndexWithBinarySearch(data, value, low, middle - 1);
@@ -198,7 +200,7 @@ public class Array {
      *
      * @return index of max value from array
      */
-    public int getMaxValueIndex() {
+    public int getMaxValueIndex() { //todo service
         int maxValue = Integer.MIN_VALUE;
         int maxValueIndex = -1;
         for (int i = 0 ; i < data.length; i++) {
@@ -214,7 +216,7 @@ public class Array {
      *
      * @return index of min value from array
      */
-    public int getMinValueIndex() {
+    public int getMinValueIndex() { //todo service and exc and no val
         int minValue = Integer.MAX_VALUE;
         int minValueIndex = -1;
         for (int i = 0 ; i < data.length; i++) {
