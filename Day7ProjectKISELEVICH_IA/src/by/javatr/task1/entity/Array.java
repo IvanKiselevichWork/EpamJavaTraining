@@ -1,8 +1,8 @@
 package by.javatr.task1.entity;
 
+import by.javatr.task1.entity.exception.InvalidArgumentException;
+import by.javatr.task1.entity.exception.InvalidArgumentRuntimeException;
 import by.javatr.task1.entity.exception.InvalidCapacityException;
-
-import java.util.Arrays;
 
 public class Array {
 
@@ -32,20 +32,53 @@ public class Array {
 
     /**
      *
-     * @param array the array whose elements are to be placed into this array
-     * @throws NullPointerException if the specified array is null
+     * @param array the array whose elements are to be placed into this Array
+     * @throws InvalidArgumentRuntimeException if the specified array is null
      */
     public Array(int[] array) {
-        data = Arrays.copyOf(array, array.length); //todo
+        if (array == null) {
+            throw new InvalidArgumentRuntimeException("array is null");
+        }
+        data = new int[array.length];
+        for (int i = 0; i < array.length; i++) {
+            data[i] = array[i];
+        }
+    }
+
+    /**
+     * create Array from specified array values with specified length
+     * @param array the array whose elements are to be placed into this Array
+     * @param newLength Array length
+     * @throws InvalidArgumentException if newLength below 0
+     * @throws InvalidArgumentRuntimeException if the specified array is null
+     */
+    public Array(int[] array, int newLength) throws InvalidArgumentException {
+        if (array == null) {
+            throw new InvalidArgumentRuntimeException("array is null");
+        }
+        if (newLength < 0) {
+            throw new InvalidArgumentException("array is null");
+        }
+        data = new int[newLength];
+        for (int i = 0; i < newLength || i < array.length; i++) {
+            data[i] = array[i];
+        }
+
     }
 
     /**
      *
      * @param array the Array object whose elements are to be placed into this array
-     * @throws NullPointerException if the specified object is null //todo
+     * @throws InvalidArgumentRuntimeException if the specified array is null
      */
     public Array(Array array) {
-        data = Arrays.copyOf(array.data, array.data.length); //todo
+        if (array == null) {
+            throw new InvalidArgumentRuntimeException("Array is null");
+        }
+        data = new int[array.data.length];
+        for (int i = 0; i < array.data.length; i++) {
+            data[i] = array.data[i];
+        }
     }
 
     /**
