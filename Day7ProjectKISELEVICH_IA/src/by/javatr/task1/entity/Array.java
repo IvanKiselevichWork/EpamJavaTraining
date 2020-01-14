@@ -1,8 +1,6 @@
 package by.javatr.task1.entity;
 
-import by.javatr.task1.entity.exception.InvalidArgumentException;
-import by.javatr.task1.entity.exception.InvalidArgumentRuntimeException;
-import by.javatr.task1.entity.exception.InvalidCapacityException;
+import by.javatr.task1.entity.exception.*;
 
 public class Array {
 
@@ -11,7 +9,7 @@ public class Array {
     private static final int DEFAULT_CAPACITY = 10;
 
     /**
-     *
+     * create Array with default capacity (10)
      */
     public Array() {
         data = new int[DEFAULT_CAPACITY];
@@ -85,6 +83,8 @@ public class Array {
      *
      * @param index index of the element to return
      * @return the value at the specified position in this array
+     * @throws IndexBelowZeroRuntimeException if index below zero
+     * @throws IndexOutOfBoundsRuntimeException if index out of bounds
      */
     public int get(int index) {
         rangeCheck(index);
@@ -97,6 +97,8 @@ public class Array {
      * @param index index of the element to replace
      * @param value value to be stored at the specified position
      * @return the value previously at the specified position
+     * @throws IndexBelowZeroRuntimeException if index below zero
+     * @throws IndexOutOfBoundsRuntimeException if index out of bounds
      */
     public int set(int index, int value) {
         rangeCheck(index);
@@ -107,8 +109,11 @@ public class Array {
     }
 
     private void rangeCheck(int index) {
-        if (index < 0 || index >= data.length) {
-            throw new IllegalArgumentException("Illegal index: "+ index); //todo 2 exc
+        if (index < 0) {
+            throw new IndexBelowZeroRuntimeException("Index below zero: " + index);
+        }
+        if (index >= data.length) {
+            throw new IndexOutOfBoundsRuntimeException("Index out of bounds: " + index);
         }
     }
 
