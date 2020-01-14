@@ -198,38 +198,6 @@ public class Array {
 
     /**
      *
-     * @return index of max value from array
-     */
-    public int getMaxValueIndex() { //todo service
-        int maxValue = Integer.MIN_VALUE;
-        int maxValueIndex = -1;
-        for (int i = 0 ; i < data.length; i++) {
-            if (data[i] > maxValue) {
-                maxValue = data[i];
-                maxValueIndex = i;
-            }
-        }
-        return maxValueIndex;
-    }
-
-    /**
-     *
-     * @return index of min value from array
-     */
-    public int getMinValueIndex() { //todo service and exc and no val
-        int minValue = Integer.MAX_VALUE;
-        int minValueIndex = -1;
-        for (int i = 0 ; i < data.length; i++) {
-            if (data[i] < minValue) {
-                minValue = data[i];
-                minValueIndex = i;
-            }
-        }
-        return minValueIndex;
-    }
-
-    /**
-     *
      * @return size of Array
      */
     public int size() {

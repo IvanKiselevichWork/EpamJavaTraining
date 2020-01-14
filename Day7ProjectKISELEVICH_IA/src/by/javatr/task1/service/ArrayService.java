@@ -1,6 +1,8 @@
 package by.javatr.task1.service;
 
 import by.javatr.task1.entity.Array;
+import by.javatr.task1.service.exception.AbstractArrayServiceException;
+import by.javatr.task1.service.exception.InvalidArrayException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -49,8 +51,10 @@ public class ArrayService {
      * @param array in which fibonacci numbers will be search
      * @return Array contains fibonacci numbers from specified array
      */
-    public Array getAllFibonacciNumbers(Array array) {
-        int max = array.get(array.getMaxValueIndex());
+    public Array getAllFibonacciNumbers(Array array) throws AbstractArrayServiceException {
+        checkArray(array);
+
+        int max = array.get(getMaxValueIndex(array));
         int[] fibNums = getFibonacciNumbers(max);
         int[] result = new int[array.size()];
         int resultIndex = 0;
@@ -118,6 +122,48 @@ public class ArrayService {
             num = num / 10;
         }
         return true;
+    }
+
+    /**
+     *
+     * @param array in which max value would be searched
+     * @return index of max value from array
+     * @throws AbstractArrayServiceException if array is null or zero size
+     */
+    public int getMaxValueIndex(Array array) throws AbstractArrayServiceException {
+        checkArray(array); //todo remove replication
+
+        int maxValueIndex = 0;
+        for (int i = 1 ; i < array.size(); i++) {
+            if (array.get(i) > array.get(maxValueIndex)) {
+                maxValueIndex = i;
+            }
+        }
+        return maxValueIndex;
+    }
+
+    /**
+     *
+     * @param array in which min value would be searched
+     * @return index of min value from array
+     * @throws AbstractArrayServiceException if array is null or zero size
+     */
+    public int getMinValueIndex(Array array) throws AbstractArrayServiceException {
+        checkArray(array); //todo remove replication
+
+        int minValueIndex = 0;
+        for (int i = 1 ; i < array.size(); i++) {
+            if (array.get(i) < array.get(minValueIndex)) {
+                minValueIndex = i;
+            }
+        }
+        return minValueIndex;
+    }
+
+    private void checkArray(Array array) throws AbstractArrayServiceException {
+        if (array == null || array.size() == 0) {
+            throw new InvalidArrayException("Invalid array");
+        }
     }
 
 }
