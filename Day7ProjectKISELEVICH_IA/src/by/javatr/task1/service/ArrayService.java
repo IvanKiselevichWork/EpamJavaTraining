@@ -3,6 +3,7 @@ package by.javatr.task1.service;
 import by.javatr.task1.entity.Array;
 import by.javatr.task1.service.exception.AbstractArrayServiceException;
 import by.javatr.task1.service.exception.InvalidArrayException;
+import by.javatr.task1.service.exception.InvalidArrayRuntimeException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -15,6 +16,7 @@ public class ArrayService {
      * @return all prime numbers as Array
      */
     public Array getAllPrimeNumbers(Array array) {
+        //todo array check
         int[] result = new int[array.size()];
 
         int count = 0;
@@ -50,11 +52,13 @@ public class ArrayService {
      *
      * @param array in which fibonacci numbers will be search
      * @return Array contains fibonacci numbers from specified array
+     * @throws InvalidArrayException if array size is 0
+     * @throws InvalidArrayRuntimeException if array is null
      */
-    public Array getAllFibonacciNumbers(Array array) throws AbstractArrayServiceException {
+    public Array getAllFibonacciNumbers(Array array) throws InvalidArrayException {
         checkArray(array);
 
-        int max = array.get(getMaxValueIndex(array));
+        int max = array.get(getMinOrMaxValueIndex(array, false));
         int[] fibNums = getFibonacciNumbers(max);
         int[] result = new int[array.size()];
         int resultIndex = 0;
@@ -128,41 +132,33 @@ public class ArrayService {
      *
      * @param array in which max value would be searched
      * @return index of max value from array
-     * @throws AbstractArrayServiceException if array is null or zero size
+     * @throws InvalidArrayException if array size is 0
+     * @throws InvalidArrayRuntimeException if array is null
      */
-    public int getMaxValueIndex(Array array) throws AbstractArrayServiceException {
-        checkArray(array); //todo remove replication
+    public int getMinOrMaxValueIndex(Array array, boolean isMinNeeded) throws InvalidArrayException {
+        checkArray(array);
 
-        int maxValueIndex = 0;
+        int valueIndex = 0;
         for (int i = 1 ; i < array.size(); i++) {
-            if (array.get(i) > array.get(maxValueIndex)) {
-                maxValueIndex = i;
+            if (isMinNeeded) {
+                if (array.get(i) < array.get(valueIndex)) {
+                    valueIndex = i;
+                }
+            } else {
+                if (array.get(i) > array.get(valueIndex)) {
+                    valueIndex = i;
+                }
             }
         }
-        return maxValueIndex;
+        return valueIndex;
     }
 
-    /**
-     *
-     * @param array in which min value would be searched
-     * @return index of min value from array
-     * @throws AbstractArrayServiceException if array is null or zero size
-     */
-    public int getMinValueIndex(Array array) throws AbstractArrayServiceException {
-        checkArray(array); //todo remove replication
-
-        int minValueIndex = 0;
-        for (int i = 1 ; i < array.size(); i++) {
-            if (array.get(i) < array.get(minValueIndex)) {
-                minValueIndex = i;
-            }
+    private void checkArray(Array array) throws InvalidArrayException {
+        if (array == null) {
+            throw new InvalidArrayRuntimeException("Array is null");
         }
-        return minValueIndex;
-    }
-
-    private void checkArray(Array array) throws AbstractArrayServiceException {
-        if (array == null || array.size() == 0) {
-            throw new InvalidArrayException("Invalid array");
+        if (array.size() == 0) {
+            throw new InvalidArrayException("Array size is 0");
         }
     }
 
