@@ -1,21 +1,32 @@
 package by.javatr.task1.entity;
 
+import by.javatr.task1.entity.exception.InvalidCapacityException;
+
 import java.util.Arrays;
 
 public class Array {
 
     private int[] data;
 
+    private static final int DEFAULT_CAPACITY = 10;
+
+    /**
+     *
+     */
+    public Array() {
+        data = new int[DEFAULT_CAPACITY];
+    }
+
     /**
      *
      * @param capacity the initial capacity of the array
-     *  @throws IllegalArgumentException if the specified capacity is negative
+     * @throws InvalidCapacityException if the specified capacity is negative
      */
-    public Array(int capacity) {
+    public Array(int capacity) throws InvalidCapacityException {
         if (capacity >= 0) {
             data = new int[capacity];
         } else {
-            throw new IllegalArgumentException("Illegal Capacity: "+ capacity);
+            throw new InvalidCapacityException("Illegal Capacity: "+ capacity);
         }
     }
 
