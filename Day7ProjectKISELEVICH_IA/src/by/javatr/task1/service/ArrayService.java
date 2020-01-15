@@ -1,6 +1,7 @@
 package by.javatr.task1.service;
 
 import by.javatr.task1.entity.Array;
+import by.javatr.task1.entity.exception.ArrayNotSortedException;
 import by.javatr.task1.service.exception.InvalidArrayRuntimeException;
 import by.javatr.task1.service.exception.ZeroLengthArrayException;
 
@@ -53,26 +54,28 @@ public class ArrayService {
      */
     public Array getAllFibonacciNumbers(Array array) {
         checkArray(array);
-        //todo new algorithm
-        /*
-        int max = array.get(getMinOrMaxValueIndex(array, false));
-        int[] fibNums = getFibonacciNumbers(max);
+
+        if (array.size() == 0) {
+            return new Array(0);
+        }
         int[] result = new int[array.size()];
         int resultIndex = 0;
-        for (int i = 0; i < array.size(); i++) {
-            for (int fibNum : fibNums) {
-                if (array.get(i) == fibNum) {
-                    result[resultIndex++] = fibNum;
-                    break;
+
+        try {
+            int maxValueIndex = getMinOrMaxValueIndex(array, false);
+            int maxValue = array.get(maxValueIndex);
+            Array fibNums = new Array(getFibonacciNumbers(maxValue));
+            fibNums.performBubbleSort();
+
+            for (int i = 0; i < array.size(); i++) {
+                if (fibNums.findValueIndexWithBinarySearch(array.get(i)) != -1) {
+                    result[resultIndex++] = array.get(i);
                 }
             }
+        } catch (ZeroLengthArrayException | ArrayNotSortedException ignored) {
+
         }
-
-
-        return new Array(Arrays.copyOf(result, resultIndex));
-
-         */
-        return new Array();
+        return new Array(result, resultIndex);
     }
 
     private int[] getFibonacciNumbers(int max) {
