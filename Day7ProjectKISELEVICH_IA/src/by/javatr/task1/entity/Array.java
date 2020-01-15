@@ -120,7 +120,7 @@ public class Array {
      * sort Array data with quick sort algorithm
      */
     public void performQuickSort() {
-        quickSort(0, data.length - 1); //todo remove data
+        quickSort(0, data.length - 1);
     }
 
     private void quickSort(int low, int high) {
@@ -153,14 +153,10 @@ public class Array {
      * sort Array data with bubble sort algorithm
      */
     public void performBubbleSort() {
-        bubbleSort(data); //remove
-    }
-
-    private void bubbleSort(int[] data) {
         for (int i = 0; i < data.length; i++) {
             for (int j = 0; j < data.length - i - 1; j++) {
                 if (data[j] > data[j + 1]) {
-                    swap(data, j, j + 1);
+                    swap(j, j + 1);
                 }
             }
         }
