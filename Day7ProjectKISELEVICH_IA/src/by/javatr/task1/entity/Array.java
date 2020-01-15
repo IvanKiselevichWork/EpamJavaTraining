@@ -120,30 +120,30 @@ public class Array {
      * sort Array data with quick sort algorithm
      */
     public void performQuickSort() {
-        quickSort(data, 0, data.length - 1); //todo remove data
+        quickSort(0, data.length - 1); //todo remove data
     }
 
-    private void quickSort(int[] data, int low, int high) {
+    private void quickSort(int low, int high) {
         if (low < high) {
-            int p = quickSortPartition(data, low, high);
-            quickSort(data, low, p - 1);
-            quickSort(data, p + 1, high);
+            int p = quickSortPartition(low, high);
+            quickSort(low, p - 1);
+            quickSort(p + 1, high);
         }
     }
 
-    private int quickSortPartition(int[] data, int low, int high) {
+    private int quickSortPartition(int low, int high) {
         int pivot = data[high];
         int i = low;
         for (int j = low; j < high; j++) {
             if (data[j] <= pivot) {
-                swap(data, i++, j);
+                swap(i++, j);
             }
         }
-        swap(data, i, high);
+        swap(i, high);
         return i;
     }
 
-    private void swap(int[] data, int a, int b) {
+    private void swap(int a, int b) {
         int temp = data[a];
         data[a] = data[b];
         data[b] = temp;
