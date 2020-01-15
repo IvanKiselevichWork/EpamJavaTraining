@@ -1,4 +1,4 @@
-package by.javatr;
+package by.javatr.task1.runner;
 
 import by.javatr.task1.entity.Array;
 import by.javatr.task1.input.ArrayInput;
