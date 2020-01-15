@@ -6,6 +6,8 @@ public class Array {
 
     private int[] data;
 
+    private boolean isSorted = false;
+
     private static final int DEFAULT_CAPACITY = 10;
 
     /**
@@ -104,6 +106,10 @@ public class Array {
 
         int oldValue = data[index];
         data[index] = value;
+
+        if (oldValue != value) {
+            isSorted = false;
+        }
         return oldValue;
     }
 
@@ -121,6 +127,7 @@ public class Array {
      */
     public void performQuickSort() {
         quickSort(0, data.length - 1);
+        isSorted = true;
     }
 
     private void quickSort(int low, int high) {
@@ -160,6 +167,7 @@ public class Array {
                 }
             }
         }
+        isSorted = true;
     }
 
     /**
@@ -178,6 +186,7 @@ public class Array {
 
             merge(low, middle, high);
         }
+        isSorted = true;
     }
 
     private void merge(int low, int middle, int high) {
@@ -218,23 +227,27 @@ public class Array {
      * @param value element to be searched
      * @return index of first occurrence of the specified element or -1 if there is no such index
      */
-    public int sortAndFindElement(int value) {
-        performQuickSort(); //todo flag
-        return getIndexWithBinarySearch(data, value, 0, data.length - 1);
+    public int findValueIndexWithBinarySearch(int value) throws ArrayNotSortedException {
+        if (!isSorted) {
+            throw new ArrayNotSortedException("Cant perform binary search in unsorted array");
+        }
+        return getIndexWithBinarySearch(value, 0, data.length - 1);
     }
 
-    private int getIndexWithBinarySearch(int[] data, int value, int low, int high) {
+    private int getIndexWithBinarySearch(int value, int low, int high) {
         if (low <= high) {
             int middle = low + (high - low) / 2;
             if (value == data[middle]) {
                 return middle;
             }
-            //todo index calc
+            
             if (data[middle] < value) {
-                return getIndexWithBinarySearch(data, value, middle + 1, high);
+                low = middle + 1;
             } else {
-                return getIndexWithBinarySearch(data, value, low, middle - 1);
+                high = middle - 1;
             }
+            return getIndexWithBinarySearch(value, low, high);
+
         }
         return -1;
     }
