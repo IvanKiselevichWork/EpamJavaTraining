@@ -1,6 +1,6 @@
 package by.javatr.task1.entity.exception;
 
-public class AbstractArrayRuntimeException extends RuntimeException {
+public abstract class AbstractArrayRuntimeException extends RuntimeException {
     public AbstractArrayRuntimeException() {
     }
 

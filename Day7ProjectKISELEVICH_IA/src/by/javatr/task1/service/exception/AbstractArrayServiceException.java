@@ -1,6 +1,6 @@
 package by.javatr.task1.service.exception;
 
-public class AbstractArrayServiceException extends Exception {
+public abstract class AbstractArrayServiceException extends Exception {
     public AbstractArrayServiceException() {
     }
 

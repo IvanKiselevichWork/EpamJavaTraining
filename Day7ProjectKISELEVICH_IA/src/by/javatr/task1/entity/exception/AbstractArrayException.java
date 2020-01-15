@@ -1,6 +1,6 @@
 package by.javatr.task1.entity.exception;
 
-public class AbstractArrayException extends Exception {
+public abstract class AbstractArrayException extends Exception {
     public AbstractArrayException() {
     }
 
