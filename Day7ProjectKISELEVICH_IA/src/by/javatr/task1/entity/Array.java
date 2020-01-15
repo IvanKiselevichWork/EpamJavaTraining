@@ -166,22 +166,21 @@ public class Array {
      * sort Array data with merge sort algorithm
      */
     public void performMergeSort() {
-        int[] result = new int[data.length];
-        mergeSort(data, 0, data.length - 1);
+        mergeSort(0, data.length - 1);
     }
 
-    private void mergeSort(int[] data, int low, int high) {
+    private void mergeSort(int low, int high) {
         if (low < high) {
             int middle = low + (high - low) / 2;
 
-            mergeSort(data, low, middle);
-            mergeSort(data, middle + 1, high);
+            mergeSort(low, middle);
+            mergeSort(middle + 1, high);
 
-            merge(data, low, middle, high);
+            merge(low, middle, high);
         }
     }
 
-    private void merge(int[] data, int low, int middle, int high) {
+    private void merge(int low, int middle, int high) {
         int n1 = middle - low + 1;
         int n2 = high - middle;
 
