@@ -1,4 +1,4 @@
-package by.javatr.task2.exception;
+package by.javatr.task2.service.exception;
 
 public abstract class AbstractJaggedArrayRuntimeException extends RuntimeException {
     public AbstractJaggedArrayRuntimeException() {

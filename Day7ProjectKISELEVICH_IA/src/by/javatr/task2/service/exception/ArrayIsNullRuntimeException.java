@@ -1,4 +1,4 @@
-package by.javatr.task2.exception;
+package by.javatr.task2.service.exception;
 
 import by.javatr.task1.entity.exception.AbstractArrayRuntimeException;
 

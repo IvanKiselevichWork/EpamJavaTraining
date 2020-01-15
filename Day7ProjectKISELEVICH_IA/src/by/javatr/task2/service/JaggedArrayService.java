@@ -1,8 +1,8 @@
 package by.javatr.task2.service;
 
 import by.javatr.task2.helper.SortHelper;
-import by.javatr.task2.exception.ArrayIsNullRuntimeException;
-import by.javatr.task2.exception.SortHelperIsNullRuntimeException;
+import by.javatr.task2.service.exception.ArrayIsNullRuntimeException;
+import by.javatr.task2.service.exception.SortHelperIsNullRuntimeException;
 
 public class JaggedArrayService {
 
