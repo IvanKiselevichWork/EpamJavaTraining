@@ -4,6 +4,7 @@ import by.javatr.task1.entity.Array;
 import by.javatr.task1.service.exception.AbstractArrayServiceException;
 import by.javatr.task1.service.exception.InvalidArrayException;
 import by.javatr.task1.service.exception.InvalidArrayRuntimeException;
+import by.javatr.task1.service.exception.ZeroLengthArrayException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,9 +15,11 @@ public class ArrayService {
     /**
      * @param array in which prime numbers will be search
      * @return all prime numbers as Array
+     * @throws InvalidArrayRuntimeException if array is null
      */
     public Array getAllPrimeNumbers(Array array) {
-        //todo array check
+        checkArray(array);
+
         int[] result = new int[array.size()];
 
         int count = 0;
@@ -26,11 +29,7 @@ public class ArrayService {
             }
         }
 
-        Array resultArray = new Array(count);
-        for (int i = 0; i < count; i++) {
-            resultArray.set(i, result[i]);
-        }
-        return resultArray;
+        return new Array(result, count);
     }
 
     private boolean isPrime(int n) {
@@ -57,7 +56,8 @@ public class ArrayService {
      */
     public Array getAllFibonacciNumbers(Array array) throws InvalidArrayException {
         checkArray(array);
-
+        //todo new algorithm
+        /*
         int max = array.get(getMinOrMaxValueIndex(array, false));
         int[] fibNums = getFibonacciNumbers(max);
         int[] result = new int[array.size()];
@@ -70,7 +70,12 @@ public class ArrayService {
                 }
             }
         }
+
+
         return new Array(Arrays.copyOf(result, resultIndex));
+
+         */
+        return new Array();
     }
 
     private int[] getFibonacciNumbers(int max) {
@@ -131,12 +136,15 @@ public class ArrayService {
     /**
      *
      * @param array in which max value would be searched
-     * @return index of max value from array
-     * @throws InvalidArrayException if array size is 0
+     * @return index of max value from arrays
+     * @throws ZeroLengthArrayException if array size is 0
      * @throws InvalidArrayRuntimeException if array is null
      */
-    public int getMinOrMaxValueIndex(Array array, boolean isMinNeeded) throws InvalidArrayException {
-        checkArray(array);
+    public int getMinOrMaxValueIndex(Array array, boolean isMinNeeded) throws ZeroLengthArrayException {
+
+        if (array.size() == 0) {
+            throw new ZeroLengthArrayException("array size is zero");
+        }
 
         int valueIndex = 0;
         for (int i = 1 ; i < array.size(); i++) {
@@ -153,12 +161,9 @@ public class ArrayService {
         return valueIndex;
     }
 
-    private void checkArray(Array array) throws InvalidArrayException {
+    private void checkArray(Array array) {
         if (array == null) {
             throw new InvalidArrayRuntimeException("Array is null");
-        }
-        if (array.size() == 0) {
-            throw new InvalidArrayException("Array size is 0");
         }
     }
 
