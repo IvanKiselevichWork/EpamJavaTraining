@@ -1,14 +1,28 @@
 package by.javatr.task2;
 
-public class SortByRowMax implements SortParameter {
+public class SortByRowMax implements SortHelper {
     @Override
-    public int getSortParameter(int[] row) {
-        int max = Integer.MIN_VALUE;
-        for (int n : row) {
-            if (n > max) {
-                max = n;
+    public boolean isSwapNeeded(int[] row1, int[] row2) {
+        if (row1.length == 0) {
+            return false;
+        }
+        if (row2.length == 0) {
+            return true;
+        }
+        int max1 = row1[0];
+        for (int n : row1) {
+            if (n > max1) {
+                max1 = n;
             }
         }
-        return max;
+
+        int max2 = row2[0];
+        for (int n : row2) {
+            if (n > max2) {
+                max2 = n;
+            }
+        }
+
+        return max1 > max2;
     }
 }

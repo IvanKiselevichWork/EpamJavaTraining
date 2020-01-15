@@ -48,11 +48,10 @@ public class JaggedArray {
      *
      * @param array would be sorted
      */
-    public static void sortRowsBySortParameter(int[][] array, SortParameter sortParameter) {
+    public static void sortRowsBySortParameter(int[][] array, SortHelper sortHelper) {
         for (int i = 0; i < array.length; i++) {
             for(int j = 0; j < array.length - i - 1; j++) {
-                //todo
-                if (sortParameter.getSortParameter(array[j]) > sortParameter.getSortParameter(array[j + 1])) {
+                if (sortHelper.isSwapNeeded(array[j], array[j + 1])) {
                     swapRows(array, j, j + 1);
                 }
             }

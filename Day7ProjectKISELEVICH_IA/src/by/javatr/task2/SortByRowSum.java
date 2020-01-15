@@ -1,12 +1,25 @@
 package by.javatr.task2;
 
-public class SortByRowSum implements SortParameter {
+public class SortByRowSum implements SortHelper {
     @Override
-    public int getSortParameter(int[] row) {
-        int sum = 0;
-        for (int n : row) {
-            sum += n;
+    public boolean isSwapNeeded(int[] row1, int[] row2) {
+        if (row1.length == 0) {
+            return false;
         }
-        return sum;
+        if (row2.length == 0) {
+            return true;
+        }
+
+        int sum1 = 0;
+        for (int n : row1) {
+            sum1 += n;
+        }
+
+        int sum2 = 0;
+        for (int n : row2) {
+            sum2 += n;
+        }
+
+        return sum1 > sum2;
     }
 }
