@@ -3,12 +3,13 @@ package by.javatr.task2;
 public class SortByRowMin implements SortHelper {
     @Override
     public boolean isSwapNeeded(int[] row1, int[] row2) {
-        if (row1.length == 0) {
+        if (row1 == null || row1.length == 0) {
             return false;
         }
-        if (row2.length == 0) {
+        if (row2 == null || row2.length == 0) {
             return true;
         }
+
         int min1 = row1[0];
         for (int n : row1) {
             if (n < min1) {

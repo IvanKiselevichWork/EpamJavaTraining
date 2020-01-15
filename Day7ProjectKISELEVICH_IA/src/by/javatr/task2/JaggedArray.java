@@ -1,5 +1,8 @@
 package by.javatr.task2;
 
+import by.javatr.task2.exception.ArrayIsNullRuntimeException;
+import by.javatr.task2.exception.SortHelperIsNullRuntimeException;
+
 public class JaggedArray {
 
     private static final int ROW_COUNT = 10;
@@ -47,8 +50,16 @@ public class JaggedArray {
     /**
      *
      * @param array would be sorted
+     * @throws ArrayIsNullRuntimeException if array is null
+     * @throws SortHelperIsNullRuntimeException if sortHelper is null
      */
     public static void sortRowsBySortParameter(int[][] array, SortHelper sortHelper) {
+        if (array == null) {
+            throw new ArrayIsNullRuntimeException("array is null");
+        }
+        if (sortHelper == null) {
+            throw new SortHelperIsNullRuntimeException("sortHelper is null");
+        }
         for (int i = 0; i < array.length; i++) {
             for(int j = 0; j < array.length - i - 1; j++) {
                 if (sortHelper.isSwapNeeded(array[j], array[j + 1])) {
