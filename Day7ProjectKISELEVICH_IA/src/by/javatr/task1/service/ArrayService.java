@@ -1,8 +1,6 @@
 package by.javatr.task1.service;
 
 import by.javatr.task1.entity.Array;
-import by.javatr.task1.service.exception.AbstractArrayServiceException;
-import by.javatr.task1.service.exception.InvalidArrayException;
 import by.javatr.task1.service.exception.InvalidArrayRuntimeException;
 import by.javatr.task1.service.exception.ZeroLengthArrayException;
 
@@ -51,10 +49,9 @@ public class ArrayService {
      *
      * @param array in which fibonacci numbers will be search
      * @return Array contains fibonacci numbers from specified array
-     * @throws InvalidArrayException if array size is 0
      * @throws InvalidArrayRuntimeException if array is null
      */
-    public Array getAllFibonacciNumbers(Array array) throws InvalidArrayException {
+    public Array getAllFibonacciNumbers(Array array) {
         checkArray(array);
         //todo new algorithm
         /*
@@ -103,9 +100,11 @@ public class ArrayService {
      *
      * @param array specified array
      * @return Array contains 3-sign numbers with not equals signs from specified array
+     * @throws InvalidArrayRuntimeException if array is null
      */
     public Array getAllThreeSignNumbersWithNoEqualsSign(Array array) {
-        //todo null
+        checkArray(array);
+
         int[] temp = new int[array.size()];
         int tempIndex = 0;
         for (int i = 0; i < array.size(); i++) {
@@ -113,7 +112,7 @@ public class ArrayService {
                 temp[tempIndex++] = array.get(i);
             }
         }
-        return new Array(Arrays.copyOf(temp, tempIndex));
+        return new Array(temp, tempIndex);
     }
 
     private boolean isNumberThreeSignAndWithNoEqualsSigns(int num) {
