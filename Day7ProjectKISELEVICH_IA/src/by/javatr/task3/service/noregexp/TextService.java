@@ -11,11 +11,11 @@ public class TextService {
      * @param k step
      * @param c char value will be set
      * @return transformed string
+     * @throws StringIsNullRuntimeException if string is null
      */
-    public String subTask1(String s, int k, char c) {
-        if (s == null) {
-            throw new StringIsNullRuntimeException("string is null");
-        }
+    public String subTask1(String s, int k, char c) throws StringIsNullRuntimeException {
+        checkString(s);
+
         if (k >= s.length()) {
             return s;
         }
@@ -25,6 +25,12 @@ public class TextService {
             stringBuilder.setCharAt(i, c);
         }
         return stringBuilder.toString();
+    }
+
+    private void checkString(String s) throws StringIsNullRuntimeException {
+        if (s == null) {
+            throw new StringIsNullRuntimeException("string is null");
+        }
     }
 
 }
