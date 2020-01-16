@@ -2,8 +2,7 @@ package by.javatr.task1.service;
 
 import by.javatr.task1.entity.Array;
 import by.javatr.task1.entity.exception.ArrayNotSortedException;
-import by.javatr.task1.entity.exception.InvalidArgumentException;
-import by.javatr.task1.service.exception.InvalidArrayException;
+import by.javatr.task1.service.exception.ArrayIsNullException;
 import by.javatr.task1.service.exception.ZeroLengthArrayException;
 
 import java.util.ArrayList;
@@ -14,9 +13,9 @@ public class ArrayService {
     /**
      * @param array in which prime numbers will be search
      * @return all prime numbers as Array
-     * @throws InvalidArrayException if array is null
+     * @throws ArrayIsNullException if array is null
      */
-    public Array getAllPrimeNumbers(Array array) throws InvalidArrayException {
+    public Array getAllPrimeNumbers(Array array) throws ArrayIsNullException {
         checkArray(array);
 
         int[] result = new int[array.size()];
@@ -50,9 +49,9 @@ public class ArrayService {
      *
      * @param array in which fibonacci numbers will be search
      * @return Array contains fibonacci numbers from specified array
-     * @throws InvalidArrayException if array is null
+     * @throws ArrayIsNullException if array is null
      */
-    public Array getAllFibonacciNumbers(Array array) throws InvalidArrayException {
+    public Array getAllFibonacciNumbers(Array array) throws ArrayIsNullException {
         checkArray(array);
 
         if (array.size() == 0) {
@@ -103,9 +102,9 @@ public class ArrayService {
      *
      * @param array specified array
      * @return Array contains 3-sign numbers with not equals signs from specified array
-     * @throws InvalidArrayException if array is null
+     * @throws ArrayIsNullException if array is null
      */
-    public Array getAllThreeSignNumbersWithNoEqualsSign(Array array) throws InvalidArrayException {
+    public Array getAllThreeSignNumbersWithNoEqualsSign(Array array) throws ArrayIsNullException {
         checkArray(array);
 
         int[] temp = new int[array.size()];
@@ -140,9 +139,9 @@ public class ArrayService {
      * @param array in which max value would be searched
      * @return index of max value from arrays
      * @throws ZeroLengthArrayException if array size is 0
-     * @throws InvalidArrayException if array is null
+     * @throws ArrayIsNullException if array is null
      */
-    public int getMinOrMaxValueIndex(Array array, boolean isMinNeeded) throws InvalidArrayException, ZeroLengthArrayException {
+    public int getMinOrMaxValueIndex(Array array, boolean isMinNeeded) throws ArrayIsNullException, ZeroLengthArrayException {
 
         checkArray(array);
 
@@ -165,9 +164,9 @@ public class ArrayService {
         return valueIndex;
     }
 
-    private void checkArray(Array array) throws InvalidArrayException {
+    private void checkArray(Array array) throws ArrayIsNullException {
         if (array == null) {
-            throw new InvalidArrayException("Array is null");
+            throw new ArrayIsNullException("Array is null");
         }
     }
 

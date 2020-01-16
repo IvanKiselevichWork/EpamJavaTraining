@@ -34,11 +34,11 @@ public class Array {
     /**
      *
      * @param array the array whose elements are to be placed into this Array
-     * @throws InvalidArgumentException if the specified array is null
+     * @throws ArrayIsNullException if the specified array is null
      */
-    public Array(int[] array) throws InvalidArgumentException {
+    public Array(int[] array) throws ArrayIsNullException {
         if (array == null) {
-            throw new InvalidArgumentException("array is null");
+            throw new ArrayIsNullException("array is null");
         }
         data = new int[array.length];
         for (int i = 0; i < array.length; i++) {
@@ -50,12 +50,12 @@ public class Array {
      * create Array from specified array values with specified length
      * @param array the array whose elements are to be placed into this Array
      * @param newLength Array length
-     * @throws InvalidArgumentException if the specified array is null
+     * @throws ArrayIsNullException if the specified array is null
      * @throws NegativeLengthException if newLength is negative
      */
-    public Array(int[] array, int newLength) throws InvalidArgumentException, NegativeLengthException {
+    public Array(int[] array, int newLength) throws ArrayIsNullException, NegativeLengthException {
         if (array == null) {
-            throw new InvalidArgumentException("array is null");
+            throw new ArrayIsNullException("array is null");
         }
         if (newLength < 0) {
             throw new NegativeLengthException("newLength is negative: " + newLength);
@@ -70,11 +70,11 @@ public class Array {
     /**
      *
      * @param array the Array object whose elements are to be placed into this array
-     * @throws InvalidArgumentException if the specified array is null
+     * @throws ArrayIsNullException if the specified array is null
      */
-    public Array(Array array) throws InvalidArgumentException {
+    public Array(Array array) throws ArrayIsNullException {
         if (array == null) {
-            throw new InvalidArgumentException("Array is null");
+            throw new ArrayIsNullException("Array is null");
         }
         data = new int[array.data.length];
         for (int i = 0; i < array.data.length; i++) {
