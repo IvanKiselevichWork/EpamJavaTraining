@@ -1,4 +1,4 @@
-package by.javatr.task2.helper;
+package by.javatr.task2.service.helper;
 
 public class SortByRowMin implements SortHelper {
     @Override

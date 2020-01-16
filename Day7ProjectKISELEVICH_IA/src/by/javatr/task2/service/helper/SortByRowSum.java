@@ -1,6 +1,6 @@
-package by.javatr.task2.helper;
+package by.javatr.task2.service.helper;
 
-public class SortByRowMax implements SortHelper {
+public class SortByRowSum implements SortHelper {
     @Override
     public boolean isSwapNeeded(int[] row1, int[] row2) {
         if (row1 == null || row1.length == 0) {
@@ -10,20 +10,16 @@ public class SortByRowMax implements SortHelper {
             return true;
         }
 
-        int max1 = row1[0];
+        int sum1 = 0;
         for (int n : row1) {
-            if (n > max1) {
-                max1 = n;
-            }
+            sum1 += n;
         }
 
-        int max2 = row2[0];
+        int sum2 = 0;
         for (int n : row2) {
-            if (n > max2) {
-                max2 = n;
-            }
+            sum2 += n;
         }
 
-        return max1 > max2;
+        return sum1 > sum2;
     }
 }

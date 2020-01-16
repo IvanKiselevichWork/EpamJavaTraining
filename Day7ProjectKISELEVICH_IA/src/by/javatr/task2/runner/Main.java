@@ -1,8 +1,8 @@
 package by.javatr.task2.runner;
 
-import by.javatr.task2.helper.SortByRowMax;
-import by.javatr.task2.helper.SortByRowMin;
-import by.javatr.task2.helper.SortByRowSum;
+import by.javatr.task2.service.helper.SortByRowMax;
+import by.javatr.task2.service.helper.SortByRowMin;
+import by.javatr.task2.service.helper.SortByRowSum;
 import by.javatr.task2.service.JaggedArrayService;
 
 public class Main {
