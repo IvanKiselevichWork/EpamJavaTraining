@@ -2,6 +2,8 @@ package by.javatr.task3.service.noregexp;
 
 import by.javatr.task3.service.exception.StringIsNullRuntimeException;
 
+import java.util.List;
+
 public class TextService {
 
     /**
@@ -44,6 +46,33 @@ public class TextService {
                 }
             }
         }
+        return stringBuilder.toString();
+    }
+
+    /**
+     * В тексте слова заданной длины заменить указанной подстрокой, длина которой может
+     * не совпадать с длиной слова.
+     * @param source
+     * @param wordLength
+     * @param subString
+     * @return
+     * @throws StringIsNullRuntimeException if source or subString is null
+     */
+    public String subTask3(String source, int wordLength, String subString) throws StringIsNullRuntimeException {
+        checkString(source);
+        checkString(subString);
+
+        StringBuilder stringBuilder = new StringBuilder(source);
+
+        String[] stringList = source.split("[ ,.!?]+");
+
+        for (String s : stringList) {
+            if (s.length() == wordLength) {
+                int index = stringBuilder.indexOf(s);
+                stringBuilder.replace(index, index + s.length(), subString);
+            }
+        }
+
         return stringBuilder.toString();
     }
 
