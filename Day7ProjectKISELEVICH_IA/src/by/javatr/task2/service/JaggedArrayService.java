@@ -1,23 +1,23 @@
 package by.javatr.task2.service;
 
 import by.javatr.task2.helper.SortHelper;
-import by.javatr.task2.service.exception.ArrayIsNullRuntimeException;
-import by.javatr.task2.service.exception.SortHelperIsNullRuntimeException;
+import by.javatr.task2.service.exception.ArrayIsNullException;
+import by.javatr.task2.service.exception.SortHelperIsNullException;
 
 public class JaggedArrayService {
 
     /**
      *
      * @param array would be sorted
-     * @throws ArrayIsNullRuntimeException if array is null
-     * @throws SortHelperIsNullRuntimeException if sortHelper is null
+     * @throws ArrayIsNullException if array is null
+     * @throws SortHelperIsNullException if sortHelper is null
      */
-    public void sortRowsBySortParameter(int[][] array, SortHelper sortHelper) {
+    public void sortRowsBySortParameter(int[][] array, SortHelper sortHelper) throws ArrayIsNullException, SortHelperIsNullException {
         if (array == null) {
-            throw new ArrayIsNullRuntimeException("array is null");
+            throw new ArrayIsNullException("array is null");
         }
         if (sortHelper == null) {
-            throw new SortHelperIsNullRuntimeException("sortHelper is null");
+            throw new SortHelperIsNullException("sortHelper is null");
         }
         for (int i = 0; i < array.length; i++) {
             for(int j = 0; j < array.length - i - 1; j++) {
