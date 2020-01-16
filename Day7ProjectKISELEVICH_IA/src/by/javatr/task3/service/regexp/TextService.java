@@ -83,6 +83,7 @@ public class TextService {
             int spaceIndex = matcher.group(0).indexOf(matcher.group(2));
             matcher.appendReplacement(stringBuffer, new StringBuilder(matcher.group(0)).insert(spaceIndex, " ").toString());
         }
+        matcher.appendTail(stringBuffer);
         return stringBuffer.toString();
     }
 
@@ -100,18 +101,22 @@ public class TextService {
                 'б', 'в', 'г', 'д', 'ж', 'з', 'й', 'к', 'л', 'м', 'н', 'п', 'р', 'с', 'т', 'ф', 'х', 'ц', 'ч', 'ш', 'щ',
                 'Б', 'В', 'Г', 'Д', 'Ж', 'З', 'Й', 'К', 'Л', 'М', 'Н', 'П', 'Р', 'С', 'Т', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ');
 
-        StringBuilder regexp = new StringBuilder();
-        regexp.append("([^a-zA-Zа-яА-Я]+)([");
-        for (char c : chars) {
-            regexp.append(c);
-        }
-        regexp.append("]{1}[a-zA-Zа-яА-Я]{");
-        regexp.append(wordLength - 1);
-        regexp.append("})([^a-zA-Zа-яА-Я]+)");
 
-        Pattern pattern = Pattern.compile(regexp.toString());
+        String regexp = "([^a-zA-Zа-яА-Я])([a-zA-Zа-яА-Я]{" + wordLength + "})([^a-zA-Zа-яА-Я])";
+
+        Pattern pattern = Pattern.compile(regexp);
         Matcher matcher = pattern.matcher(source);
-        return matcher.replaceAll("$1$3");
+        StringBuffer stringBuffer = new StringBuffer();
+        while (matcher.find()) {
+            if (chars.contains(matcher.group(2).charAt(0))) {
+                matcher.appendReplacement(stringBuffer, "$1$3");
+            } else {
+                matcher.appendReplacement(stringBuffer, "$0");
+            }
+
+        }
+        matcher.appendTail(stringBuffer);
+        return stringBuffer.toString();
     }
 
     private void checkString(String s) throws StringIsNullRuntimeException {
