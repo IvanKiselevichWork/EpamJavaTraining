@@ -27,6 +27,21 @@ public class TextService {
         return matcher.replaceAll("$1" + c);
     }
 
+    /**
+     * В тексте после буквы Р, если она не последняя в слове, ошибочно напечатана буква А
+     * вместо О. Внести исправления в текст.
+     * @param s source string
+     * @return transformed string
+     * @throws StringIsNullRuntimeException if string is null
+     */
+    public String subTask2(String s) throws StringIsNullRuntimeException {
+        checkString(s);
+
+        Pattern pattern = Pattern.compile("(Р)(А)");
+        Matcher matcher = pattern.matcher(s);
+        return matcher.replaceAll("$1" + 'О');
+    }
+
     private void checkString(String s) throws StringIsNullRuntimeException {
         if (s == null) {
             throw new StringIsNullRuntimeException("string is null");
