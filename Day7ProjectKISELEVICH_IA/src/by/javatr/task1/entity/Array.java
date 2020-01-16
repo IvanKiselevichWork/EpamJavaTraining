@@ -8,8 +8,6 @@ public class Array {
 
     private int[] data;
 
-    private boolean isSorted = false;
-
     private static final int DEFAULT_CAPACITY = 10;
 
     /**
@@ -109,9 +107,6 @@ public class Array {
         int oldValue = data[index];
         data[index] = value;
 
-        if (oldValue != value) {
-            isSorted = false;
-        }
         return oldValue;
     }
 
@@ -129,7 +124,6 @@ public class Array {
      */
     public void performQuickSort() {
         quickSort(0, data.length - 1);
-        isSorted = true;
     }
 
     private void quickSort(int low, int high) {
@@ -169,7 +163,6 @@ public class Array {
                 }
             }
         }
-        isSorted = true;
     }
 
     /**
@@ -188,7 +181,6 @@ public class Array {
 
             merge(low, middle, high);
         }
-        isSorted = true;
     }
 
     private void merge(int low, int middle, int high) {
@@ -228,11 +220,9 @@ public class Array {
      * sort data with quick sort and search value index with binary algorithm
      * @param value element to be searched
      * @return index of first occurrence of the specified element or -1 if there is no such index
+     * (ONLY OF ARRAY SORTED! ELSE RETURN TRASH OR ENDLESS LOOP!)
      */
-    public int findValueIndexWithBinarySearch(int value) throws ArrayNotSortedException {
-        if (!isSorted) {
-            throw new ArrayNotSortedException("Cant perform binary search in unsorted array");
-        }
+    public int findValueIndexWithBinarySearch(int value) {
         return getIndexWithBinarySearch(value, 0, data.length - 1);
     }
 

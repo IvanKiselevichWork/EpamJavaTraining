@@ -1,7 +1,6 @@
 package by.javatr.task1.service;
 
 import by.javatr.task1.entity.Array;
-import by.javatr.task1.entity.exception.ArrayNotSortedException;
 import by.javatr.task1.service.exception.ArrayIsNullRuntimeException;
 import by.javatr.task1.service.exception.ZeroLengthArrayException;
 
@@ -61,17 +60,17 @@ public class ArrayService {
         int resultIndex = 0;
 
         try {
-            int maxValueIndex = getMinOrMaxValueIndex(array, false);
-            int maxValue = array.get(maxValueIndex);
-            Array fibNums = new Array(getFibonacciNumbers(maxValue));
-            fibNums.performBubbleSort();
+        int maxValueIndex = getMinOrMaxValueIndex(array, false);
+        int maxValue = array.get(maxValueIndex);
+        Array fibNums = new Array(getFibonacciNumbers(maxValue));
+        fibNums.performBubbleSort();
 
-            for (int i = 0; i < array.size(); i++) {
-                if (fibNums.findValueIndexWithBinarySearch(array.get(i)) != -1) {
-                    result[resultIndex++] = array.get(i);
-                }
+        for (int i = 0; i < array.size(); i++) {
+            if (fibNums.findValueIndexWithBinarySearch(array.get(i)) != -1) {
+                result[resultIndex++] = array.get(i);
             }
-        } catch (ZeroLengthArrayException | ArrayNotSortedException ignored) {
+        }
+        } catch (ZeroLengthArrayException ignored) {
 
         }
         return new Array(result, resultIndex);
