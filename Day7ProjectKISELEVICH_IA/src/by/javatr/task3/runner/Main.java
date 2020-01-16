@@ -1,6 +1,6 @@
 package by.javatr.task3.runner;
 
-import by.javatr.task3.service.regexp.TextService;
+import by.javatr.task3.service.noregexp.TextService;
 
 public class Main {
     public static void main(String[] args) {

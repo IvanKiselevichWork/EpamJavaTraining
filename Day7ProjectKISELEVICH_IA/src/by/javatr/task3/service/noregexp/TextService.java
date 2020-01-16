@@ -24,8 +24,15 @@ public class TextService {
             return s;
         }
         StringBuilder stringBuilder = getStringBuilder(s);
-        for(int i = k - 1; i < s.length(); i += k) {
-            stringBuilder.setCharAt(i, c);
+        int count = 0;
+        for(int i = 0; i < stringBuilder.length(); i++) {
+            if (Character.isLetter(stringBuilder.charAt(i))) {
+                count++;
+            }
+            if (count == 3) {
+                stringBuilder.setCharAt(i, c);
+                count = 0;
+            }
         }
         return stringBuilder.toString();
     }
