@@ -86,6 +86,34 @@ public class TextService {
         return stringBuffer.toString();
     }
 
+    /**
+     * Из текста удалить все слова заданной длины, начинающиеся на согласную букву
+     * @param source
+     * @param wordLength
+     * @return
+     * @throws StringIsNullRuntimeException
+     */
+    public String subTask5(String source, int wordLength) throws StringIsNullRuntimeException {
+        checkString(source);
+
+        List<Character> chars = Arrays.asList(
+                'б', 'в', 'г', 'д', 'ж', 'з', 'й', 'к', 'л', 'м', 'н', 'п', 'р', 'с', 'т', 'ф', 'х', 'ц', 'ч', 'ш', 'щ',
+                'Б', 'В', 'Г', 'Д', 'Ж', 'З', 'Й', 'К', 'Л', 'М', 'Н', 'П', 'Р', 'С', 'Т', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ');
+
+        StringBuilder regexp = new StringBuilder();
+        regexp.append("([^a-zA-Zа-яА-Я]+)([");
+        for (char c : chars) {
+            regexp.append(c);
+        }
+        regexp.append("]{1}[a-zA-Zа-яА-Я]{");
+        regexp.append(wordLength - 1);
+        regexp.append("})([^a-zA-Zа-яА-Я]+)");
+
+        Pattern pattern = Pattern.compile(regexp.toString());
+        Matcher matcher = pattern.matcher(source);
+        return matcher.replaceAll("$1$3");
+    }
+
     private void checkString(String s) throws StringIsNullRuntimeException {
         if (s == null) {
             throw new StringIsNullRuntimeException("string is null");

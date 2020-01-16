@@ -158,8 +158,6 @@ public class TextService {
         }
 
         return stringBuilder.toString();
-
-
     }
 
     private void checkString(String s) throws StringIsNullRuntimeException {
