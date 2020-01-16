@@ -61,6 +61,31 @@ public class TextService {
         return matcher.replaceAll("$1" + subString + "$3");
     }
 
+    /**
+     *  Из небольшого текста удалить все символы, кроме пробелов, не являющиеся буквами.
+     * Между последовательностями подряд идущих букв оставить хотя бы один пробел.
+     * @param source
+     * @return
+     * @throws StringIsNullRuntimeException
+     */
+    public String subTask4(String source) throws StringIsNullRuntimeException {
+        checkString(source);
+
+        Pattern pattern = Pattern.compile("[^a-zA-Zа-яА-Я ]+");
+        Matcher matcher = pattern.matcher(source);
+        source = matcher.replaceAll("");
+
+        String regexp = "([a-zA-Zа-яА-Я]{1})\\1+([a-zA-Zа-яА-Я]{1})\\2+";
+        pattern = Pattern.compile(regexp);
+        matcher = pattern.matcher(source);
+        StringBuffer stringBuffer = new StringBuffer();
+        while (matcher.find()) {
+            int spaceIndex = matcher.group(0).indexOf(matcher.group(2));
+            matcher.appendReplacement(stringBuffer, new StringBuilder(matcher.group(0)).insert(spaceIndex, " ").toString());
+        }
+        return stringBuffer.toString();
+    }
+
     private void checkString(String s) throws StringIsNullRuntimeException {
         if (s == null) {
             throw new StringIsNullRuntimeException("string is null");
