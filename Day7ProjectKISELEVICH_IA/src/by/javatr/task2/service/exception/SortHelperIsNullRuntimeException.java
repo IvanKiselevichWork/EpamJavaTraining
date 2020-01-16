@@ -1,8 +1,6 @@
 package by.javatr.task2.service.exception;
 
-import by.javatr.task1.entity.exception.AbstractArrayRuntimeException;
-
-public class SortHelperIsNullRuntimeException extends AbstractArrayRuntimeException {
+public class SortHelperIsNullRuntimeException extends RuntimeException {
     public SortHelperIsNullRuntimeException() {
     }
 

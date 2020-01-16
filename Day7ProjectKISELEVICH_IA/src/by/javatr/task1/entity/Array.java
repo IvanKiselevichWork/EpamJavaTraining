@@ -1,6 +1,8 @@
 package by.javatr.task1.entity;
 
+
 import by.javatr.task1.entity.exception.*;
+import by.javatr.task1.entity.exception.IndexOutOfBoundsException;
 
 public class Array {
 
@@ -20,11 +22,11 @@ public class Array {
     /**
      *
      * @param capacity the initial capacity of the array
-     * @throws NegativeCapacityRuntimeException if the specified capacity is negative
+     * @throws NegativeCapacityException if the specified capacity is negative
      */
-    public Array(int capacity) {
+    public Array(int capacity) throws NegativeCapacityException {
         if (capacity < 0) {
-            throw new NegativeCapacityRuntimeException("Illegal Capacity: "+ capacity);
+            throw new NegativeCapacityException("Illegal Capacity: "+ capacity);
         }
         data = new int[capacity];
     }
@@ -32,11 +34,11 @@ public class Array {
     /**
      *
      * @param array the array whose elements are to be placed into this Array
-     * @throws InvalidArgumentRuntimeException if the specified array is null
+     * @throws InvalidArgumentException if the specified array is null
      */
-    public Array(int[] array) {
+    public Array(int[] array) throws InvalidArgumentException {
         if (array == null) {
-            throw new InvalidArgumentRuntimeException("array is null");
+            throw new InvalidArgumentException("array is null");
         }
         data = new int[array.length];
         for (int i = 0; i < array.length; i++) {
@@ -48,15 +50,15 @@ public class Array {
      * create Array from specified array values with specified length
      * @param array the array whose elements are to be placed into this Array
      * @param newLength Array length
-     * @throws InvalidArgumentRuntimeException if the specified array is null
-     * @throws NegativeLengthRuntimeException if newLength is negative
+     * @throws InvalidArgumentException if the specified array is null
+     * @throws NegativeLengthException if newLength is negative
      */
-    public Array(int[] array, int newLength) {
+    public Array(int[] array, int newLength) throws InvalidArgumentException, NegativeLengthException {
         if (array == null) {
-            throw new InvalidArgumentRuntimeException("array is null");
+            throw new InvalidArgumentException("array is null");
         }
         if (newLength < 0) {
-            throw new NegativeLengthRuntimeException("newLength is negative: " + newLength);
+            throw new NegativeLengthException("newLength is negative: " + newLength);
         }
         data = new int[newLength];
         for (int i = 0; i < newLength || i < array.length; i++) {
@@ -68,11 +70,11 @@ public class Array {
     /**
      *
      * @param array the Array object whose elements are to be placed into this array
-     * @throws InvalidArgumentRuntimeException if the specified array is null
+     * @throws InvalidArgumentException if the specified array is null
      */
-    public Array(Array array) {
+    public Array(Array array) throws InvalidArgumentException {
         if (array == null) {
-            throw new InvalidArgumentRuntimeException("Array is null");
+            throw new InvalidArgumentException("Array is null");
         }
         data = new int[array.data.length];
         for (int i = 0; i < array.data.length; i++) {
@@ -84,10 +86,10 @@ public class Array {
      *
      * @param index index of the element to return
      * @return the value at the specified position in this array
-     * @throws NegativeIndexRuntimeException if index is negative
-     * @throws IndexOutOfBoundsRuntimeException if index out of bounds
+     * @throws NegativeIndexException if index is negative
+     * @throws IndexOutOfBoundsException if index out of bounds
      */
-    public int get(int index) {
+    public int get(int index) throws IndexOutOfBoundsException, NegativeIndexException {
         rangeCheck(index);
 
         return data[index];
@@ -98,10 +100,10 @@ public class Array {
      * @param index index of the element to replace
      * @param value value to be stored at the specified position
      * @return the value previously at the specified position
-     * @throws NegativeIndexRuntimeException if index is negative
-     * @throws IndexOutOfBoundsRuntimeException if index out of bounds
+     * @throws NegativeIndexException if index is negative
+     * @throws IndexOutOfBoundsException if index out of bounds
      */
-    public int set(int index, int value) {
+    public int set(int index, int value) throws IndexOutOfBoundsException, NegativeIndexException  {
         rangeCheck(index);
 
         int oldValue = data[index];
@@ -113,12 +115,12 @@ public class Array {
         return oldValue;
     }
 
-    private void rangeCheck(int index) {
+    private void rangeCheck(int index) throws IndexOutOfBoundsException, NegativeIndexException {
         if (index < 0) {
-            throw new NegativeIndexRuntimeException("Index is negative: " + index);
+            throw new NegativeIndexException("Index is negative: " + index);
         }
         if (index >= data.length) {
-            throw new IndexOutOfBoundsRuntimeException("Index out of bounds: " + index);
+            throw new IndexOutOfBoundsException("Index out of bounds: " + index);
         }
     }
 
