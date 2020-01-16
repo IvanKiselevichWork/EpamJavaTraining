@@ -42,6 +42,25 @@ public class TextService {
         return matcher.replaceAll("$1" + 'О');
     }
 
+    /**
+     * В тексте слова заданной длины заменить указанной подстрокой, длина которой может
+     * не совпадать с длиной слова.
+     * @param source
+     * @param wordLength
+     * @param subString
+     * @return
+     * @throws StringIsNullRuntimeException if source or subString is null
+     */
+    public String subTask3(String source, int wordLength, String subString) throws StringIsNullRuntimeException {
+        checkString(source);
+        checkString(subString);
+
+        String regexp = "([^a-zA-Zа-яА-Я]+)([a-zA-Zа-яА-Я]{" + wordLength + "})([^a-zA-Zа-яА-Я]+)";
+        Pattern pattern = Pattern.compile(regexp);
+        Matcher matcher = pattern.matcher(source);
+        return matcher.replaceAll("$1" + subString + "$3");
+    }
+
     private void checkString(String s) throws StringIsNullRuntimeException {
         if (s == null) {
             throw new StringIsNullRuntimeException("string is null");

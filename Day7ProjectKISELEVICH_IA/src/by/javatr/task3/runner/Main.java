@@ -14,10 +14,10 @@ public class Main {
 
         String s2 = "РАБОТ РАЛИКИ РОЛЛ Р";
         System.out.println(textService.subTask2(s2));
-/*
+
         String s3 = " sdf sdfg . FFD dsfg";
         System.out.println(textService.subTask3(s3, 3, "TEST"));
-
+/*
         String s4 = "a!ab!bqw!erttyy";
         System.out.println(textService.subTask4(s4));
 
