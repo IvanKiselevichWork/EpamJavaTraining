@@ -1,5 +1,7 @@
 package by.javatr.task3.service.noregexp;
 
+import by.javatr.task3.service.exception.StringIsNullRuntimeException;
+
 public class TextService {
 
     /**
@@ -11,6 +13,9 @@ public class TextService {
      * @return transformed string
      */
     public String subTask1(String s, int k, char c) {
+        if (s == null) {
+            throw new StringIsNullRuntimeException("string is null");
+        }
         if (k >= s.length()) {
             return s;
         }
@@ -21,4 +26,5 @@ public class TextService {
         }
         return stringBuilder.toString();
     }
+
 }
