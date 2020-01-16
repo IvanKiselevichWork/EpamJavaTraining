@@ -1,7 +1,9 @@
 package by.javatr.task3.service.noregexp;
 
+import by.javatr.task1.entity.Array;
 import by.javatr.task3.service.exception.StringIsNullRuntimeException;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class TextService {
@@ -84,6 +86,8 @@ public class TextService {
      * @throws StringIsNullRuntimeException
      */
     public String subTask4(String source) throws StringIsNullRuntimeException {
+        checkString(source);
+
         StringBuilder stringBuilder = getStringBuilder(source);
 
         for(int i = 0; i < stringBuilder.length(); i++) {
@@ -119,6 +123,36 @@ public class TextService {
         }
 
         return stringBuilder.toString();
+    }
+
+    /**
+     * Из текста удалить все слова заданной длины, начинающиеся на согласную букву
+     * @param source
+     * @param wordLength
+     * @return
+     * @throws StringIsNullRuntimeException
+     */
+    public String subTask5(String source, int wordLength) throws StringIsNullRuntimeException {
+        checkString(source);
+
+        StringBuilder stringBuilder = getStringBuilder(source);
+        List<Character> chars = Arrays.asList(
+        'б', 'в', 'г', 'д', 'ж', 'з', 'й', 'к', 'л', 'м', 'н', 'п', 'р', 'с', 'т', 'ф', 'х', 'ц', 'ч', 'ш', 'щ',
+        'Б', 'В', 'Г', 'Д', 'Ж', 'З', 'Й', 'К', 'Л', 'М', 'Н', 'П', 'Р', 'С', 'Т', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ');
+
+
+        String[] stringList = source.split("[ ,.!?]+");
+
+        for (String s : stringList) {
+            if (s.length() == wordLength && s.length() > 0 && chars.contains(s.charAt(0)) ) {
+                int index = stringBuilder.indexOf(s);
+                stringBuilder.delete(index, index + s.length());
+            }
+        }
+
+        return stringBuilder.toString();
+
+
     }
 
     private void checkString(String s) throws StringIsNullRuntimeException {

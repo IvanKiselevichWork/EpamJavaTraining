@@ -18,5 +18,8 @@ public class Main {
 
         String s4 = "a!ab!bqw!erttyy";
         System.out.println(textService.subTask4(s4));
+
+        String s5 = " sdf sdfg . FFD dsfg йцу кен гшщ апр олд йцукен";
+        System.out.println(textService.subTask5(s5, 3));
     }
 }
