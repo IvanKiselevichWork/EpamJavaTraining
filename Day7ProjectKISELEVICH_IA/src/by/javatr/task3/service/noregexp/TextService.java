@@ -16,11 +16,11 @@ public class TextService {
     public String subTask1(String s, int k, char c) throws StringIsNullRuntimeException {
         checkString(s);
 
-        if (k >= s.length()) {
+        if (k > s.length()) {
             return s;
         }
         StringBuilder stringBuilder = getStringBuilder(s);
-        for(int i = k; i < s.length(); i += k) {
+        for(int i = k - 1; i < s.length(); i += k) {
             stringBuilder.setCharAt(i, c);
         }
         return stringBuilder.toString();
@@ -56,8 +56,8 @@ public class TextService {
     /**
      * for lower memory use
      * (if we use new StringBuilder(s) allocates s.length() + 16 elements)
-     * @param s
-     * @return
+     * @param s source string
+     * @return StringBiulder object of source string
      */
     private StringBuilder getStringBuilder(String s) {
         StringBuilder stringBuilder = new StringBuilder(s.length());
