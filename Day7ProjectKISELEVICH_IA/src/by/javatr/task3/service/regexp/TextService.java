@@ -101,15 +101,13 @@ public class TextService {
                 'б', 'в', 'г', 'д', 'ж', 'з', 'й', 'к', 'л', 'м', 'н', 'п', 'р', 'с', 'т', 'ф', 'х', 'ц', 'ч', 'ш', 'щ',
                 'Б', 'В', 'Г', 'Д', 'Ж', 'З', 'Й', 'К', 'Л', 'М', 'Н', 'П', 'Р', 'С', 'Т', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ');
 
-
-        String regexp = "([^a-zA-Zа-яА-Я])([a-zA-Zа-яА-Я]{" + wordLength + "})([^a-zA-Zа-яА-Я])";
-
+        String regexp = "\\b[a-zA-Zа-яА-Я]{" + wordLength + "}\\b";
         Pattern pattern = Pattern.compile(regexp);
         Matcher matcher = pattern.matcher(source);
         StringBuffer stringBuffer = new StringBuffer();
         while (matcher.find()) {
-            if (chars.contains(matcher.group(2).charAt(0))) {
-                matcher.appendReplacement(stringBuffer, "$1$3");
+            if (chars.contains(matcher.group(0).charAt(0))) {
+                matcher.appendReplacement(stringBuffer, "");
             } else {
                 matcher.appendReplacement(stringBuffer, "$0");
             }
