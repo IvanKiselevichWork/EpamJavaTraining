@@ -59,7 +59,7 @@ public class Array {
             throw new NegativeLengthRuntimeException("newLength is negative: " + newLength);
         }
         data = new int[newLength];
-        for (int i = 0; i < newLength || i < array.length; i++) {
+        for (int i = 0; i < newLength && i < array.length; i++) {
             data[i] = array[i];
         }
 
