@@ -59,42 +59,28 @@ public class ArrayService {
         int[] result = new int[array.size()];
         int resultIndex = 0;
 
-        try {
-        int maxValueIndex = getMinOrMaxValueIndex(array, false);
-        int maxValue = array.get(maxValueIndex);
-        Array fibNums = new Array(getFibonacciNumbers(maxValue));
-        fibNums.performBubbleSort();
-
         for (int i = 0; i < array.size(); i++) {
-            if (fibNums.findValueIndexWithBinarySearch(array.get(i)) != -1) {
+            if (isNumberFib(array.get(i))) {
                 result[resultIndex++] = array.get(i);
             }
         }
-        } catch (ZeroLengthArrayException ignored) {
 
-        }
         return new Array(result, resultIndex);
     }
 
-    private int[] getFibonacciNumbers(int max) {
-        if (max < 1) {
-            return new int[] {0};
+    private boolean isNumberFib(int num) {
+        if (num < 1) {
+            return false;
         }
-        int n = 1;
-        int oldN = 0;
-        List<Integer> nums = new ArrayList<>();
-        nums.add(oldN);
-        while (n <= max) {
-            nums.add(n);
-            int temp = n;
-            n = n + oldN;
-            oldN = temp;
+        int t1 = 1;
+        int t2 = 1;
+        while (t2 < num) {
+            int temp = t2;
+            t2 += t1;
+            t1 = temp;
         }
-        int[] result = new int[nums.size()];
-        for (int i = 0; i < nums.size(); i++) {
-            result[i] = nums.get(i);
-        }
-        return result;
+        return t2 == num;
+
     }
 
     /**
