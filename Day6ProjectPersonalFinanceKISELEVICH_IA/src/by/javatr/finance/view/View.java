@@ -51,11 +51,13 @@ public class View {
         String request = null;
         /*
             response struct:
-            [MENU|DATA];
+            [MENU|DATA|INPUT];
             if MENU:
             [MENU TEXT];[MENU OPTIONS (1,2,3)];[REQUEST ACCORDS OPTIONS (SIGN_IN,REGISTRATION,EXIT)]
             if DATA:
             [DATA;NEXT REQUEST]
+            if INPUT:
+            [PARAMETER1, PARAMETER2 ...;NEXT REQUEST]
          */
 
         /*
