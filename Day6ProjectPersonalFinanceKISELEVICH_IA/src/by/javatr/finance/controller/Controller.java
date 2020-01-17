@@ -1,25 +1,19 @@
 package by.javatr.finance.controller;
 
 import by.javatr.finance.controller.command.Command;
-import by.javatr.finance.controller.command.CommandParameters;
 import by.javatr.finance.controller.exception.AbstractControllerException;
-import by.javatr.finance.controller.exception.ControllerException;
-import by.javatr.finance.controller.exception.ControllerExceptionMessages;
 
-import java.util.HashMap;
+public class Controller {
+    private final CommandProvider commandProvider = new CommandProvider();
+    private final char PARAMS_DELIMITER = ';';
 
-public abstract class Controller {
-    protected final static HashMap<String, Command> commandMap = new HashMap<>();
+    public String execute(String request) throws AbstractControllerException {
+        String commandName = null;
+        Command command = null;
 
-    protected static void registerCommand(String commandName, Command command) {
-        commandMap.put(commandName, command);
-    }
+        commandName = request.substring(0, request.indexOf(PARAMS_DELIMITER));
+        command = commandProvider.getCommand(commandName);
 
-    public void execute(String commandName, CommandParameters commandParameters) throws AbstractControllerException {
-        Command command = commandMap.get(commandName);
-        if (command == null) {
-            throw new ControllerException(ControllerExceptionMessages.noCommand + commandName);
-        }
-        command.execute(commandParameters);
+        return command.execute(request);
     }
 }

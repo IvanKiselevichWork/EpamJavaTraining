@@ -1,13 +1,12 @@
-package by.javatr.finance.controller.command.mainmenucontroller;
+package by.javatr.finance.controller.command.mainmenu;
 
 import by.javatr.finance.controller.MainMenuController;
 import by.javatr.finance.controller.command.Command;
-import by.javatr.finance.controller.command.CommandParameters;
 import by.javatr.finance.controller.command.UserMessages;
 import by.javatr.finance.controller.exception.AbstractControllerException;
 import by.javatr.finance.view.View;
 
-public class RunMainMenuCommand implements Command {
+public class ShowMainMenuCommand implements Command {
 
     private static final View view = View.getInstance();
 

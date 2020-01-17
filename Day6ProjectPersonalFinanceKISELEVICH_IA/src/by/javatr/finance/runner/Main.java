@@ -1,7 +1,6 @@
 package by.javatr.finance.runner;
 
 import by.javatr.finance.controller.MainMenuController;
-import by.javatr.finance.controller.command.CommandParameters;
 
 public class Main {
 

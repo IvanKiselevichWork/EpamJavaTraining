@@ -16,4 +16,6 @@ public interface UserMessages {
 
     String UNEXPECTED_ERROR_MESSAGE = "Unexpected error!";
 
+    String WRONG_REQUEST = "Wrong request!";
+
 }

@@ -1,7 +1,6 @@
-package by.javatr.finance.controller.command.usermenucontroller;
+package by.javatr.finance.controller.command.usermenu;
 
 import by.javatr.finance.controller.command.Command;
-import by.javatr.finance.controller.command.CommandParameters;
 import by.javatr.finance.controller.exception.AbstractControllerException;
 import by.javatr.finance.controller.exception.ControllerException;
 import by.javatr.finance.controller.exception.ControllerExceptionMessages;
