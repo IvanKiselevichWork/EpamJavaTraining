@@ -3,6 +3,7 @@ package by.javatr.finance.view;
 import by.javatr.finance.controller.Controller;
 import by.javatr.finance.controller.exception.AbstractControllerException;
 import by.javatr.finance.entity.Record;
+import by.javatr.finance.view.command.ViewCommand;
 
 import java.util.List;
 import java.util.Scanner;
@@ -10,11 +11,17 @@ import java.util.Scanner;
 public class View {
 
     private Controller controller;
+    private ViewCommandProvider viewCommandProvider;
 
     private final static String BASE_REQUEST = "SHOW_MAIN_MENU;";
 
+    private final static char PARAMS_DELIMITER = ';';
+
+    private String login;
+
     public View() {
         controller = new Controller();
+        viewCommandProvider = new ViewCommandProvider();
     }
 
     public void runView() {
@@ -42,18 +49,32 @@ public class View {
 
     private String handleResponse(String response) {
         String request = null;
+        /*
+            response struct:
+            [MENU|DATA];
+            if MENU:
+            [MENU TEXT];[MENU OPTIONS (1,2,3)];[REQUEST ACCORDS OPTIONS (SIGN_IN,REGISTRATION,EXIT)]
+            if DATA:
+            [DATA;NEXT REQUEST]
+         */
 
-        return request;
+        /*
+            request struct:
+            [REQUEST NAME];[paramName=paramValue];[paramName=paramValue]...
+         */
+        /*
+            бред какой-то, мб для каждого реквеста просто сделать метод и все.
+         */
+        String commandName = null;
+        ViewCommand viewCommand = null;
+
+        commandName = request.substring(0, request.indexOf(PARAMS_DELIMITER));
+        viewCommand = viewCommandProvider.getCommand(commandName);
+
+        return viewCommand.execute(request);
     }
 
-    private void showMainMenu() {
-        System.out.println("--------------------------");
-        System.out.println("Main menu:");
-        System.out.println("1 - Sign in");
-        System.out.println("2 - Registration");
-        System.out.println("0 - Exit");
-        System.out.println("--------------------------");
-    }
+
 
     private void showUserMenu() {
         System.out.println("--------------------------");
@@ -65,7 +86,7 @@ public class View {
         System.out.println("--------------------------");
     }
 
-    private String getCommand(String message, String[] validCommands) {
+    public static String getCommand(String message, String[] validCommands) {
         Scanner scanner = new Scanner(System.in);
         String command;
         MAIN_LOOP:
