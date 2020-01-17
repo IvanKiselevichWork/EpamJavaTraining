@@ -1,22 +1,24 @@
 package by.javatr.finance.controller.command.mainmenu;
 
-import by.javatr.finance.controller.MainMenuController;
 import by.javatr.finance.controller.command.Command;
-import by.javatr.finance.controller.command.UserMessages;
 import by.javatr.finance.controller.exception.AbstractControllerException;
-import by.javatr.finance.view.View;
 
 public class ShowMainMenuCommand implements Command {
 
-    private static final View view = View.getInstance();
-
     @Override
-    public void execute(CommandParameters commandParameters) throws AbstractControllerException {
-        view.showMainMenu();
-        String command = view.getCommand(UserMessages.COMMAND_REQUEST_MESSAGE, MainMenuController.MAIN_MENU_COMMANDS);
-        MainMenuController.getInstance().execute(command, commandParameters);
-
-        MainMenuController.getInstance().execute(MainMenuController.RUN_MAIN_MENU_COMMAND, commandParameters);
-        // todo what better: stack increasing or while(true) loop?
+    public String execute(String request) throws AbstractControllerException {
+        return "SHOW_MAIN_MENU";
+        /*
+        StringBuffer stringBuffer = new StringBuffer();
+        stringBuffer.append("MENU;");
+        stringBuffer.append("\n--------------------------");
+        stringBuffer.append("\nMain menu:");
+        stringBuffer.append("\n1 - Sign in");
+        stringBuffer.append("\n2 - Registration");
+        stringBuffer.append("\n0 - Exit");
+        stringBuffer.append("\n--------------------------");
+        stringBuffer.append(";0,1,2;EXIT,SIGN_IN,REGISTRATION;");
+        return stringBuffer.toString();
+         */
     }
 }

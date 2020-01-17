@@ -1,7 +1,6 @@
 package by.javatr.finance.controller;
 
 import by.javatr.finance.controller.command.Command;
-import by.javatr.finance.controller.command.CommandName;
 import by.javatr.finance.controller.command.general.ExitCommand;
 import by.javatr.finance.controller.command.mainmenu.RegistrationCommand;
 import by.javatr.finance.controller.command.mainmenu.ShowMainMenuCommand;

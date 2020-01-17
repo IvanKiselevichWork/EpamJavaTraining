@@ -1,4 +1,4 @@
-package by.javatr.finance.controller.command;
+package by.javatr.finance.controller;
 
 public enum CommandName {
     EXIT,
