@@ -3,8 +3,7 @@ package by.javatr.finance.dao.fileImpl;
 import by.javatr.finance.dao.RecordDAO;
 import by.javatr.finance.dao.exception.record.*;
 import by.javatr.finance.dao.fileImpl.validation.RecordValidator;
-import by.javatr.finance.entity.Record;
-import by.javatr.finance.entity.exception.RecordException;
+import by.javatr.finance.bean.Record;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,10 +21,11 @@ public class FileRecordDAO implements RecordDAO {
     public final static String RECORDS_BACKUP_FILENAME = "records.txt_backup";
     public final static String DELIMITER = ";";
 
-    public final static int USER_LOGIN = 0;
-    public final static int CAUSE_INDEX = 1;
-    public final static int DATE_INDEX = 2;
-    public final static int AMOUNT_INDEX = 3;
+    public final static int RECORD_ID = 0;
+    public final static int USER_LOGIN = 1;
+    public final static int CAUSE_INDEX = 2;
+    public final static int DATE_INDEX = 3;
+    public final static int AMOUNT_INDEX = 4;
 
     private final static RecordValidator recordValidator = new RecordValidator();
 
@@ -34,24 +34,35 @@ public class FileRecordDAO implements RecordDAO {
     }
 
     @Override
-    public void addRecord(Record record) throws RecordDAOException {
+    public Record addRecord(Record record) throws RecordDAOException {
         try {
             recordValidator.check(record);
+
+            int id = getNextId();
+            record.setId(id);
 
             Files.write(Paths.get(RECORDS_FILENAME), convertRecordToString(record).getBytes(), StandardOpenOption.CREATE, StandardOpenOption.APPEND);
         } catch (IOException e) {
             throw new RecordDAOException(RecordDAOExceptionMessages.cantWriteRecord, e);
         }
+        return record;
     }
 
     @Override
-    public void removeRecord(Record record) throws RecordDAOException {
-        recordValidator.check(record);
+    public void removeRecord(int id) throws RecordDAOException {
+
 
         List<Record> records = getAllRecords();
 
         try {
-            if (records.remove(record)) {
+            boolean removeResult = false;
+            for (Record record : records) {
+                if (record.getId() == id) {
+                    removeResult = records.remove(record);
+                    break;
+                }
+            }
+            if (removeResult) {
                 File source = new File(RECORDS_FILENAME);
                 File backup = new File(RECORDS_BACKUP_FILENAME);
 
@@ -101,28 +112,36 @@ public class FileRecordDAO implements RecordDAO {
             throw new RecordDAOException(RecordDAOExceptionMessages.cantReadRecord, e);
         } catch (DateTimeParseException // unchecked
                 | NumberFormatException // unchecked
-                | NullPointerException // unchecked
-                | RecordException e) { // checked
+                | NullPointerException e ){ // unchecked
             throw new RecordDAOException(RecordDAOExceptionMessages.dataCorrupted, e);
         }
         return list;
     }
 
     private String convertRecordToString(Record record) {
-        return record.getUserLogin() + DELIMITER
+        return record.getId() + DELIMITER
+                + record.getUserLogin() + DELIMITER
                 + record.getCause() + DELIMITER
                 + record.getDate() + DELIMITER
                 + record.getAmount() + System.lineSeparator();
     }
 
-    private Record convertStringToRecord(String string) throws RecordDAOException, DateTimeParseException, NumberFormatException, RecordException {
+    private Record convertStringToRecord(String string) throws RecordDAOException, DateTimeParseException, NumberFormatException {
         String[] recordArray = string.split(DELIMITER);
         if (recordArray.length < 4) {
             throw new RecordDAOException(RecordDAOExceptionMessages.dataCorrupted);
         }
-        return new Record(recordArray[USER_LOGIN],
+        return new Record(Integer.parseInt(recordArray[RECORD_ID]),
+                recordArray[USER_LOGIN],
                 recordArray[CAUSE_INDEX],
                 LocalDateTime.parse(recordArray[DATE_INDEX]),
                 Double.parseDouble(recordArray[AMOUNT_INDEX]));
+    }
+
+    private int getNextId() throws IOException {
+        List<String> recordStrings =  Files.readAllLines(Paths.get(RECORDS_FILENAME));
+        String[] lastRecord = recordStrings.get(recordStrings.size() - 1).split(DELIMITER);
+        int lastId = Integer.parseInt(lastRecord[RECORD_ID]);
+        return lastId + 1;
     }
 }

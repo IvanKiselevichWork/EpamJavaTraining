@@ -1,21 +1,23 @@
 package by.javatr.finance.controller.command.usermenu;
 
-import by.javatr.finance.controller.UserMenuController;
+import by.javatr.finance.controller.CommandName;
+import by.javatr.finance.controller.CommandParameters;
 import by.javatr.finance.controller.command.Command;
-import by.javatr.finance.controller.command.UserMessages;
 import by.javatr.finance.controller.exception.AbstractControllerException;
 import by.javatr.finance.view.View;
 
 public class ShowUserMenuCommand implements Command {
 
-    private static final View view = View.getInstance();
+    private final View view = View.getInstance();
 
     @Override
-    public void execute(CommandParameters commandParameters) throws AbstractControllerException {
+    public CommandParameters execute(CommandParameters commandParameters) throws AbstractControllerException {
         view.showUserMenu();
-        String command = view.getCommand(UserMessages.COMMAND_REQUEST_MESSAGE, UserMenuController.USER_MENU_COMMANDS);
-        UserMenuController.getInstance().execute(command, commandParameters); // execute command
+        int commandIndex = Integer.parseInt(view.getCommand("Input command:", new String[]{"0", "1", "2", "3"}));
+        CommandName[] commandNames = {CommandName.EXIT, CommandName.SHOW_ALL_RECORDS, CommandName.ADD_RECORD, CommandName.REMOVE_RECORD};
 
-        UserMenuController.getInstance().execute(UserMenuController.RUN_USER_MENU_COMMAND, commandParameters);
+        commandParameters.setParameter(CommandParameters.NEXT_COMMAND, commandNames[commandIndex]);
+
+        return commandParameters;
     }
 }

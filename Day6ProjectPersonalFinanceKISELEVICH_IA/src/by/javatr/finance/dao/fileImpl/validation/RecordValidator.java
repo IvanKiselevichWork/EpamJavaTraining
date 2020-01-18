@@ -2,7 +2,7 @@ package by.javatr.finance.dao.fileImpl.validation;
 
 import by.javatr.finance.dao.exception.record.RecordDAOExceptionMessages;
 import by.javatr.finance.dao.exception.record.RecordDAOException;
-import by.javatr.finance.entity.Record;
+import by.javatr.finance.bean.Record;
 
 public class RecordValidator {
 

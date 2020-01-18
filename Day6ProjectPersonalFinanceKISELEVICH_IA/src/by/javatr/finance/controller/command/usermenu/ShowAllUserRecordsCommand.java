@@ -1,5 +1,8 @@
 package by.javatr.finance.controller.command.usermenu;
 
+import by.javatr.finance.bean.User;
+import by.javatr.finance.controller.CommandName;
+import by.javatr.finance.controller.CommandParameters;
 import by.javatr.finance.controller.command.Command;
 import by.javatr.finance.controller.exception.AbstractControllerException;
 import by.javatr.finance.controller.exception.ControllerException;
@@ -15,15 +18,19 @@ public class ShowAllUserRecordsCommand implements Command {
     protected static final RecordService recordService = ServiceFactory.getInstance().getRecordService();
 
     @Override
-    public void execute(CommandParameters commandParameters) throws AbstractControllerException {
+    public CommandParameters execute(CommandParameters commandParameters) throws AbstractControllerException {
         try {
             if (commandParameters == null) {
                 throw new ControllerException(ControllerExceptionMessages.internalError);
             }
 
-            view.showRecordList(recordService.getAllRecordsByLogin(commandParameters.getParameter(CommandParameters.LOGIN_PARAMETER)));
+            String login = ((User)commandParameters.getParameter(CommandParameters.USER)).getLogin();
+            view.showRecordList(recordService.getAllRecordsByLogin(login));
+            commandParameters.setParameter(CommandParameters.NEXT_COMMAND, CommandName.SHOW_USER_MENU);
         } catch (RecordServiceException e) {
             view.showErrorMessage(e.getMessage());
+            commandParameters.setParameter(CommandParameters.NEXT_COMMAND, CommandName.SHOW_MAIN_MENU);
         }
+        return commandParameters;
     }
 }

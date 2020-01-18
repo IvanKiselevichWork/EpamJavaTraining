@@ -1,6 +1,6 @@
 package by.javatr.finance.service.impl.validation;
 
-import by.javatr.finance.entity.Record;
+import by.javatr.finance.bean.Record;
 import by.javatr.finance.service.exception.record.RecordServiceException;
 import by.javatr.finance.service.exception.record.RecordServiceExceptionMessages;
 

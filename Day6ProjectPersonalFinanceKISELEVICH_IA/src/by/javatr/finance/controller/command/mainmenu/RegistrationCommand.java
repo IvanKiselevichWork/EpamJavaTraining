@@ -1,10 +1,11 @@
 package by.javatr.finance.controller.command.mainmenu;
 
-import by.javatr.finance.controller.UserMenuController;
+import by.javatr.finance.bean.User;
+import by.javatr.finance.controller.CommandName;
+import by.javatr.finance.controller.CommandParameters;
 import by.javatr.finance.controller.command.Command;
 import by.javatr.finance.controller.command.UserMessages;
 import by.javatr.finance.controller.exception.AbstractControllerException;
-import by.javatr.finance.controller.exception.ControllerException;
 import by.javatr.finance.service.UserService;
 import by.javatr.finance.service.exception.user.LoginInUseServiceException;
 import by.javatr.finance.service.exception.user.UserServiceException;
@@ -18,26 +19,30 @@ public class RegistrationCommand implements Command {
     private static final UserService userService = ServiceFactory.getInstance().getUserService();
 
     @Override
-    public void execute(CommandParameters commandParameters) throws AbstractControllerException {
+    public CommandParameters execute(CommandParameters commandParameters) throws AbstractControllerException {
         view.registrationDataRequest();
         String login = view.getString(UserMessages.LOGIN_REQUEST_MESSAGE);
         String password = view.getString(UserMessages.PASSWORD_REQUEST_MESSAGE);
 
         try {
-            userService.registration(login, password);
+            User user = new User(login, password);
+            userService.registration(user);
 
             view.welcomeUser(login);
 
             if (commandParameters == null) {
                 commandParameters = new CommandParameters();
             }
-            commandParameters.setParameter(CommandParameters.LOGIN_PARAMETER, login);
+            commandParameters.setParameter(CommandParameters.USER, user);
+            commandParameters.setParameter(CommandParameters.NEXT_COMMAND, CommandName.SHOW_USER_MENU);
 
-            UserMenuController.getInstance().execute(UserMenuController.RUN_USER_MENU_COMMAND, commandParameters);
         } catch (LoginInUseServiceException e) {
             view.showLoginInUseMessage();
-        } catch (UserServiceException | ControllerException e) {
+            commandParameters.setParameter(CommandParameters.NEXT_COMMAND, CommandName.SHOW_MAIN_MENU);
+        } catch (UserServiceException e) {
             view.showErrorMessage(e.getMessage());
+            commandParameters.setParameter(CommandParameters.NEXT_COMMAND, CommandName.SHOW_MAIN_MENU);
         }
+        return commandParameters;
     }
 }

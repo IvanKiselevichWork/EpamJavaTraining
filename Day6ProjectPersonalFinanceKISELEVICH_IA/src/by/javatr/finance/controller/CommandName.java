@@ -6,5 +6,8 @@ public enum CommandName {
     REGISTRATION,
     SHOW_MAIN_MENU,
     SHOW_USER_MENU,
-    WRONG_REQUEST
+    WRONG_REQUEST,
+    SHOW_ALL_RECORDS,
+    ADD_RECORD,
+    REMOVE_RECORD
 }

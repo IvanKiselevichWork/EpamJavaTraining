@@ -3,7 +3,7 @@ package by.javatr.finance.service.impl;
 import by.javatr.finance.dao.RecordDAO;
 import by.javatr.finance.dao.exception.AbstractDAOException;
 import by.javatr.finance.dao.factory.DAOFactory;
-import by.javatr.finance.entity.Record;
+import by.javatr.finance.bean.Record;
 import by.javatr.finance.service.RecordService;
 import by.javatr.finance.service.exception.record.RecordServiceException;
 import by.javatr.finance.service.impl.validation.RecordValidator;
@@ -18,20 +18,20 @@ public class RecordServiceImpl implements RecordService {
     private final static RecordDAO recordDAO = DAOFactory.getInstance().getRecordDAO();
 
     @Override
-    public void addRecord(Record record) throws RecordServiceException {
+    public Record addRecord(Record record) throws RecordServiceException {
         try {
             recordValidator.checkRecord(record);
-            recordDAO.addRecord(record);
+            record = recordDAO.addRecord(record);
         } catch (AbstractDAOException e) {
             throw new RecordServiceException(e);
         }
+        return record;
     }
 
     @Override
-    public void removeRecord(Record record) throws RecordServiceException {
+    public void removeRecord(int recordId) throws RecordServiceException {
         try {
-            recordValidator.checkRecord(record);
-            recordDAO.removeRecord(record);
+            recordDAO.removeRecord(recordId);
         } catch (AbstractDAOException e) {
             throw new RecordServiceException(e);
         }

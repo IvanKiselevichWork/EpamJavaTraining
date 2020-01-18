@@ -19,6 +19,9 @@ public final class CommandProvider {
         commandMap.put(CommandName.SHOW_MAIN_MENU, new ShowMainMenuCommand());
         commandMap.put(CommandName.SHOW_USER_MENU, new ShowUserMenuCommand());
         commandMap.put(CommandName.WRONG_REQUEST, new ShowUserMenuCommand());
+        commandMap.put(CommandName.SHOW_ALL_RECORDS, new ShowUserMenuCommand());
+        commandMap.put(CommandName.ADD_RECORD, new ShowUserMenuCommand());
+        commandMap.put(CommandName.REMOVE_RECORD, new ShowUserMenuCommand());
     }
 
     public Command getCommand(String name) {

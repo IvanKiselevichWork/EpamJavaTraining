@@ -1,5 +1,6 @@
 package by.javatr.finance.dao.fileImpl;
 
+import by.javatr.finance.bean.User;
 import by.javatr.finance.dao.UserDAO;
 import by.javatr.finance.dao.exception.user.*;
 import by.javatr.finance.dao.fileImpl.validation.UserValidator;
@@ -24,21 +25,23 @@ public class FileUserDAO implements UserDAO {
 
     /**
      * if did'n throw anything - signIn is OK
-     * @param login user login
-     * @param password user password
+     * @param user User bean
      * @throws AccountNotFoundDAOException if account not found
      * @throws UserDAOException if other exception occurs
      */
     @Override
-    public void signIn(String login, String password) throws AccountNotFoundDAOException, UserDAOException {
+    public void signIn(User user) throws AccountNotFoundDAOException, UserDAOException {
         try {
-            userValidator.checkUserForSignIn(login, password);
+
+            userValidator.checkUserForSignIn(user);
+            String login = user.getLogin();
+            String password = user.getPassword();
             password = String.valueOf(password.hashCode());
 
             boolean isAccountFound = false;
             List<String> users = Files.readAllLines(Paths.get(USERS_FILENAME));
-            for (String user: users) {
-                String[] loginPasswordArray = user.split(DELIMITER);
+            for (String userStr: users) {
+                String[] loginPasswordArray = userStr.split(DELIMITER);
                 if (loginPasswordArray.length < 2) {
                     throw new UserDAOException(UserDAOExceptionMessages.dataCorrupted);
                 }
@@ -64,15 +67,16 @@ public class FileUserDAO implements UserDAO {
 
     /**
      * if did'n throw anything - registration is OK
-     * @param login user login
-     * @param password user password
+     * @param user User bean
      * @throws LoginInUseDAOException if login in use
      * @throws UserDAOException if other exception occurs
      */
     @Override
-    public void registration(String login, String password) throws UserDAOException, LoginInUseDAOException {
+    public void registration(User user) throws UserDAOException, LoginInUseDAOException {
         try {
-            userValidator.checkUserForRegistration(login, password);
+            userValidator.checkUserForRegistration(user);
+            String login = user.getLogin();
+            String password = user.getPassword();
             password = String.valueOf(password.hashCode());
             Files.write(Paths.get(USERS_FILENAME), (login + DELIMITER + password + System.lineSeparator()).getBytes(), StandardOpenOption.CREATE, StandardOpenOption.APPEND);
         } catch (IOException e) {

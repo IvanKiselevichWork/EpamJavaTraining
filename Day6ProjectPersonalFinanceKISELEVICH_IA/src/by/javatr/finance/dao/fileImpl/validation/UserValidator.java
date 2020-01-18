@@ -1,5 +1,6 @@
 package by.javatr.finance.dao.fileImpl.validation;
 
+import by.javatr.finance.bean.User;
 import by.javatr.finance.dao.exception.user.*;
 import by.javatr.finance.dao.fileImpl.FileUserDAO;
 
@@ -14,18 +15,23 @@ public class UserValidator {
 
     }
 
-    public void checkUserForRegistration(String login, String password) throws UserDAOException, LoginInUseDAOException {
-        check(login, password);
-        if (isLoginInUse(login)) {
+    public void checkUserForRegistration(User user) throws UserDAOException, LoginInUseDAOException {
+        check(user);
+        if (isLoginInUse(user.getLogin())) {
             throw new LoginInUseDAOException(UserDAOExceptionMessages.loginInUse);
         }
     }
 
-    public void checkUserForSignIn(String login, String password) throws UserDAOException {
-        check(login, password);
+    public void checkUserForSignIn(User user) throws UserDAOException {
+        check(user);
     }
 
-    private void check(String login, String password) throws UserDAOException {
+    private void check(User user) throws UserDAOException {
+        if (user == null) {
+            throw new UserDAOException(UserDAOExceptionMessages.loginIsNull);
+        }
+        String login = user.getLogin();
+        String password = user.getPassword();
         if (login == null) {
             throw new UserDAOException(UserDAOExceptionMessages.loginIsNull);
         }

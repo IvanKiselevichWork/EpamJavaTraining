@@ -1,27 +1,36 @@
-package by.javatr.finance.entity;
+package by.javatr.finance.bean;
 
-import by.javatr.finance.entity.exception.RecordException;
-import by.javatr.finance.entity.exception.RecordExceptionMessages;
-
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class Record {
+public class Record implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+    private int id;
     private String userLogin;
     private String cause;
     private LocalDateTime date;
     private double amount;
 
-    public Record(String userLogin, String cause, LocalDateTime date, double amount) throws RecordException {
-        if (cause == null) {
-            throw new RecordException(RecordExceptionMessages.causeIsNull);
-        }
-        if (date == null) {
-            throw new RecordException(RecordExceptionMessages.dateIsNull);
-        }
+    public Record() {
+
+    }
+
+    public Record(int id, String userLogin, String cause, LocalDateTime date, double amount) {
+        this.id = id;
         this.userLogin = userLogin;
         this.cause = cause;
         this.date = date;
         this.amount = amount;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getUserLogin() {
@@ -32,10 +41,7 @@ public class Record {
         return cause;
     }
 
-    public void setCause(String cause) throws RecordException {
-        if (cause == null) {
-            throw new RecordException(RecordExceptionMessages.causeIsNull);
-        }
+    public void setCause(String cause) {
         this.cause = cause;
     }
 
@@ -59,7 +65,8 @@ public class Record {
             return false;
         }
         Record r = (Record)o;
-        return userLogin.equals(r.userLogin)
+        return  id == r.id
+                && userLogin.equals(r.userLogin)
                 && cause.equals(r.cause)
                 && date.equals(r.date)
                 && Double.compare(amount, r.amount) == 0;
@@ -68,7 +75,9 @@ public class Record {
     @Override
     public int hashCode() {
         final int prime = 31;
-        int hash = prime + (userLogin == null ? 0 : userLogin.hashCode());
+        int hash = 1;
+        hash = prime * hash + id;
+        hash = prime * hash + (userLogin == null ? 0 : userLogin.hashCode());
         hash = prime * hash + (cause == null ? 0 : cause.hashCode());
         hash = prime * hash + (date == null ? 0 : date.hashCode());
         long amountLong = Double.doubleToLongBits(amount);
@@ -79,7 +88,7 @@ public class Record {
     @Override
     public String toString() {
         return getClass().getSimpleName() + ": "
-                + "user login = " + userLogin
+                + "id = " + id
                 + ", cause = " + cause
                 + ", date = " + date
                 + ", amount = " + amount;
