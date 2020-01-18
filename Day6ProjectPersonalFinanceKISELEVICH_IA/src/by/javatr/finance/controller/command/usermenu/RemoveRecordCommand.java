@@ -1,6 +1,7 @@
 package by.javatr.finance.controller.command.usermenu;
 
 import by.javatr.finance.bean.User;
+import by.javatr.finance.controller.CommandName;
 import by.javatr.finance.controller.CommandParameters;
 import by.javatr.finance.controller.command.Command;
 import by.javatr.finance.controller.command.UserMessages;
@@ -32,17 +33,19 @@ public class RemoveRecordCommand implements Command {
             List<Record> recordList  = recordService.getAllRecordsByLogin(login);
             view.showRecordList(recordList);
 
-            String[] recordIndexes = new String[recordList.size()];
+            String[] recordIds = new String[recordList.size()];
             for (int i = 0; i < recordList.size(); i++) {
-                recordIndexes[i] = String.valueOf(i + 1);
+                recordIds[i] = String.valueOf(recordList.get(i).getId());
             }
 
-            String recordIndexStr = view.getCommand(UserMessages.RECORD_INDEX_REQUEST, recordIndexes);
-            int recordIndex = Integer.parseInt(recordIndexStr) - 1;
-            recordService.removeRecord(recordList.get(recordIndex));
+            String recordIdStr = view.getCommand(UserMessages.RECORD_INDEX_REQUEST, recordIds);
+            int recordIndex = Integer.parseInt(recordIdStr);
+            recordService.removeRecord(recordIndex);
             view.showRecordRemovedMessage();
         } catch (RecordServiceException e) {
             view.showErrorMessage(e.getMessage());
         }
+        commandParameters.setParameter(CommandParameters.NEXT_COMMAND, CommandName.SHOW_USER_MENU);
+        return commandParameters;
     }
 }

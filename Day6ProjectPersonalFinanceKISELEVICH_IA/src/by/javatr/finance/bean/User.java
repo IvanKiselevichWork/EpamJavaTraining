@@ -1,7 +1,5 @@
 package by.javatr.finance.bean;
 
-import java.util.Objects;
-
 public class User {
     private String login;
     private String password;

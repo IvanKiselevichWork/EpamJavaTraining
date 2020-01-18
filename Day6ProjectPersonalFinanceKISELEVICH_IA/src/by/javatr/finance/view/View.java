@@ -1,7 +1,6 @@
 package by.javatr.finance.view;
 
 import by.javatr.finance.bean.Record;
-import by.javatr.finance.controller.CommandName;
 
 
 import java.util.List;
@@ -15,7 +14,7 @@ public class View {
     }
 
     private static class ViewHolder {
-        private static View instance = new View();
+        private static final View instance = new View();
         private static View getInstance() {
             return instance;
         }

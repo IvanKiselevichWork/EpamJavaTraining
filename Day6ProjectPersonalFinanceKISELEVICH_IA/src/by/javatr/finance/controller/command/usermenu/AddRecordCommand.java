@@ -42,7 +42,7 @@ public class AddRecordCommand implements Command {
             }
         }
 
-        double amount = 0;
+        double amount;
         while (true) {
             try {
                 amount = Double.parseDouble(view.getString(UserMessages.AMOUNT_REQUEST_MESSAGE));
@@ -51,7 +51,7 @@ public class AddRecordCommand implements Command {
                 view.showErrorMessage(UserMessages.INVALID_AMOUNT_MESSAGE);
             }
         }
-        Record record = null;
+        Record record;
         try {
             record = new Record(-1,
                     login,

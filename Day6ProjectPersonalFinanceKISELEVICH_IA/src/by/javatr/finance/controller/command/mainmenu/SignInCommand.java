@@ -19,7 +19,7 @@ public class SignInCommand implements Command {
     private static final UserService userService = ServiceFactory.getInstance().getUserService();
 
     @Override
-    public CommandParameters execute(CommandParameters commandParameters) throws AbstractControllerException {
+    public CommandParameters execute(CommandParameters commandParameters) {
         view.signInDataRequest();
         String login = view.getString(UserMessages.LOGIN_REQUEST_MESSAGE);
         String password = view.getString(UserMessages.PASSWORD_REQUEST_MESSAGE);

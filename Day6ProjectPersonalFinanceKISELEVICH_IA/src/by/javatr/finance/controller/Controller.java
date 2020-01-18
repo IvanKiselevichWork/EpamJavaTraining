@@ -5,15 +5,10 @@ import by.javatr.finance.controller.exception.AbstractControllerException;
 
 public class Controller {
     private final CommandProvider commandProvider = new CommandProvider();
-    private final char PARAMS_DELIMITER = ';';
 
-    public String execute(String request) throws AbstractControllerException {
-        String commandName = null;
-        Command command = null;
-
-        commandName = request.substring(0, request.indexOf(PARAMS_DELIMITER));
-        command = commandProvider.getCommand(commandName);
-
-        return command.execute(request);
+    public CommandParameters execute(CommandParameters commandParameters) throws AbstractControllerException {
+        String commandName = commandParameters.getParameter(CommandParameters.NEXT_COMMAND).toString();
+        Command command = commandProvider.getCommand(commandName);
+        return command.execute(commandParameters);
     }
 }

@@ -25,8 +25,8 @@ public final class CommandProvider {
     }
 
     public Command getCommand(String name) {
-        CommandName commandName = null;
-        Command command = null;
+        CommandName commandName;
+        Command command;
         try {
             commandName = CommandName.valueOf(name.toUpperCase());
             command = commandMap.get(commandName);
