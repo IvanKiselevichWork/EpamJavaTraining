@@ -9,5 +9,6 @@ public enum CommandName {
     WRONG_REQUEST,
     SHOW_ALL_RECORDS,
     ADD_RECORD,
-    REMOVE_RECORD
+    REMOVE_RECORD,
+    SIGN_OUT
 }

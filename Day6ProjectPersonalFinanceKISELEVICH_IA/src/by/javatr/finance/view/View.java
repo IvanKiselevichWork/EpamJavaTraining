@@ -37,6 +37,7 @@ public class View {
         System.out.println("1 - Show all my records");
         System.out.println("2 - Add record");
         System.out.println("3 - Remove record");
+        System.out.println("4 - Sign out");
         System.out.println("0 - Exit");
         System.out.println("--------------------------");
     }
@@ -122,5 +123,9 @@ public class View {
 
     public void showCaution(String message) {
         System.out.println(message);
+    }
+
+    public void showGoodbye(String login) {
+        System.out.println("Goodbye, " + login + "!");
     }
 }

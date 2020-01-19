@@ -6,10 +6,7 @@ import by.javatr.finance.controller.command.general.WrongRequestCommand;
 import by.javatr.finance.controller.command.mainmenu.RegistrationCommand;
 import by.javatr.finance.controller.command.mainmenu.ShowMainMenuCommand;
 import by.javatr.finance.controller.command.mainmenu.SignInCommand;
-import by.javatr.finance.controller.command.usermenu.AddRecordCommand;
-import by.javatr.finance.controller.command.usermenu.RemoveRecordCommand;
-import by.javatr.finance.controller.command.usermenu.ShowAllUserRecordsCommand;
-import by.javatr.finance.controller.command.usermenu.ShowUserMenuCommand;
+import by.javatr.finance.controller.command.usermenu.*;
 
 import java.util.HashMap;
 
@@ -26,6 +23,7 @@ public final class CommandProvider {
         commandMap.put(CommandName.SHOW_ALL_RECORDS, new ShowAllUserRecordsCommand());
         commandMap.put(CommandName.ADD_RECORD, new AddRecordCommand());
         commandMap.put(CommandName.REMOVE_RECORD, new RemoveRecordCommand());
+        commandMap.put(CommandName.SIGN_OUT, new SignOutCommand());
     }
 
     public Command getCommand(String name) {

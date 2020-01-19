@@ -59,11 +59,10 @@ public class AddRecordCommand implements Command {
                     date,
                     amount);
             record = recordService.addRecord(record);
+            view.showRecordAddedMessage(record);
         } catch (RecordServiceException e) {
-            throw new ControllerException(e);
+            view.showErrorMessage(e);
         }
-
-        view.showRecordAddedMessage(record);
 
         commandParameters.setParameter(CommandParameters.NEXT_COMMAND, CommandName.SHOW_USER_MENU);
         return commandParameters;
