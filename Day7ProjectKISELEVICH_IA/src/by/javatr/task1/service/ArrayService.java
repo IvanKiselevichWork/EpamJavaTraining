@@ -4,9 +4,6 @@ import by.javatr.task1.entity.Array;
 import by.javatr.task1.service.exception.ArrayIsNullRuntimeException;
 import by.javatr.task1.service.exception.ZeroLengthArrayException;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class ArrayService {
 
     /**

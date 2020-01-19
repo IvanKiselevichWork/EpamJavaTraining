@@ -2,7 +2,6 @@ package by.javatr.task1.entity;
 
 
 import by.javatr.task1.entity.exception.*;
-import by.javatr.task1.entity.exception.IndexOutOfBoundsRuntimeException;
 
 public class Array {
 
