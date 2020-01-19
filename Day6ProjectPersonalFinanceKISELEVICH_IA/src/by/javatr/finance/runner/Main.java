@@ -3,7 +3,6 @@ package by.javatr.finance.runner;
 import by.javatr.finance.controller.CommandName;
 import by.javatr.finance.controller.CommandParameters;
 import by.javatr.finance.controller.Controller;
-import by.javatr.finance.controller.exception.AbstractControllerException;
 
 public class Main {
 

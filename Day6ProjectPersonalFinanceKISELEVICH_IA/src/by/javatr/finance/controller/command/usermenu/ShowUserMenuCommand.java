@@ -3,7 +3,6 @@ package by.javatr.finance.controller.command.usermenu;
 import by.javatr.finance.controller.CommandName;
 import by.javatr.finance.controller.CommandParameters;
 import by.javatr.finance.controller.command.Command;
-import by.javatr.finance.controller.exception.AbstractControllerException;
 import by.javatr.finance.view.View;
 
 public class ShowUserMenuCommand implements Command {

@@ -5,7 +5,6 @@ import by.javatr.finance.controller.CommandName;
 import by.javatr.finance.controller.CommandParameters;
 import by.javatr.finance.controller.command.Command;
 import by.javatr.finance.controller.command.UserMessages;
-import by.javatr.finance.controller.exception.AbstractControllerException;
 import by.javatr.finance.service.UserService;
 import by.javatr.finance.service.exception.user.LoginInUseServiceException;
 import by.javatr.finance.service.exception.user.UserServiceException;

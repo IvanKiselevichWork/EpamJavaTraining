@@ -13,7 +13,7 @@ public class View {
 
     private static class ViewHolder {
         private static final View instance = new View();
-        private static View getInstance() {
+        public static View getInstance() {
             return instance;
         }
     }
