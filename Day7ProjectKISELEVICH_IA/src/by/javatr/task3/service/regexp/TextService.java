@@ -71,20 +71,11 @@ public class TextService {
     public String subTask4(String source) throws StringIsNullRuntimeException {
         checkString(source);
 
-        Pattern pattern = Pattern.compile("[^a-zA-Zа-яА-Я ]+");
+        Pattern pattern = Pattern.compile("(\\b)([^a-zA-Zа-яА-Я ]+)(\\b)");
         Matcher matcher = pattern.matcher(source);
-        source = matcher.replaceAll("");
+        source = matcher.replaceAll("$1 $3");
 
-        String regexp = "([a-zA-Zа-яА-Я]{1})\\1+([a-zA-Zа-яА-Я]{1})\\2+";
-        pattern = Pattern.compile(regexp);
-        matcher = pattern.matcher(source);
-        StringBuffer stringBuffer = new StringBuffer();
-        while (matcher.find()) {
-            int spaceIndex = matcher.group(0).indexOf(matcher.group(2));
-            matcher.appendReplacement(stringBuffer, new StringBuilder(matcher.group(0)).insert(spaceIndex, " ").toString());
-        }
-        matcher.appendTail(stringBuffer);
-        return stringBuffer.toString();
+        return source;
     }
 
     /**
