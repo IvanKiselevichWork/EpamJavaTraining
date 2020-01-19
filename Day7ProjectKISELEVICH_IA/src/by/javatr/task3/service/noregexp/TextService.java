@@ -27,10 +27,12 @@ public class TextService {
         for(int i = 0; i < stringBuilder.length(); i++) {
             if (Character.isLetter(stringBuilder.charAt(i))) {
                 count++;
-            }
-            if (count == 3) {
-                stringBuilder.setCharAt(i, c);
+            } else {
                 count = 0;
+                continue;
+            }
+            if (count % k == 0) {
+                stringBuilder.setCharAt(i, c);
             }
         }
         return stringBuilder.toString();
