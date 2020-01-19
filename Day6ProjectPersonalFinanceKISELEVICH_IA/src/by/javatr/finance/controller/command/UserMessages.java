@@ -10,9 +10,7 @@ public interface UserMessages {
     String AMOUNT_REQUEST_MESSAGE = "Input amount:";
     String INVALID_AMOUNT_MESSAGE = "Invalid amount!";
 
-    String COMMAND_REQUEST_MESSAGE = "Input command:";
-
-    String RECORD_INDEX_REQUEST = "Input record index:";
+    String RECORD_INDEX_REQUEST = "Input record id:";
 
     String UNEXPECTED_ERROR_MESSAGE = "Unexpected error!";
 

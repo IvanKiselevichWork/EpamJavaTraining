@@ -4,6 +4,7 @@ import by.javatr.finance.bean.User;
 import by.javatr.finance.dao.exception.user.*;
 import by.javatr.finance.dao.fileImpl.FileUserDAO;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -28,7 +29,7 @@ public class UserValidator {
 
     private void check(User user) throws UserDAOException {
         if (user == null) {
-            throw new UserDAOException(UserDAOExceptionMessages.loginIsNull);
+            throw new UserDAOException(UserDAOExceptionMessages.userIsNull);
         }
         String login = user.getLogin();
         String password = user.getPassword();
@@ -45,6 +46,10 @@ public class UserValidator {
 
     private boolean isLoginInUse(String checkLogin) throws UserDAOException {
         try {
+            File source = new File(FileUserDAO.USERS_FILENAME);
+            if (!source.exists()) {
+                return false;
+            }
             List<String> users = Files.readAllLines(Paths.get(FileUserDAO.USERS_FILENAME));
             for (String user: users) {
                 String login = user.split(FileUserDAO.DELIMITER)[FileUserDAO.LOGIN_INDEX];

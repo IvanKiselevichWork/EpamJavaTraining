@@ -38,7 +38,7 @@ public class AddRecordCommand implements Command {
                 date = LocalDateTime.parse(view.getString(UserMessages.DATE_REQUEST_MESSAGE));
                 break;
             } catch (DateTimeParseException e) {
-                view.showErrorMessage(UserMessages.INVALID_DATE_MESSAGE);
+                view.showCaution(UserMessages.INVALID_DATE_MESSAGE);
             }
         }
 
@@ -48,7 +48,7 @@ public class AddRecordCommand implements Command {
                 amount = Double.parseDouble(view.getString(UserMessages.AMOUNT_REQUEST_MESSAGE));
                 break;
             } catch (NumberFormatException e) {
-                view.showErrorMessage(UserMessages.INVALID_AMOUNT_MESSAGE);
+                view.showCaution(UserMessages.INVALID_AMOUNT_MESSAGE);
             }
         }
         Record record;

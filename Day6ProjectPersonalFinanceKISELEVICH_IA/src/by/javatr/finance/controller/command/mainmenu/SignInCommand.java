@@ -40,7 +40,7 @@ public class SignInCommand implements Command {
             view.showAccountNotFoundMessage();
             commandParameters.setParameter(CommandParameters.NEXT_COMMAND, CommandName.SHOW_MAIN_MENU);
         } catch (UserServiceException e) {
-            view.showErrorMessage(e.getMessage());
+            view.showErrorMessage(e);
             commandParameters.setParameter(CommandParameters.NEXT_COMMAND, CommandName.SHOW_MAIN_MENU);
         }
         return commandParameters;

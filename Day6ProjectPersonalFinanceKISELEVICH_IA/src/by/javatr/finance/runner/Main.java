@@ -11,13 +11,9 @@ public class Main {
         CommandParameters commandParameters = new CommandParameters();
         commandParameters.setParameter(CommandParameters.NEXT_COMMAND, CommandName.SHOW_MAIN_MENU);
         Controller controller = new Controller();
-        try {
-            while (true) {
-                commandParameters = controller.execute(commandParameters);
-            }
-        } catch (AbstractControllerException e) {
-            System.out.println("Something goes wrong...");
-            e.printStackTrace();
+
+        while (true) {
+            commandParameters = controller.execute(commandParameters);
         }
     }
 }

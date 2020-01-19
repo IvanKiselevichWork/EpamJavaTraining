@@ -8,8 +8,6 @@ import java.util.Scanner;
 
 public class View {
 
-    private String login;
-
     private View() {
     }
 
@@ -66,8 +64,17 @@ public class View {
         return scanner.nextLine();
     }
 
-    public void showErrorMessage(String message) {
-        System.out.println("Error occurred: " + message);
+    public void showErrorMessage(Throwable error) {
+        if (error != null) {
+            if (error.getCause() != null) {
+                System.out.println("Error occurred: " + error.getCause().getMessage());
+            } else {
+                System.out.println("Error occurred: " + error.getMessage());
+            }
+        } else {
+            System.out.println("Error occurred: " + "unknown error");
+        }
+
     }
 
     public void showExitMessage() {
@@ -100,6 +107,9 @@ public class View {
         for (Record record : recordList) {
             System.out.println(index++ + ": " + record.toString());
         }
+        if (recordList.size() == 0) {
+            System.out.println("No records");
+        }
     }
 
     public void showRecordAddedMessage(Record record) {
@@ -108,5 +118,9 @@ public class View {
 
     public void showRecordRemovedMessage() {
         System.out.println("Record removed");
+    }
+
+    public void showCaution(String message) {
+        System.out.println(message);
     }
 }

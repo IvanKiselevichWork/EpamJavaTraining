@@ -73,7 +73,7 @@ public class FileRecordDAO implements RecordDAO {
                     }
                 }
 
-                if (source.exists() & !source.renameTo(backup)) {
+                if (source.exists() && !source.renameTo(backup)) {
                     throw new RecordDAOException(RecordDAOExceptionMessages.cantRemoveRecord);
                 }
 
@@ -109,11 +109,13 @@ public class FileRecordDAO implements RecordDAO {
                 list.add(record);
             }
         } catch (IOException e) {
-            throw new RecordDAOException(RecordDAOExceptionMessages.cantReadRecord, e);
+            //log
+            //throw new RecordDAOException(RecordDAOExceptionMessages.cantReadRecord, e);
         } catch (DateTimeParseException // unchecked
                 | NumberFormatException // unchecked
                 | NullPointerException e ){ // unchecked
-            throw new RecordDAOException(RecordDAOExceptionMessages.dataCorrupted, e);
+            //log
+            //throw new RecordDAOException(RecordDAOExceptionMessages.dataCorrupted, e);
         }
         return list;
     }
@@ -139,9 +141,15 @@ public class FileRecordDAO implements RecordDAO {
     }
 
     private int getNextId() throws IOException {
-        List<String> recordStrings =  Files.readAllLines(Paths.get(RECORDS_FILENAME));
-        String[] lastRecord = recordStrings.get(recordStrings.size() - 1).split(DELIMITER);
-        int lastId = Integer.parseInt(lastRecord[RECORD_ID]);
+        File source = new File(RECORDS_FILENAME);
+        int lastId;
+        if (source.exists()) {
+            List<String> recordStrings = Files.readAllLines(Paths.get(RECORDS_FILENAME));
+            String[] lastRecord = recordStrings.get(recordStrings.size() - 1).split(DELIMITER);
+            lastId = Integer.parseInt(lastRecord[RECORD_ID]);
+        } else {
+            lastId = -1;
+        }
         return lastId + 1;
     }
 }

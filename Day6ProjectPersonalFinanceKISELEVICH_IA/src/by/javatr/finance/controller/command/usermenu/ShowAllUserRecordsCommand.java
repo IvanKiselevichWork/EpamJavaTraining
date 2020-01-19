@@ -26,11 +26,10 @@ public class ShowAllUserRecordsCommand implements Command {
 
             String login = ((User)commandParameters.getParameter(CommandParameters.USER)).getLogin();
             view.showRecordList(recordService.getAllRecordsByLogin(login));
-            commandParameters.setParameter(CommandParameters.NEXT_COMMAND, CommandName.SHOW_USER_MENU);
         } catch (RecordServiceException e) {
-            view.showErrorMessage(e.getMessage());
-            commandParameters.setParameter(CommandParameters.NEXT_COMMAND, CommandName.SHOW_MAIN_MENU);
+            view.showErrorMessage(e);
         }
+        commandParameters.setParameter(CommandParameters.NEXT_COMMAND, CommandName.SHOW_USER_MENU);
         return commandParameters;
     }
 }

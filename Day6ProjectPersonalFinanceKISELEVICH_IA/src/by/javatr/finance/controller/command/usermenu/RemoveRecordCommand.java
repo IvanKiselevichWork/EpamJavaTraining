@@ -43,7 +43,7 @@ public class RemoveRecordCommand implements Command {
             recordService.removeRecord(recordIndex);
             view.showRecordRemovedMessage();
         } catch (RecordServiceException e) {
-            view.showErrorMessage(e.getMessage());
+            view.showErrorMessage(e);
         }
         commandParameters.setParameter(CommandParameters.NEXT_COMMAND, CommandName.SHOW_USER_MENU);
         return commandParameters;

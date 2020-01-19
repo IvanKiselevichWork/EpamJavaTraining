@@ -5,6 +5,7 @@ import by.javatr.finance.dao.UserDAO;
 import by.javatr.finance.dao.exception.user.*;
 import by.javatr.finance.dao.fileImpl.validation.UserValidator;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -34,6 +35,12 @@ public class FileUserDAO implements UserDAO {
         try {
 
             userValidator.checkUserForSignIn(user);
+
+            File usersFile = new File(USERS_FILENAME);
+            if (!usersFile.exists()) {
+                throw new AccountNotFoundDAOException(UserDAOExceptionMessages.accountNotFound);
+            }
+
             String login = user.getLogin();
             String password = user.getPassword();
             password = String.valueOf(password.hashCode());
@@ -61,7 +68,7 @@ public class FileUserDAO implements UserDAO {
                 throw new AccountNotFoundDAOException(UserDAOExceptionMessages.accountNotFound);
             }
         } catch (IOException e) {
-            throw new UserDAOException(UserDAOExceptionMessages.cantWriteUser, e);
+            throw new UserDAOException(UserDAOExceptionMessages.cantReadUser, e);
         }
     }
 
