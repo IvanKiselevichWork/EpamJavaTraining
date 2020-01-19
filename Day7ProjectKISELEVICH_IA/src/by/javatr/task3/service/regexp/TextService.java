@@ -21,10 +21,18 @@ public class TextService {
     public String subTask1(String s, int k, char c) throws StringIsNullRuntimeException {
         checkString(s);
 
-        String regexp = "([a-zA-Zа-яА-Я]{" + (k - 1) + "})([a-zA-Zа-яА-Я]{1})";
+        String regexp = "\\b.+\\b";
         Pattern pattern = Pattern.compile(regexp);
         Matcher matcher = pattern.matcher(s);
-        return matcher.replaceAll("$1" + c);
+        StringBuffer stringBuffer = new StringBuffer();
+        while (matcher.find()) {
+            String regexp1 = "([a-zA-Zа-яА-Я]{" + (k - 1) + "})([a-zA-Zа-яА-Я])";
+            Pattern pattern1 = Pattern.compile(regexp1);
+            Matcher matcher1 = pattern1.matcher(matcher.group(0));
+            matcher.appendReplacement(stringBuffer, matcher1.replaceAll("$1" + c));
+        }
+        matcher.appendTail(stringBuffer);
+        return stringBuffer.toString();
     }
 
     /**
