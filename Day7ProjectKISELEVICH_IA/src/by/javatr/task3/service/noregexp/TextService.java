@@ -1,6 +1,5 @@
 package by.javatr.task3.service.noregexp;
 
-import by.javatr.task1.entity.Array;
 import by.javatr.task3.service.exception.StringIsNullRuntimeException;
 
 import java.util.Arrays;
@@ -61,10 +60,10 @@ public class TextService {
     /**
      * В тексте слова заданной длины заменить указанной подстрокой, длина которой может
      * не совпадать с длиной слова.
-     * @param source
-     * @param wordLength
-     * @param subString
-     * @return
+     * @param source string
+     * @param wordLength len
+     * @param subString substring
+     * @return transformed string
      * @throws StringIsNullRuntimeException if source or subString is null
      */
     public String subTask3(String source, int wordLength, String subString) throws StringIsNullRuntimeException {
@@ -88,9 +87,9 @@ public class TextService {
     /**
      *  Из небольшого текста удалить все символы, кроме пробелов, не являющиеся буквами.
      * Между последовательностями подряд идущих букв оставить хотя бы один пробел.
-     * @param source
-     * @return
-     * @throws StringIsNullRuntimeException
+     * @param source string
+     * @return transformed string
+     * @throws StringIsNullRuntimeException if source is null
      */
     public String subTask4(String source) throws StringIsNullRuntimeException {
         checkString(source);
@@ -134,10 +133,10 @@ public class TextService {
 
     /**
      * Из текста удалить все слова заданной длины, начинающиеся на согласную букву
-     * @param source
-     * @param wordLength
-     * @return
-     * @throws StringIsNullRuntimeException
+     * @param source string
+     * @param wordLength len
+     * @return transformed string
+     * @throws StringIsNullRuntimeException if source is null
      */
     public String subTask5(String source, int wordLength) throws StringIsNullRuntimeException {
         checkString(source);
@@ -170,7 +169,7 @@ public class TextService {
      * for lower memory use
      * (if we use new StringBuilder(s) allocates s.length() + 16 elements)
      * @param s source string
-     * @return StringBiulder object of source string
+     * @return StringBuilder object of source string
      */
     private StringBuilder getStringBuilder(String s) {
         StringBuilder stringBuilder = new StringBuilder(s.length());
