@@ -99,35 +99,16 @@ public class TextService {
         for(int i = 0; i < stringBuilder.length(); i++) {
             char c = stringBuilder.charAt(i);
             if (!Character.isLetter(c) && c != ' ') {
-                stringBuilder.deleteCharAt(i--);
+                if (i - 1 >= 0
+                        && i + 1 < stringBuilder.length()
+                        && Character.isLetter(stringBuilder.charAt(i - 1))
+                        && Character.isLetter(stringBuilder.charAt(i + 1))) {
+                    stringBuilder.setCharAt(i, ' ');
+                } else {
+                    stringBuilder.deleteCharAt(i--);
+                }
             }
         }
-
-        int oldCount = 0;
-        for(int i = 0; i < stringBuilder.length(); i++) {
-            char c = stringBuilder.charAt(i);
-            if (c == ' ') {
-                oldCount = 0;
-                continue;
-            }
-            int index = i;
-            int newCount = 1;
-            i++;
-            while (i < stringBuilder.length() && c == stringBuilder.charAt(i)) {
-                i++;
-                newCount++;
-            }
-            if (newCount != 1) {
-                i--;
-            }
-            if (newCount > 1 && oldCount > 1) {
-                stringBuilder.insert(index, ' ');
-                i++;
-            }
-
-            oldCount = newCount;
-        }
-
         return stringBuilder.toString();
     }
 
