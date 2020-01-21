@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 
 public class Logger {
 
-    enum LogLevel {
+    public enum LogLevel {
         DEBUG,
         WARNING,
         ERROR
@@ -27,17 +27,19 @@ public class Logger {
     }
 
     public void debug(String message) {
-        StringBuffer stringBuffer = createMessage(message, LogLevel.DEBUG);
-        logWriter.write(stringBuffer.toString());
+        writeLog(message, LogLevel.DEBUG);
     }
 
     public void warning(String message) {
-        StringBuffer stringBuffer = createMessage(message, LogLevel.WARNING);
-        logWriter.write(stringBuffer.toString());
+        writeLog(message, LogLevel.WARNING);
     }
 
     public void error(String message) {
-        StringBuffer stringBuffer = createMessage(message, LogLevel.ERROR);
+        writeLog(message, LogLevel.ERROR);
+    }
+
+    public void writeLog(String message, LogLevel logLevel) {
+        StringBuffer stringBuffer = createMessage(message, logLevel);
         logWriter.write(stringBuffer.toString());
     }
 
@@ -67,7 +69,6 @@ public class Logger {
         private static final String LOG_FILEPATH = "log.txt";
 
         private LogWriter() {
-
         }
 
         public void write(String message) {
