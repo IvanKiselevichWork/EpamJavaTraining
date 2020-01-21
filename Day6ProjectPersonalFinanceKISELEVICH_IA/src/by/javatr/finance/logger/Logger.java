@@ -10,6 +10,7 @@ public class Logger {
 
     public enum LogLevel {
         DEBUG,
+        INFO,
         WARNING,
         ERROR
     }
@@ -18,6 +19,7 @@ public class Logger {
     private LogWriter logWriter;
 
     public static Logger getLogger(Class<?> targetClass) {
+        //todo make loggers list (map), and if logger for class exist not create, but return reference
         return new Logger(targetClass);
     }
 
@@ -28,6 +30,10 @@ public class Logger {
 
     public void debug(String message) {
         writeLog(message, LogLevel.DEBUG);
+    }
+
+    public void info(String message) {
+        writeLog(message, LogLevel.INFO);
     }
 
     public void warning(String message) {
