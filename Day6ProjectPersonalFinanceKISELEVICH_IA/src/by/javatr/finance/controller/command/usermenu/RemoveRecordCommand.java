@@ -5,10 +5,12 @@ import by.javatr.finance.controller.CommandName;
 import by.javatr.finance.controller.CommandParameters;
 import by.javatr.finance.controller.command.Command;
 import by.javatr.finance.controller.command.UserMessages;
+import by.javatr.finance.controller.command.mainmenu.SignInCommand;
 import by.javatr.finance.controller.exception.AbstractControllerException;
 import by.javatr.finance.controller.exception.ControllerException;
 import by.javatr.finance.controller.exception.ControllerExceptionMessages;
 import by.javatr.finance.bean.Record;
+import by.javatr.finance.logger.Logger;
 import by.javatr.finance.service.RecordService;
 import by.javatr.finance.service.exception.record.RecordServiceException;
 import by.javatr.finance.service.factory.ServiceFactory;
@@ -20,6 +22,7 @@ public class RemoveRecordCommand implements Command {
 
     private static final View view = View.getInstance();
     private static final RecordService recordService = ServiceFactory.getInstance().getRecordService();
+    private static final Logger logger = Logger.getLogger(RemoveRecordCommand.class);
 
     @Override
     public CommandParameters execute(CommandParameters commandParameters) throws AbstractControllerException {
@@ -43,7 +46,8 @@ public class RemoveRecordCommand implements Command {
             recordService.removeRecord(recordIndex);
             view.showRecordRemovedMessage();
         } catch (RecordServiceException e) {
-            view.showErrorMessage(e);
+            logger.error(e.getMessage());
+            view.showErrorMessage(UserMessages.UNEXPECTED_ERROR_MESSAGE);
         }
         commandParameters.setParameter(CommandParameters.NEXT_COMMAND, CommandName.SHOW_USER_MENU);
         return commandParameters;

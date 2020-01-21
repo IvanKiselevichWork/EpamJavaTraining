@@ -65,17 +65,8 @@ public class View {
         return scanner.nextLine();
     }
 
-    public void showErrorMessage(Throwable error) {
-        if (error != null) {
-            if (error.getCause() != null) {
-                System.out.println("Error occurred: " + error.getCause().getMessage());
-            } else {
-                System.out.println("Error occurred: " + error.getMessage());
-            }
-        } else {
-            System.out.println("Error occurred: " + "unknown error");
-        }
-
+    public void showErrorMessage(String message) {
+        System.out.println("Error occurred: " + message);
     }
 
     public void showExitMessage() {

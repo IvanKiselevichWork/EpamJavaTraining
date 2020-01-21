@@ -9,6 +9,7 @@ import by.javatr.finance.controller.exception.AbstractControllerException;
 import by.javatr.finance.controller.exception.ControllerException;
 import by.javatr.finance.controller.exception.ControllerExceptionMessages;
 import by.javatr.finance.bean.Record;
+import by.javatr.finance.logger.Logger;
 import by.javatr.finance.service.RecordService;
 import by.javatr.finance.service.exception.record.RecordServiceException;
 import by.javatr.finance.service.factory.ServiceFactory;
@@ -21,6 +22,7 @@ public class AddRecordCommand implements Command {
 
     private static final View view = View.getInstance();
     private static final RecordService recordService = ServiceFactory.getInstance().getRecordService();
+    private static final Logger logger = Logger.getLogger(AddRecordCommand.class);
 
     @Override
     public CommandParameters execute(CommandParameters commandParameters) throws AbstractControllerException {
@@ -61,7 +63,8 @@ public class AddRecordCommand implements Command {
             record = recordService.addRecord(record);
             view.showRecordAddedMessage(record);
         } catch (RecordServiceException e) {
-            view.showErrorMessage(e);
+            logger.error(e.getMessage());
+            view.showErrorMessage(UserMessages.UNEXPECTED_ERROR_MESSAGE);
         }
 
         commandParameters.setParameter(CommandParameters.NEXT_COMMAND, CommandName.SHOW_USER_MENU);
