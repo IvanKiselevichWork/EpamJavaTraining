@@ -4,6 +4,7 @@ import by.javatr.finance.dao.RecordDAO;
 import by.javatr.finance.dao.exception.record.*;
 import by.javatr.finance.dao.fileImpl.validation.RecordValidator;
 import by.javatr.finance.bean.Record;
+import by.javatr.finance.logger.Logger;
 
 import java.io.File;
 import java.io.IOException;
@@ -28,6 +29,7 @@ public class FileRecordDAO implements RecordDAO {
     public final static int AMOUNT_INDEX = 4;
 
     private final static RecordValidator recordValidator = new RecordValidator();
+    private final static Logger logger = Logger.getLogger(FileRecordDAO.class);
 
     public FileRecordDAO() {
 
@@ -42,10 +44,10 @@ public class FileRecordDAO implements RecordDAO {
             record.setId(id);
 
             Files.write(Paths.get(RECORDS_FILENAME), convertRecordToString(record).getBytes(), StandardOpenOption.CREATE, StandardOpenOption.APPEND);
+            return record;
         } catch (IOException e) {
             throw new RecordDAOException(RecordDAOExceptionMessages.cantWriteRecord, e);
         }
-        return record;
     }
 
     @Override
@@ -108,15 +110,12 @@ public class FileRecordDAO implements RecordDAO {
                 Record record = convertStringToRecord(recordString);
                 list.add(record);
             }
-        } catch (IOException e) {
-            //log
+        } catch (IOException | DateTimeParseException | NumberFormatException | NullPointerException e) {
+            logger.error(e.getMessage());
             //throw new RecordDAOException(RecordDAOExceptionMessages.cantReadRecord, e);
-        } catch (DateTimeParseException // unchecked
-                | NumberFormatException // unchecked
-                | NullPointerException e ){ // unchecked
-            //log
             //throw new RecordDAOException(RecordDAOExceptionMessages.dataCorrupted, e);
         }
+
         return list;
     }
 
