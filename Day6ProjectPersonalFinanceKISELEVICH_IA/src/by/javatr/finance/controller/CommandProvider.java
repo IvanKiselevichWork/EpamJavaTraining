@@ -7,11 +7,13 @@ import by.javatr.finance.controller.command.mainmenu.RegistrationCommand;
 import by.javatr.finance.controller.command.mainmenu.ShowMainMenuCommand;
 import by.javatr.finance.controller.command.mainmenu.SignInCommand;
 import by.javatr.finance.controller.command.usermenu.*;
+import by.javatr.finance.logger.Logger;
 
 import java.util.HashMap;
 
 public final class CommandProvider {
     private final HashMap<CommandName, Command> commandMap = new HashMap<>();
+    private final Logger logger = Logger.getLogger(CommandProvider.class);
 
     public CommandProvider() {
         commandMap.put(CommandName.EXIT, new ExitCommand());
@@ -33,7 +35,7 @@ public final class CommandProvider {
             commandName = CommandName.valueOf(name.toUpperCase());
             command = commandMap.get(commandName);
         } catch (IllegalArgumentException | NullPointerException e) {
-            //todo log
+            logger.error(e.getMessage());
             command = commandMap.get(CommandName.WRONG_REQUEST);
         }
         return command;
