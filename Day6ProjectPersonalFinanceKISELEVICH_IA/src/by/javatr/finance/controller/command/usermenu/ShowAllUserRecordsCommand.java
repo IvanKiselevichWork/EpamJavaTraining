@@ -17,8 +17,8 @@ import by.javatr.finance.view.View;
 
 public class ShowAllUserRecordsCommand implements Command {
 
-    private static final View view = View.getInstance();
-    protected static final RecordService recordService = ServiceFactory.getInstance().getRecordService();
+    private final View view = View.getInstance();
+    protected final RecordService recordService = ServiceFactory.getInstance().getRecordService();
     private final Logger logger = Logger.getLogger(this);
 
     @Override

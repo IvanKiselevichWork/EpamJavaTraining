@@ -6,7 +6,7 @@ import by.javatr.finance.dao.fileImpl.FileRecordDAO;
 import by.javatr.finance.dao.fileImpl.FileUserDAO;
 
 public final class DAOFactory {
-    private final static DAOFactory instance = new DAOFactory();
+    private static final DAOFactory instance = new DAOFactory();
 
     private final UserDAO fileUserDao = new FileUserDAO();
     private final RecordDAO fileRecordDAO = new FileRecordDAO();

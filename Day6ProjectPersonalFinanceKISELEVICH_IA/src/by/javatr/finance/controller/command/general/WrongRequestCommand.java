@@ -8,7 +8,7 @@ import by.javatr.finance.view.View;
 
 public class WrongRequestCommand implements Command {
 
-    private static final View view = View.getInstance();
+    private final View view = View.getInstance();
 
     @Override
     public CommandParameters execute(CommandParameters commandParameters) {

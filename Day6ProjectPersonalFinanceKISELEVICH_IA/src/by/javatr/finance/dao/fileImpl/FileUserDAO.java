@@ -19,7 +19,7 @@ public class FileUserDAO implements UserDAO {
     public final static int LOGIN_INDEX = 0;
     public final static int PASSWORD_INDEX = 1;
 
-    private final static UserValidator userValidator = new UserValidator();
+    private final UserValidator userValidator = new UserValidator();
 
     public FileUserDAO() {
     }

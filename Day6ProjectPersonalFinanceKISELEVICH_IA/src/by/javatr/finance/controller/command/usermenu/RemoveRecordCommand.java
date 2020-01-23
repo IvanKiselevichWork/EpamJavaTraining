@@ -20,8 +20,8 @@ import java.util.List;
 
 public class RemoveRecordCommand implements Command {
 
-    private static final View view = View.getInstance();
-    private static final RecordService recordService = ServiceFactory.getInstance().getRecordService();
+    private final View view = View.getInstance();
+    private final RecordService recordService = ServiceFactory.getInstance().getRecordService();
     private final Logger logger = Logger.getLogger(this);
 
     @Override

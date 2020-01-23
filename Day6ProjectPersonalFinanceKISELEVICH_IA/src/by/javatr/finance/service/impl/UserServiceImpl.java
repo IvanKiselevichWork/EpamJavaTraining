@@ -14,9 +14,9 @@ import by.javatr.finance.service.impl.validation.UserValidator;
 
 public class UserServiceImpl implements UserService {
 
-    private final static UserValidator userValidator = new UserValidator();
+    private final UserValidator userValidator = new UserValidator();
 
-    private final static UserDAO userDAO = DAOFactory.getInstance().getUserDAO();
+    private final UserDAO userDAO = DAOFactory.getInstance().getUserDAO();
 
     /**
      * if did'n throw anything - signIn is OK

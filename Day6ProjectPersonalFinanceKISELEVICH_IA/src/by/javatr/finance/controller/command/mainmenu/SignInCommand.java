@@ -15,8 +15,8 @@ import by.javatr.finance.view.View;
 
 public class SignInCommand implements Command {
 
-    private static final View view = View.getInstance();
-    private static final UserService userService = ServiceFactory.getInstance().getUserService();
+    private final View view = View.getInstance();
+    private final UserService userService = ServiceFactory.getInstance().getUserService();
     private final Logger logger = Logger.getLogger(this);
 
     @Override
