@@ -8,7 +8,7 @@ import by.javatr.finance.view.View;
 public class Controller {
 
     private final CommandProvider commandProvider = new CommandProvider();
-    private static final Logger logger = Logger.getLogger(Controller.class);
+    private final Logger logger = Logger.getLogger(this);
 
     public CommandParameters execute(CommandParameters commandParameters) {
         String commandName = commandParameters.getParameter(CommandParameters.NEXT_COMMAND).toString();

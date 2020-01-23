@@ -13,7 +13,7 @@ import java.util.HashMap;
 
 public final class CommandProvider {
     private final HashMap<CommandName, Command> commandMap = new HashMap<>();
-    private final Logger logger = Logger.getLogger(CommandProvider.class);
+    private final Logger logger = Logger.getLogger(this);
 
     public CommandProvider() {
         commandMap.put(CommandName.EXIT, new ExitCommand());

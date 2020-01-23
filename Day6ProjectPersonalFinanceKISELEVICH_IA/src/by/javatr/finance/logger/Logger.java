@@ -18,9 +18,9 @@ public class Logger {
     private Class<?> targetClass;
     private LogWriter logWriter;
 
-    public static Logger getLogger(Class<?> targetClass) {
+    public static Logger getLogger(Object object) {
         //todo make loggers list (map), and if logger for class exist not create, but return reference
-        return new Logger(targetClass);
+        return new Logger(object.getClass());
     }
 
     private Logger(Class<?> targetClass) {
