@@ -9,6 +9,7 @@ public class Controller {
 
     private final CommandProvider commandProvider = new CommandProvider();
     private final Logger logger = Logger.getLogger(this);
+    private final View view = View.getInstance();
 
     public CommandParameters execute(CommandParameters commandParameters) {
         String commandName = commandParameters.getParameter(CommandParameters.NEXT_COMMAND).toString();
@@ -18,7 +19,7 @@ public class Controller {
             commandParameters = command.execute(commandParameters);
         } catch (Exception e) {
             logger.error(e.getMessage());
-            View.getInstance().showCaution(UserMessages.UNEXPECTED_ERROR_MESSAGE);
+            view.showCaution(UserMessages.UNEXPECTED_ERROR_MESSAGE);
             commandParameters = new CommandParameters();
             commandParameters.setParameter(CommandParameters.NEXT_COMMAND, CommandName.SHOW_MAIN_MENU);
         }

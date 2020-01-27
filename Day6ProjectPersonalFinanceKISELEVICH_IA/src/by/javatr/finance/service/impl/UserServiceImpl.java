@@ -2,13 +2,9 @@ package by.javatr.finance.service.impl;
 
 import by.javatr.finance.bean.User;
 import by.javatr.finance.dao.UserDAO;
-import by.javatr.finance.dao.exception.user.AccountNotFoundDAOException;
 import by.javatr.finance.dao.exception.user.UserDAOException;
-import by.javatr.finance.dao.exception.user.LoginInUseDAOException;
 import by.javatr.finance.dao.factory.DAOFactory;
 import by.javatr.finance.service.UserService;
-import by.javatr.finance.service.exception.user.AccountNotFoundServiceException;
-import by.javatr.finance.service.exception.user.LoginInUseServiceException;
 import by.javatr.finance.service.exception.user.UserServiceException;
 import by.javatr.finance.service.impl.validation.UserValidator;
 
@@ -21,16 +17,14 @@ public class UserServiceImpl implements UserService {
     /**
      * if did'n throw anything - signIn is OK
      * @param user User
-     * @throws AccountNotFoundServiceException if account not found
+     * @return boolean true - if signIn successful, false - if not (incorrect credentials)
      * @throws UserServiceException if other exception occurs
      */
     @Override
-    public void signIn(User user) throws AccountNotFoundServiceException, UserServiceException {
+    public boolean signIn(User user) throws UserServiceException {
         try {
             userValidator.check(user);
-            userDAO.signIn(user);
-        } catch (AccountNotFoundDAOException e) {
-            throw new AccountNotFoundServiceException(e);
+            return userDAO.signIn(user);
         } catch (UserDAOException e) {
             throw new UserServiceException(e);
         }
@@ -46,16 +40,14 @@ public class UserServiceImpl implements UserService {
     /**
      * if did'n throw anything - registration is OK
      * @param user User
-     * @throws LoginInUseServiceException if login in use
+     * @return boolean true - if registration successful, false - if not (login in use, e.t.)
      * @throws UserServiceException if other exception occurs
      */
     @Override
-    public void registration(User user) throws LoginInUseServiceException, UserServiceException {
+    public boolean registration(User user) throws UserServiceException {
         try {
             userValidator.check(user);
-            userDAO.registration(user);
-        } catch (LoginInUseDAOException e) {
-            throw new LoginInUseServiceException(e);
+            return userDAO.registration(user);
         } catch (UserDAOException e) {
             throw new UserServiceException(e);
         }

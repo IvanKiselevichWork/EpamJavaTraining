@@ -5,10 +5,8 @@ import by.javatr.finance.controller.CommandName;
 import by.javatr.finance.controller.CommandParameters;
 import by.javatr.finance.controller.command.Command;
 import by.javatr.finance.controller.command.UserMessages;
-import by.javatr.finance.controller.command.usermenu.AddRecordCommand;
 import by.javatr.finance.logger.Logger;
 import by.javatr.finance.service.UserService;
-import by.javatr.finance.service.exception.user.AccountNotFoundServiceException;
 import by.javatr.finance.service.exception.user.UserServiceException;
 import by.javatr.finance.service.factory.ServiceFactory;
 import by.javatr.finance.view.View;
@@ -25,21 +23,22 @@ public class SignInCommand implements Command {
         String login = view.getString(UserMessages.LOGIN_REQUEST_MESSAGE);
         String password = view.getString(UserMessages.PASSWORD_REQUEST_MESSAGE);
 
+        if (commandParameters == null) {
+            commandParameters = new CommandParameters();
+        }
+
         try {
             User user = new User(login, password);
-            userService.signIn(user);
+            if(userService.signIn(user)) {
+                view.welcomeUser(login);
 
-            view.welcomeUser(login);
-
-            if (commandParameters == null) {
-                commandParameters = new CommandParameters();
+                commandParameters.setParameter(CommandParameters.USER, user);
+                commandParameters.setParameter(CommandParameters.NEXT_COMMAND, CommandName.SHOW_USER_MENU);
+            } else {
+                view.showAccountNotFoundMessage();
+                commandParameters.setParameter(CommandParameters.NEXT_COMMAND, CommandName.SHOW_MAIN_MENU);
             }
-            commandParameters.setParameter(CommandParameters.USER, user);
-            commandParameters.setParameter(CommandParameters.NEXT_COMMAND, CommandName.SHOW_USER_MENU);
 
-        } catch (AccountNotFoundServiceException e) {
-            view.showAccountNotFoundMessage();
-            commandParameters.setParameter(CommandParameters.NEXT_COMMAND, CommandName.SHOW_MAIN_MENU);
         } catch (UserServiceException e) {
             logger.error(e.getMessage());
             view.showErrorMessage(UserMessages.UNEXPECTED_ERROR_MESSAGE);

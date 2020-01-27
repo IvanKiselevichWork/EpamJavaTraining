@@ -12,7 +12,7 @@ public class SignOutCommand implements Command {
     private final View view = View.getInstance();
 
     @Override
-    public CommandParameters execute(CommandParameters commandParameters) throws AbstractControllerException {
+    public CommandParameters execute(CommandParameters commandParameters) {
         String login = ((User)commandParameters.getParameter(CommandParameters.USER)).getLogin();
         view.showGoodbye(login);
         commandParameters.setParameter(CommandParameters.USER, null);
