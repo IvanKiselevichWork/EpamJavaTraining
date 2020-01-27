@@ -4,7 +4,6 @@ import by.javatr.finance.bean.User;
 import by.javatr.finance.controller.CommandName;
 import by.javatr.finance.controller.CommandParameters;
 import by.javatr.finance.controller.command.Command;
-import by.javatr.finance.controller.exception.AbstractControllerException;
 import by.javatr.finance.view.View;
 
 public class SignOutCommand implements Command {

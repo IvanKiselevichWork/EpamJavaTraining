@@ -5,6 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.time.LocalDateTime;
+import java.util.HashMap;
 
 public class Logger {
 
@@ -15,12 +16,19 @@ public class Logger {
         ERROR
     }
 
-    private Class<?> targetClass;
-    private LogWriter logWriter;
+    private final static HashMap<String, Logger> loggers = new HashMap<>();
 
-    public static Logger getLogger(Object object) {
-        //todo make loggers list (map), and if logger for class exist not create, but return reference
-        return new Logger(object.getClass());
+    private final Class<?> targetClass;
+    private final LogWriter logWriter;
+
+
+    public static Logger getLogger(Class<?> targetClass) {
+        Logger logger = loggers.get(targetClass.getName());
+        if (logger == null) {
+            logger = new Logger(targetClass);
+            loggers.put(targetClass.getName(), logger);
+        }
+        return logger;
     }
 
     private Logger(Class<?> targetClass) {
@@ -65,7 +73,7 @@ public class Logger {
 
     private static class LogWriter {
         private static class LogWriterHolder {
-            private static LogWriter instance = new LogWriter();
+            private static final LogWriter instance = new LogWriter();
         }
 
         public static LogWriter getInstance() {

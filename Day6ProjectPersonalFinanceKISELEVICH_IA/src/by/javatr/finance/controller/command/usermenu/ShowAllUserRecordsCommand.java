@@ -18,7 +18,7 @@ public class ShowAllUserRecordsCommand implements Command {
 
     private final View view = View.getInstance();
     protected final RecordService recordService = ServiceFactory.getInstance().getRecordService();
-    private final Logger logger = Logger.getLogger(this);
+    private final Logger logger = Logger.getLogger(this.getClass());
 
     @Override
     public CommandParameters execute(CommandParameters commandParameters) throws AbstractControllerException {

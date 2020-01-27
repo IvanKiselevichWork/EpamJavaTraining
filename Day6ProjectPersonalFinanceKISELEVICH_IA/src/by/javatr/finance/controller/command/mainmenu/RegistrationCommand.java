@@ -15,7 +15,7 @@ public class RegistrationCommand implements Command {
 
     private final View view = View.getInstance();
     private final UserService userService = ServiceFactory.getInstance().getUserService();
-    private final Logger logger = Logger.getLogger(this);
+    private final Logger logger = Logger.getLogger(this.getClass());
 
     @Override
     public CommandParameters execute(CommandParameters commandParameters) {

@@ -29,7 +29,7 @@ public class FileRecordDAO implements RecordDAO {
     public final static int AMOUNT_INDEX = 4;
 
     private final RecordValidator recordValidator = new RecordValidator();
-    private final Logger logger = Logger.getLogger(this);
+    private final Logger logger = Logger.getLogger(this.getClass());
 
     public FileRecordDAO() {
 

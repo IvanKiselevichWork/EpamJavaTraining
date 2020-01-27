@@ -21,7 +21,7 @@ public class RemoveRecordCommand implements Command {
 
     private final View view = View.getInstance();
     private final RecordService recordService = ServiceFactory.getInstance().getRecordService();
-    private final Logger logger = Logger.getLogger(this);
+    private final Logger logger = Logger.getLogger(this.getClass());
 
     @Override
     public CommandParameters execute(CommandParameters commandParameters) throws AbstractControllerException {

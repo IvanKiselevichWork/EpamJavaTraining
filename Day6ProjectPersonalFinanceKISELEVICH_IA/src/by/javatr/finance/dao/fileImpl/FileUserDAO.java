@@ -21,7 +21,7 @@ public class FileUserDAO implements UserDAO {
     public final static int PASSWORD_INDEX = 1;
 
     private final UserValidator userValidator = new UserValidator();
-    private final Logger logger = Logger.getLogger(this);
+    private final Logger logger = Logger.getLogger(this.getClass());
 
     public FileUserDAO() {
     }
