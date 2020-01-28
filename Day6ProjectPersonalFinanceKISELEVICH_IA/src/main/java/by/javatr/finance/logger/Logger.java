@@ -1,11 +1,14 @@
 package by.javatr.finance.logger;
 
+import by.javatr.finance.dao.fileImpl.FileUserDAO;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.time.LocalDateTime;
 import java.util.HashMap;
+import java.util.Properties;
 
 public class Logger {
 
@@ -72,6 +75,22 @@ public class Logger {
     }
 
     private static class LogWriter {
+
+        private static final String LOG_FILEPATH;
+
+        static {
+            Properties properties = new Properties();
+            String temp;
+            try {
+                properties.load(FileUserDAO.class.getClassLoader().getResourceAsStream("config.properties"));
+                temp = properties.getProperty("logger.log_filename");
+            } catch (IOException e) {
+                Logger.getLogger(FileUserDAO.class).error(e.getMessage());
+                temp = "";
+            }
+            LOG_FILEPATH = temp;
+        }
+
         private static class LogWriterHolder {
             private static final LogWriter instance = new LogWriter();
         }
@@ -79,8 +98,6 @@ public class Logger {
         public static LogWriter getInstance() {
             return LogWriterHolder.instance;
         }
-
-        private static final String LOG_FILEPATH = "log.txt";
 
         private LogWriter() {
         }

@@ -12,10 +12,23 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.List;
+import java.util.Properties;
 
 public class FileUserDAO implements UserDAO {
 
-    public final static String USERS_FILENAME = "users.txt";
+    public final static String USERS_FILENAME;
+    static {
+        Properties properties = new Properties();
+        String temp;
+        try {
+            properties.load(FileUserDAO.class.getClassLoader().getResourceAsStream("config.properties"));
+            temp = properties.getProperty("dao.users_filename");
+        } catch (IOException e) {
+            Logger.getLogger(FileUserDAO.class).error(e.getMessage());
+            temp = "";
+        }
+        USERS_FILENAME = temp;
+    }
     public final static String DELIMITER = ";";
     public final static int LOGIN_INDEX = 0;
     public final static int PASSWORD_INDEX = 1;

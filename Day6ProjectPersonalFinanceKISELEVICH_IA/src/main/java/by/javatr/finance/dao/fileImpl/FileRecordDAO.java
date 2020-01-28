@@ -15,11 +15,30 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 public class FileRecordDAO implements RecordDAO {
 
-    public final static String RECORDS_FILENAME = "records.txt";
-    public final static String RECORDS_BACKUP_FILENAME = "records.txt_backup";
+    public final static String RECORDS_FILENAME;
+    public final static String RECORDS_BACKUP_FILENAME;
+
+    static {
+        Properties properties = new Properties();
+        String tempRecordsFilename;
+        String tempRecordsBackupFilename;
+        try {
+            properties.load(FileUserDAO.class.getClassLoader().getResourceAsStream("config.properties"));
+            tempRecordsFilename = properties.getProperty("dao.records_filename");
+            tempRecordsBackupFilename = properties.getProperty("dao.records_filename_backup");
+        } catch (IOException e) {
+            Logger.getLogger(FileUserDAO.class).error(e.getMessage());
+            tempRecordsFilename = "";
+            tempRecordsBackupFilename = "";
+        }
+        RECORDS_FILENAME = tempRecordsFilename;
+        RECORDS_BACKUP_FILENAME = tempRecordsBackupFilename;
+    }
+
     public final static String DELIMITER = ";";
 
     public final static int RECORD_ID = 0;
@@ -111,7 +130,7 @@ public class FileRecordDAO implements RecordDAO {
                 list.add(record);
             }
         } catch (IOException | DateTimeParseException | NumberFormatException | NullPointerException e) {
-            logger.error(e.getMessage());
+            logger.warning(new RecordDAOException("no records file", e).getMessage());
             //throw new RecordDAOException(RecordDAOExceptionMessages.cantReadRecord, e);
             //throw new RecordDAOException(RecordDAOExceptionMessages.dataCorrupted, e);
         }
