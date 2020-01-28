@@ -1,8 +1,8 @@
-package main.java.by.javatr.finance.service.impl.validation;
+package by.javatr.finance.service.impl.validation;
 
-import main.java.by.javatr.finance.bean.Record;
-import main.java.by.javatr.finance.service.exception.record.RecordServiceException;
-import main.java.by.javatr.finance.service.exception.record.RecordServiceExceptionMessages;
+import by.javatr.finance.bean.Record;
+import by.javatr.finance.service.exception.record.RecordServiceException;
+import by.javatr.finance.service.exception.record.RecordServiceExceptionMessages;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;

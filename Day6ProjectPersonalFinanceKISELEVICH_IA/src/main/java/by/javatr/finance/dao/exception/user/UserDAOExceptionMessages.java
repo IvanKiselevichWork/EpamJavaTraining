@@ -1,4 +1,4 @@
-package main.java.by.javatr.finance.dao.exception.user;
+package by.javatr.finance.dao.exception.user;
 
 public interface UserDAOExceptionMessages {
     String cantWriteUser = "Can't write user";

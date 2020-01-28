@@ -1,8 +1,8 @@
-package main.java.by.javatr.finance.runner;
+package by.javatr.finance.runner;
 
-import main.java.by.javatr.finance.controller.CommandName;
-import main.java.by.javatr.finance.controller.CommandParameters;
-import main.java.by.javatr.finance.controller.Controller;
+import by.javatr.finance.controller.CommandName;
+import by.javatr.finance.controller.CommandParameters;
+import by.javatr.finance.controller.Controller;
 
 public class Main {
 

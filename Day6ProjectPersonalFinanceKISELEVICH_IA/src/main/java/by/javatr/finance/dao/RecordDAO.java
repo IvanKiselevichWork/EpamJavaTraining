@@ -1,7 +1,7 @@
-package main.java.by.javatr.finance.dao;
+package by.javatr.finance.dao;
 
-import main.java.by.javatr.finance.dao.exception.record.RecordDAOException;
-import main.java.by.javatr.finance.bean.Record;
+import by.javatr.finance.dao.exception.record.RecordDAOException;
+import by.javatr.finance.bean.Record;
 
 import java.util.List;
 

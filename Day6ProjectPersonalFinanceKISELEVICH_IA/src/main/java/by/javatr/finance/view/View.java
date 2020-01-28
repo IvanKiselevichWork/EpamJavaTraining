@@ -1,6 +1,6 @@
-package main.java.by.javatr.finance.view;
+package by.javatr.finance.view;
 
-import main.java.by.javatr.finance.bean.Record;
+import by.javatr.finance.bean.Record;
 
 
 import java.util.List;

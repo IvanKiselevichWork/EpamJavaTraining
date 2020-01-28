@@ -1,4 +1,4 @@
-package main.java.by.javatr.finance.service.exception;
+package by.javatr.finance.service.exception;
 
 public abstract class AbstractServiceException extends Exception {
     public AbstractServiceException() {

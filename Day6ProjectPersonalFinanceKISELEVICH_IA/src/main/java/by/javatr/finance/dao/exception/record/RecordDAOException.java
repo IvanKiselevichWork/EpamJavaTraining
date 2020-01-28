@@ -1,6 +1,6 @@
-package main.java.by.javatr.finance.dao.exception.record;
+package by.javatr.finance.dao.exception.record;
 
-import main.java.by.javatr.finance.dao.exception.AbstractDAOException;
+import by.javatr.finance.dao.exception.AbstractDAOException;
 
 public class RecordDAOException extends AbstractDAOException {
     public RecordDAOException() {

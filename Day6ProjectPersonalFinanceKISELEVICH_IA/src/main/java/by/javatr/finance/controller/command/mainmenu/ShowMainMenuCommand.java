@@ -1,9 +1,9 @@
-package main.java.by.javatr.finance.controller.command.mainmenu;
+package by.javatr.finance.controller.command.mainmenu;
 
-import main.java.by.javatr.finance.controller.CommandName;
-import main.java.by.javatr.finance.controller.CommandParameters;
-import main.java.by.javatr.finance.controller.command.Command;
-import main.java.by.javatr.finance.view.View;
+import by.javatr.finance.controller.CommandName;
+import by.javatr.finance.controller.CommandParameters;
+import by.javatr.finance.controller.command.Command;
+import by.javatr.finance.view.View;
 
 public class ShowMainMenuCommand implements Command {
 

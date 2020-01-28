@@ -1,4 +1,4 @@
-ERROR ; 2020-01-21T11:22:03.445 ; Class name: main.java.by.javatr.finance.controller.command.mainmenu.SignInCommand ; main.java.by.javatr.finance.dao.exception.user.UserDAOException: User data corrupted ;
-ERROR ; 2020-01-21T11:22:33.106 ; Class name: main.java.by.javatr.finance.controller.command.mainmenu.SignInCommand ; main.java.by.javatr.finance.dao.exception.user.UserDAOException: User data corrupted ;
-ERROR ; 2020-01-21T11:23:50.486 ; Class name: main.java.by.javatr.finance.controller.command.mainmenu.SignInCommand ; main.java.by.javatr.finance.dao.exception.user.UserDAOException: User data corrupted ;
-ERROR ; 2020-01-21T11:24:58.792 ; Class name: main.java.by.javatr.finance.controller.command.usermenu.ShowAllUserRecordsCommand ; main.java.by.javatr.finance.dao.exception.record.RecordDAOException: Records data corrupted ;
+ERROR ; 2020-01-21T11:22:03.445 ; Class name: by.javatr.finance.controller.command.mainmenu.SignInCommand ; by.javatr.finance.dao.exception.user.UserDAOException: User data corrupted ;
+ERROR ; 2020-01-21T11:22:33.106 ; Class name: by.javatr.finance.controller.command.mainmenu.SignInCommand ; by.javatr.finance.dao.exception.user.UserDAOException: User data corrupted ;
+ERROR ; 2020-01-21T11:23:50.486 ; Class name: by.javatr.finance.controller.command.mainmenu.SignInCommand ; by.javatr.finance.dao.exception.user.UserDAOException: User data corrupted ;
+ERROR ; 2020-01-21T11:24:58.792 ; Class name: by.javatr.finance.controller.command.usermenu.ShowAllUserRecordsCommand ; by.javatr.finance.dao.exception.record.RecordDAOException: Records data corrupted ;

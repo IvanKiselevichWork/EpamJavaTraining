@@ -1,6 +1,6 @@
-package main.java.by.javatr.finance.service.exception.user;
+package by.javatr.finance.service.exception.user;
 
-import main.java.by.javatr.finance.service.exception.AbstractServiceException;
+import by.javatr.finance.service.exception.AbstractServiceException;
 
 public class UserServiceException extends AbstractServiceException {
     public UserServiceException() {

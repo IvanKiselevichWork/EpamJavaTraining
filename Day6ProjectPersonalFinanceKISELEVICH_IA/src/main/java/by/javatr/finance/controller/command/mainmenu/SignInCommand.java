@@ -1,15 +1,15 @@
-package main.java.by.javatr.finance.controller.command.mainmenu;
+package by.javatr.finance.controller.command.mainmenu;
 
-import main.java.by.javatr.finance.bean.User;
-import main.java.by.javatr.finance.controller.CommandName;
-import main.java.by.javatr.finance.controller.CommandParameters;
-import main.java.by.javatr.finance.controller.command.Command;
-import main.java.by.javatr.finance.controller.command.UserMessages;
-import main.java.by.javatr.finance.logger.Logger;
-import main.java.by.javatr.finance.service.UserService;
-import main.java.by.javatr.finance.service.exception.user.UserServiceException;
-import main.java.by.javatr.finance.service.factory.ServiceFactory;
-import main.java.by.javatr.finance.view.View;
+import by.javatr.finance.bean.User;
+import by.javatr.finance.controller.CommandName;
+import by.javatr.finance.controller.CommandParameters;
+import by.javatr.finance.controller.command.Command;
+import by.javatr.finance.controller.command.UserMessages;
+import by.javatr.finance.logger.Logger;
+import by.javatr.finance.service.UserService;
+import by.javatr.finance.service.exception.user.UserServiceException;
+import by.javatr.finance.service.factory.ServiceFactory;
+import by.javatr.finance.view.View;
 
 public class SignInCommand implements Command {
 

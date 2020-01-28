@@ -1,4 +1,4 @@
-package main.java.by.javatr.finance.service.exception.record;
+package by.javatr.finance.service.exception.record;
 
 public interface RecordServiceExceptionMessages {
     String dateIsNull = "Date is null";

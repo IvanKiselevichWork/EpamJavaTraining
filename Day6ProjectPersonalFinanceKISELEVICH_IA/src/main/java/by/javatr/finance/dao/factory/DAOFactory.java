@@ -1,9 +1,9 @@
-package main.java.by.javatr.finance.dao.factory;
+package by.javatr.finance.dao.factory;
 
-import main.java.by.javatr.finance.dao.RecordDAO;
-import main.java.by.javatr.finance.dao.UserDAO;
-import main.java.by.javatr.finance.dao.fileImpl.FileRecordDAO;
-import main.java.by.javatr.finance.dao.fileImpl.FileUserDAO;
+import by.javatr.finance.dao.RecordDAO;
+import by.javatr.finance.dao.UserDAO;
+import by.javatr.finance.dao.fileImpl.FileRecordDAO;
+import by.javatr.finance.dao.fileImpl.FileUserDAO;
 
 public final class DAOFactory {
     private static final DAOFactory instance = new DAOFactory();

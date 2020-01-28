@@ -1,6 +1,6 @@
-package main.java.by.javatr.finance.service.exception.record;
+package by.javatr.finance.service.exception.record;
 
-import main.java.by.javatr.finance.service.exception.AbstractServiceException;
+import by.javatr.finance.service.exception.AbstractServiceException;
 
 public class RecordServiceException extends AbstractServiceException {
     public RecordServiceException() {

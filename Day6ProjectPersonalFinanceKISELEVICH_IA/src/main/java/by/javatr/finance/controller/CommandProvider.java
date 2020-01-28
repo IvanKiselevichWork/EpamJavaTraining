@@ -1,13 +1,13 @@
-package main.java.by.javatr.finance.controller;
+package by.javatr.finance.controller;
 
-import main.java.by.javatr.finance.controller.command.Command;
-import main.java.by.javatr.finance.controller.command.general.ExitCommand;
-import main.java.by.javatr.finance.controller.command.general.WrongRequestCommand;
-import main.java.by.javatr.finance.controller.command.mainmenu.RegistrationCommand;
-import main.java.by.javatr.finance.controller.command.mainmenu.ShowMainMenuCommand;
-import main.java.by.javatr.finance.controller.command.mainmenu.SignInCommand;
-import main.java.by.javatr.finance.controller.command.usermenu.*;
-import main.java.by.javatr.finance.logger.Logger;
+import by.javatr.finance.controller.command.Command;
+import by.javatr.finance.controller.command.general.ExitCommand;
+import by.javatr.finance.controller.command.general.WrongRequestCommand;
+import by.javatr.finance.controller.command.mainmenu.RegistrationCommand;
+import by.javatr.finance.controller.command.mainmenu.ShowMainMenuCommand;
+import by.javatr.finance.controller.command.mainmenu.SignInCommand;
+import by.javatr.finance.controller.command.usermenu.*;
+import by.javatr.finance.logger.Logger;
 
 import java.util.HashMap;
 

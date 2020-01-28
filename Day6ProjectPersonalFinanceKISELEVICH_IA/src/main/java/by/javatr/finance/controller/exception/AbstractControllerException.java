@@ -1,4 +1,4 @@
-package main.java.by.javatr.finance.controller.exception;
+package by.javatr.finance.controller.exception;
 
 public abstract class AbstractControllerException extends Exception {
     public AbstractControllerException() {

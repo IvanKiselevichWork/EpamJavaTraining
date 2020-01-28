@@ -1,4 +1,4 @@
-package main.java.by.javatr.finance.controller.command;
+package by.javatr.finance.controller.command;
 
 public interface UserMessages {
     String LOGIN_REQUEST_MESSAGE = "Input login:";

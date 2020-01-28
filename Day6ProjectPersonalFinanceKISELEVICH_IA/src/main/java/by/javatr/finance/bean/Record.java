@@ -1,4 +1,4 @@
-package main.java.by.javatr.finance.bean;
+package by.javatr.finance.bean;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;

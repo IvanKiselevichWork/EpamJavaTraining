@@ -1,10 +1,10 @@
-package main.java.by.javatr.finance.controller.command.usermenu;
+package by.javatr.finance.controller.command.usermenu;
 
-import main.java.by.javatr.finance.bean.User;
-import main.java.by.javatr.finance.controller.CommandName;
-import main.java.by.javatr.finance.controller.CommandParameters;
-import main.java.by.javatr.finance.controller.command.Command;
-import main.java.by.javatr.finance.view.View;
+import by.javatr.finance.bean.User;
+import by.javatr.finance.controller.CommandName;
+import by.javatr.finance.controller.CommandParameters;
+import by.javatr.finance.controller.command.Command;
+import by.javatr.finance.view.View;
 
 public class SignOutCommand implements Command {
 

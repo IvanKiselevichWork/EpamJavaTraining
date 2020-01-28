@@ -1,4 +1,4 @@
-package main.java.by.javatr.finance.dao.exception;
+package by.javatr.finance.dao.exception;
 
 public abstract class AbstractDAOException extends Exception {
     public AbstractDAOException() {

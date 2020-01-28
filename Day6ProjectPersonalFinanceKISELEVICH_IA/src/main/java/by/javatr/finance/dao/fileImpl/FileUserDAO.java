@@ -1,10 +1,10 @@
-package main.java.by.javatr.finance.dao.fileImpl;
+package by.javatr.finance.dao.fileImpl;
 
-import main.java.by.javatr.finance.bean.User;
-import main.java.by.javatr.finance.dao.UserDAO;
-import main.java.by.javatr.finance.dao.exception.user.*;
-import main.java.by.javatr.finance.dao.fileImpl.validation.UserValidator;
-import main.java.by.javatr.finance.logger.Logger;
+import by.javatr.finance.bean.User;
+import by.javatr.finance.dao.UserDAO;
+import by.javatr.finance.dao.exception.user.*;
+import by.javatr.finance.dao.fileImpl.validation.UserValidator;
+import by.javatr.finance.logger.Logger;
 
 import java.io.File;
 import java.io.IOException;

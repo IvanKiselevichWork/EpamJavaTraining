@@ -1,9 +1,9 @@
-package main.java.by.javatr.finance.controller;
+package by.javatr.finance.controller;
 
-import main.java.by.javatr.finance.controller.command.Command;
-import main.java.by.javatr.finance.controller.command.UserMessages;
-import main.java.by.javatr.finance.logger.Logger;
-import main.java.by.javatr.finance.view.View;
+import by.javatr.finance.controller.command.Command;
+import by.javatr.finance.controller.command.UserMessages;
+import by.javatr.finance.logger.Logger;
+import by.javatr.finance.view.View;
 
 public class Controller {
 

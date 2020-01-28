@@ -1,4 +1,4 @@
-package main.java.by.javatr.finance.logger;
+package by.javatr.finance.logger;
 
 import java.io.IOException;
 import java.nio.file.Files;

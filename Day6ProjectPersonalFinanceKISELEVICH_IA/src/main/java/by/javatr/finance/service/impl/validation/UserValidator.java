@@ -1,9 +1,9 @@
-package main.java.by.javatr.finance.service.impl.validation;
+package by.javatr.finance.service.impl.validation;
 
 
-import main.java.by.javatr.finance.bean.User;
-import main.java.by.javatr.finance.service.exception.user.UserServiceException;
-import main.java.by.javatr.finance.service.exception.user.UserServiceExceptionMessages;
+import by.javatr.finance.bean.User;
+import by.javatr.finance.service.exception.user.UserServiceException;
+import by.javatr.finance.service.exception.user.UserServiceExceptionMessages;
 
 public class UserValidator {
     public void check(User user) throws UserServiceException {

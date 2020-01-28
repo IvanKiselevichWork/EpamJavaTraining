@@ -1,4 +1,4 @@
-package main.java.by.javatr.finance.dao.exception.record;
+package by.javatr.finance.dao.exception.record;
 
 public interface RecordDAOExceptionMessages {
     String cantWriteRecord = "Can't write record";

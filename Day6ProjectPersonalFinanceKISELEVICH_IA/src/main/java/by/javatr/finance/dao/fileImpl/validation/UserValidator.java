@@ -1,8 +1,8 @@
-package main.java.by.javatr.finance.dao.fileImpl.validation;
+package by.javatr.finance.dao.fileImpl.validation;
 
-import main.java.by.javatr.finance.bean.User;
-import main.java.by.javatr.finance.dao.exception.user.*;
-import main.java.by.javatr.finance.dao.fileImpl.FileUserDAO;
+import by.javatr.finance.bean.User;
+import by.javatr.finance.dao.exception.user.*;
+import by.javatr.finance.dao.fileImpl.FileUserDAO;
 
 public class UserValidator {
 

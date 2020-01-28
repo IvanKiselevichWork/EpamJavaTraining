@@ -1,7 +1,7 @@
-package main.java.by.javatr.finance.service;
+package by.javatr.finance.service;
 
-import main.java.by.javatr.finance.bean.Record;
-import main.java.by.javatr.finance.service.exception.record.RecordServiceException;
+import by.javatr.finance.bean.Record;
+import by.javatr.finance.service.exception.record.RecordServiceException;
 
 import java.util.List;
 

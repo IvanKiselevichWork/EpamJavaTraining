@@ -1,4 +1,4 @@
-package main.java.by.javatr.finance.service.exception.user;
+package by.javatr.finance.service.exception.user;
 
 public interface UserServiceExceptionMessages {
     String userIsNull = "User is null";

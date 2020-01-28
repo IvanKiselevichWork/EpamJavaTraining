@@ -1,12 +1,12 @@
-package main.java.by.javatr.finance.service.impl;
+package by.javatr.finance.service.impl;
 
-import main.java.by.javatr.finance.dao.RecordDAO;
-import main.java.by.javatr.finance.dao.exception.AbstractDAOException;
-import main.java.by.javatr.finance.dao.factory.DAOFactory;
-import main.java.by.javatr.finance.bean.Record;
-import main.java.by.javatr.finance.service.RecordService;
-import main.java.by.javatr.finance.service.exception.record.RecordServiceException;
-import main.java.by.javatr.finance.service.impl.validation.RecordValidator;
+import by.javatr.finance.dao.RecordDAO;
+import by.javatr.finance.dao.exception.AbstractDAOException;
+import by.javatr.finance.dao.factory.DAOFactory;
+import by.javatr.finance.bean.Record;
+import by.javatr.finance.service.RecordService;
+import by.javatr.finance.service.exception.record.RecordServiceException;
+import by.javatr.finance.service.impl.validation.RecordValidator;
 
 import java.util.ArrayList;
 import java.util.List;

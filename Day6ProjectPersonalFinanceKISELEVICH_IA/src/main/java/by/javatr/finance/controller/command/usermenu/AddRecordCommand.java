@@ -1,19 +1,19 @@
-package main.java.by.javatr.finance.controller.command.usermenu;
+package by.javatr.finance.controller.command.usermenu;
 
-import main.java.by.javatr.finance.bean.User;
-import main.java.by.javatr.finance.controller.CommandName;
-import main.java.by.javatr.finance.controller.CommandParameters;
-import main.java.by.javatr.finance.controller.command.Command;
-import main.java.by.javatr.finance.controller.command.UserMessages;
-import main.java.by.javatr.finance.controller.exception.AbstractControllerException;
-import main.java.by.javatr.finance.controller.exception.ControllerException;
-import main.java.by.javatr.finance.controller.exception.ControllerExceptionMessages;
-import main.java.by.javatr.finance.bean.Record;
-import main.java.by.javatr.finance.logger.Logger;
-import main.java.by.javatr.finance.service.RecordService;
-import main.java.by.javatr.finance.service.exception.record.RecordServiceException;
-import main.java.by.javatr.finance.service.factory.ServiceFactory;
-import main.java.by.javatr.finance.view.View;
+import by.javatr.finance.bean.User;
+import by.javatr.finance.controller.CommandName;
+import by.javatr.finance.controller.CommandParameters;
+import by.javatr.finance.controller.command.Command;
+import by.javatr.finance.controller.command.UserMessages;
+import by.javatr.finance.controller.exception.AbstractControllerException;
+import by.javatr.finance.controller.exception.ControllerException;
+import by.javatr.finance.controller.exception.ControllerExceptionMessages;
+import by.javatr.finance.bean.Record;
+import by.javatr.finance.logger.Logger;
+import by.javatr.finance.service.RecordService;
+import by.javatr.finance.service.exception.record.RecordServiceException;
+import by.javatr.finance.service.factory.ServiceFactory;
+import by.javatr.finance.view.View;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
