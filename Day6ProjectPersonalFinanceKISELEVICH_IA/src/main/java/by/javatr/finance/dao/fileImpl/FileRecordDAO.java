@@ -163,6 +163,9 @@ public class FileRecordDAO implements RecordDAO {
         int lastId;
         if (source.exists()) {
             List<String> recordStrings = Files.readAllLines(Paths.get(RECORDS_FILENAME));
+            if (recordStrings.size() == 0) {
+                return -1;
+            }
             String[] lastRecord = recordStrings.get(recordStrings.size() - 1).split(DELIMITER);
             lastId = Integer.parseInt(lastRecord[RECORD_ID]);
         } else {
