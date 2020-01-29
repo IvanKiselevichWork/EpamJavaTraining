@@ -49,7 +49,7 @@ public class FileUserDAO implements UserDAO {
     public boolean signIn(User user) throws UserDAOException {
         try {
 
-            userValidator.checkUserForSignIn(user);
+            userValidator.check(user);
 
             File usersFile = new File(USERS_FILENAME);
             if (!usersFile.exists()) {
@@ -93,7 +93,7 @@ public class FileUserDAO implements UserDAO {
     @Override
     public boolean registration(User user) throws UserDAOException {
         try {
-            userValidator.checkUserForRegistration(user);
+            userValidator.check(user);
             if (isLoginInUse(user.getLogin())) {
                 return false;
             }

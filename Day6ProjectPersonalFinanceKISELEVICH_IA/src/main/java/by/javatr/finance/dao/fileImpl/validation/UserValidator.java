@@ -10,15 +10,7 @@ public class UserValidator {
 
     }
 
-    public void checkUserForRegistration(User user) throws UserDAOException {
-        check(user);
-    }
-
-    public void checkUserForSignIn(User user) throws UserDAOException {
-        check(user);
-    }
-
-    private void check(User user) throws UserDAOException {
+    public void check(User user) throws UserDAOException {
         if (user == null) {
             throw new UserDAOException(UserDAOExceptionMessages.userIsNull);
         }
