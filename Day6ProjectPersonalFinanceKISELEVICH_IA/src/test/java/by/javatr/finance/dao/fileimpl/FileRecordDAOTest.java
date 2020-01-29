@@ -127,5 +127,6 @@ public class FileRecordDAOTest {
 
         Assert.assertEquals(record1, records.get(0));
         Assert.assertEquals(record2, records.get(1));
+        Assert.assertEquals(records.size(), 2);
     }
 }
